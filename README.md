@@ -10,18 +10,25 @@
   <p align="center">
     Embark on a transformative journey with HabitForge, where we turn your daily habits into a thrilling game of triumph! Unlock your full potential by gamifying the pursuit of your goals      and building positive habits. Earn rewards, conquer challenges, and level up your life as you navigate through the dynamic landscape of self-improvement.
     <br />
+        <br />
     🏆 Challenge Yourself: Set ambitious goals and break them down into manageable daily habits. Face exciting challenges that push you towards success.
 <br /> 
+        <br />
 🎮 Earn Rewards: Every completed habit earns you points and unlocks exciting rewards. From virtual trophies to real-world treats, celebrate your victories and stay motivated.
 <br />
+        <br />
 🚀 Level Up Your Life: Progress through levels as you consistently conquer your habits. Watch as your character evolves and grows stronger, reflecting your real-world achievements.
 <br />
+        <br />
 🌐 Connect and Compete: Join a community of like-minded individuals, share your progress, and engage in friendly competition. Challenge friends or collaborate on quests for mutual success.
 <br />
+        <br />
 📊 Track Your Stats: Gain insights into your habits with detailed analytics. Identify patterns, track streaks, and make data-driven decisions to optimize your journey.
 <br />
+        <br />
 Join HabitForge and turn your daily routine into an epic adventure of self-discovery and accomplishment. Forge the habits, conquer the challenges, and level up your life!"
     <br />
+        <br />
     <a href="https://github.com/github_username/repo_name">View Demo</a>
     ·
   </p>
