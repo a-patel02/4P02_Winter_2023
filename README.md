@@ -59,7 +59,8 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- Change the product screenshots -->
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com)-->
 
 ### Built With
 
