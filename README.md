@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/a-patel02/4P02_Winter_2024">
     <img src="images/logo.png" alt="Logo" height="80">
   </a>
 
@@ -26,7 +26,7 @@
     Join HabitForge and turn your daily routine into an epic adventure of self-discovery and accomplishment. Forge the habits, conquer the challenges, and level up your life!"
     <br />
     <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    <a href="https://github.com/a-patel02/4P02_Winter_2024">View Demo</a>
   </p>
 </div>
 
@@ -49,7 +49,6 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -122,7 +121,7 @@ Nico McFarlane -
 <br/>
 Zakir Raza - 
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
+Project Link: [https://github.com/a-patel02/4P02_Winter_2024](https://github.com/a-patel02/4P02_Winter_2024)
 
 <!-- ACKNOWLEDGMENTS -->
 
@@ -135,16 +134,16 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/a-patel02/4P02_Winter_2024.svg?style=for-the-badge
+[contributors-url]: https://github.com/a-patel02/4P02_Winter_2024/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/a-patel02/4P02_Winter_2024.svg?style=for-the-badge
+[forks-url]: https://github.com/a-patel02/4P02_Winter_2024/network/members
+[stars-shield]: https://img.shields.io/github/stars/a-patel02/4P02_Winter_2024.svg?style=for-the-badge
+[stars-url]: https://github.com/a-patel02/4P02_Winter_2024/stargazers
+[issues-shield]: https://img.shields.io/github/issues/a-patel02/4P02_Winter_2024.svg?style=for-the-badge
+[issues-url]: https://github.com/a-patel02/4P02_Winter_2024/issues
+[license-shield]: https://img.shields.io/github/license/a-patel02/4P02_Winter_2024.svg?style=for-the-badge
+[license-url]: https://github.com/a-patel02/4P02_Winter_2024/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: images/screenshot.png
