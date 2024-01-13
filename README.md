@@ -198,4 +198,4 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [TailwindCSS]: https://img.shields.io/badge/TailwindCSS-20232A?style=for-the-badge
-[React-url]: https://reactjs.org/
+[Tailwind-url]: https://reactjs.org/
