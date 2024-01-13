@@ -71,7 +71,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 - [![Next][Next.js]][Next-url]
 - [![React][React.js]][React-url]
 - [![TailwindCSS][TailwindCSS]][Tailwind-url]
--
+- [![Firebase][Firebase]][Firebase-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -197,5 +197,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[TailwindCSS]: https://img.shields.io/badge/TailwindCSS-20232A?style=for-the-badge
+[TailwindCSS]: https://img.shields.io/badge/TailwindCSS-20232A?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4
 [Tailwind-url]: https://reactjs.org/
+[Firebase]: https://img.shields.io/badge/Firebase-20232A?style=for-the-badge&logo=firebase&logoColor=FFCA28
+[Firebase-url]: https://reactjs.org/
