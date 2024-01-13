@@ -72,6 +72,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 - [![React][React.js]][React-url]
 - [![TailwindCSS][TailwindCSS]][Tailwind-url]
 - [![Firebase][Firebase]][Firebase-url]
+- [![ShadCN][ShadCN]][ShadCN-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -201,3 +202,5 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Tailwind-url]: https://reactjs.org/
 [Firebase]: https://img.shields.io/badge/Firebase-20232A?style=for-the-badge&logo=firebase&logoColor=FFCA28
 [Firebase-url]: https://reactjs.org/
+[ShadCN]: https://img.shields.io/badge/ShadCN-20232A?style=for-the-badge&logo=shadcnui&logoColor=000000
+[ShadCN-url]: https://reactjs.org/
