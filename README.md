@@ -202,5 +202,5 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Tailwind-url]: https://reactjs.org/
 [Firebase]: https://img.shields.io/badge/Firebase-20232A?style=for-the-badge&logo=firebase&logoColor=FFCA28
 [Firebase-url]: https://reactjs.org/
-[ShadCN]: https://img.shields.io/badge/ShadCN-20232A?style=for-the-badge&logo=shadcnui&logoColor=000000
+[ShadCN]: https://img.shields.io/badge/ShadCN-20232A?style=for-the-badge&logo=shadcnui&logoColor=white
 [ShadCN-url]: https://reactjs.org/
