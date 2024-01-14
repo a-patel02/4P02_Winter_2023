@@ -25,7 +25,7 @@ const Navbar = () => {
           <Button variant={"link"}>Home</Button>
         </Link> */}
         <div className="flex gap-4">
-          <Link href={"/register"}>
+          <Link href={"/login"}>
             <Button>Log in</Button>
           </Link>
           <ModeToggle></ModeToggle>
