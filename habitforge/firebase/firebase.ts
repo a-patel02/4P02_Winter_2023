@@ -1,6 +1,9 @@
-import firebase from "firebase/app";
 import "firebase/auth";
+import { getAuth } from "firebase/auth";
 import "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
 
 const clientCredentials = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -9,9 +12,11 @@ const clientCredentials = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  measurementId: "G-EGPQ778PN9",
 };
 
-firebase.initializeApp(clientCredentials);
+const app = getApps().length > 0 ? getApp() : initializeApp(clientCredentials);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-export default firebase;
+export { app, auth, db, storage };

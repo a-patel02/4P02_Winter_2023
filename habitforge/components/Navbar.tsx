@@ -1,8 +1,25 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
+import { UserAuth } from "@/app/context/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
+
+import { LogOut } from "lucide-react";
 
 const Navbar = () => {
+  const { user, logOut } = UserAuth();
+
+  const handleLogOut = async () => {
+    logOut();
+  };
+
   return (
     <div className="flex justify-between p-8">
       <div className="flex justify-between w-full items-center">
@@ -25,9 +42,25 @@ const Navbar = () => {
           <Button variant={"link"}>Home</Button>
         </Link> */}
         <div className="flex gap-4">
-          <Link href={"/login"}>
-            <Button>Log in</Button>
-          </Link>
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">{user.displayName}</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span onClick={handleLogOut}>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Link href={"/login"}>
+              <Button>Log in</Button>
+            </Link>
+          )}
           <ModeToggle></ModeToggle>
         </div>
       </div>
