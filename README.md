@@ -112,15 +112,15 @@ Distributed under the MIT License. See `LICENSE.md` for more information.
 
 Abhi Patel - ap19wf@brocku.ca
 <br/>
-Ameen Khawaja - 
+Ameen Khawaja - ak19nu@brocku.ca
 <br/>
-Ahmed Yaser - 
+Ahmed Yaser - am20gy@brocku.ca
 <br/>
-Rafael Bosca - 
+Rafael Bosca - rb20qf@brocku.ca - 7035801
 <br/>
-Nico McFarlane - 
+Nico McFarlane - nm20lw@brocku.ca - 7001811
 <br/>
-Zakir Raza - 
+Zakir Raza - zr19zt@brocku.ca
 
 Project Link: [https://github.com/a-patel02/4P02_Winter_2024](https://github.com/a-patel02/4P02_Winter_2024)
 
