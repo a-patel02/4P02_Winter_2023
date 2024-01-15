@@ -116,7 +116,7 @@ Ameen Khawaja - ak19nu@brocku.ca
 <br/>
 Ahmed Yaser - am20gy@brocku.ca
 <br/>
-Rafael Bosca - 
+Rafael Bosca - rb20qf@brocku.ca
 <br/>
 Nico McFarlane - nm20lw@brocku.ca
 <br/>
