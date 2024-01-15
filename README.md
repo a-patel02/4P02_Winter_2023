@@ -120,7 +120,7 @@ Rafael Bosca - rb20qf@brocku.ca
 <br/>
 Nico McFarlane - nm20lw@brocku.ca - 7001811
 <br/>
-Zakir Raza - 
+Zakir Raza - zr19zt@brocku.ca
 
 Project Link: [https://github.com/a-patel02/4P02_Winter_2024](https://github.com/a-patel02/4P02_Winter_2024)
 
