@@ -118,7 +118,7 @@ Ahmed Yaser - am20gy@brocku.ca
 <br/>
 Rafael Bosca - 
 <br/>
-Nico McFarlane - 
+Nico McFarlane - nm20lw@brocku.ca
 <br/>
 Zakir Raza - 
 
