@@ -5,26 +5,22 @@ import { UserAuth } from "@/app/context/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
+import { useEffect } from "react";
 
 const LoginPage = () => {
   const { user, signInWithGoogle } = UserAuth();
 
-  const addDocToCollection = () => {
-    try {
-      setDoc(doc(db, "users", user.uid), {
-        email: user.email,
-        displayName: user.displayName,
-      });
-      console.log("Document written");
-    } catch (error) {
-      console.error("Error adding document: ", error);
-    }
+  const addDocToCollection = async () => {
+    await setDoc(doc(db, "users", user.uid), {
+      email: user.email,
+      displayName: user.displayName,
+    });
+    console.log(user);
   };
 
   const handleSignIn = async () => {
     try {
       await signInWithGoogle();
-      await addDocToCollection;
     } catch (error) {
       console.log(error);
     }
@@ -37,6 +33,7 @@ const LoginPage = () => {
         {user ? (
           <div className="flex flex-col gap-6">
             <Typography variant={"h2"}>Welcome {user.displayName}</Typography>
+            <Button onClick={addDocToCollection}> Add data </Button>
           </div>
         ) : (
           <Button

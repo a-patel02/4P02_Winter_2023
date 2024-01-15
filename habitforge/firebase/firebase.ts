@@ -1,9 +1,8 @@
+import "firebase/firestore";
 import "firebase/auth";
 import { getAuth } from "firebase/auth";
-import "firebase/firestore";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp, getApps, getApp } from "firebase/app";
-import { getStorage } from "firebase/storage";
 
 const clientCredentials = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -18,4 +17,4 @@ const app = getApps().length > 0 ? getApp() : initializeApp(clientCredentials);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export { app, auth, db };
+export { app, db, auth };
