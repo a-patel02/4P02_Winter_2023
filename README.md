@@ -112,7 +112,7 @@ Distributed under the MIT License. See `LICENSE.md` for more information.
 
 Abhi Patel - ap19wf@brocku.ca
 <br/>
-Ameen Khawaja - 
+Ameen Khawaja - ak19nu@brocku.ca
 <br/>
 Ahmed Yaser - 
 <br/>
