@@ -10,17 +10,20 @@ import { useEffect } from "react";
 const LoginPage = () => {
   const { user, signInWithGoogle } = UserAuth();
 
-  const addDocToCollection = async () => {
-    await setDoc(doc(db, "users", user.uid), {
-      email: user.email,
-      displayName: user.displayName,
-    });
-    console.log(user);
-  };
-
   const handleSignIn = async () => {
     try {
       await signInWithGoogle();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addDocToCollection = async () => {
+    try {
+      await setDoc(doc(db, "users", user.uid), {
+        email: "abhi",
+        displayName: "patel",
+      });
     } catch (error) {
       console.log(error);
     }
