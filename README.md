@@ -114,7 +114,7 @@ Abhi Patel - ap19wf@brocku.ca
 <br/>
 Ameen Khawaja - ak19nu@brocku.ca
 <br/>
-Ahmed Yaser - 
+Ahmed Yaser - am20gy@brocku.ca
 <br/>
 Rafael Bosca - 
 <br/>
