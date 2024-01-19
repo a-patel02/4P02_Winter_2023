@@ -1,7 +1,7 @@
+"use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
-import { UserAuth } from "@/app/context/AuthContext";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -13,13 +13,15 @@ import {
 
 import { LogOut } from "lucide-react";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase/firebase";
+import { signOut } from "firebase/auth";
+
 const Navbar = () => {
-  const { user, logOut } = UserAuth();
-
-  const handleLogOut = async () => {
-    logOut();
+  const [user, loading, error] = useAuthState(auth);
+  const handleLogOut = () => {
+    signOut(auth);
   };
-
   return (
     <div className="flex justify-between p-8">
       <div className="flex justify-between w-full items-center">
