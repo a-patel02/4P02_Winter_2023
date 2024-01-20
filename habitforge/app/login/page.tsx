@@ -26,13 +26,13 @@ const LoginPage = () => {
     }
   };
 
-  const [value, loading1, error1] = useCollection(collection(db, "users"));
+  // const [value, loading1, error1] = useCollection(collection(db, "users"));
 
-  if (!loading1 && value) {
-    value.docs.map((doc) => {
-      console.log(doc.data());
-    });
-  }
+  // if (!loading1 && value) {
+  //   value.docs.map((doc) => {
+  //     console.log(doc.data());
+  //   });
+  // }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
