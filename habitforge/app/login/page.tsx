@@ -16,15 +16,15 @@ const LoginPage = () => {
 
   const [user, loading, error] = useAuthState(auth);
 
-  const addUserData = async () => {
-    if (user) {
-      await setDoc(doc(db, "users", user.uid), {
-        name: user.displayName,
-        email: user.email,
-        photoURL: user.photoURL,
-      });
-    }
-  };
+  // const addUserData = async () => {
+  //   if (user) {
+  //     await setDoc(doc(db, "users", user.uid), {
+  //       name: user.displayName,
+  //       email: user.email,
+  //       photoURL: user.photoURL,
+  //     });
+  //   }
+  // };
 
   // const [value, loading1, error1] = useCollection(collection(db, "users"));
 
@@ -41,7 +41,6 @@ const LoginPage = () => {
         {user ? (
           <div className="flex flex-col gap-6">
             <Typography variant={"h2"}>Welcome {user.displayName}</Typography>
-            <Button onClick={addUserData}>Add User Data</Button>
             <img
               src={user.photoURL ? user.photoURL : ""}
               alt="Abhi Patel"
