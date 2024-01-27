@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex flex-col gap-9">
-        <Typography variant="h1">This is a raf gang gang</Typography>
+        <Typography variant="h1">This is a heading 1</Typography>
         <Typography variant="h2">This is a heading 2</Typography>
         <Typography variant="h3">This is a heading 3</Typography>
         <Typography variant="h4">This is a heading 4</Typography>
