@@ -2,11 +2,16 @@
 import { Button } from "@/components/ui/button";
 import Typography from "@/components/ui/typography-variants";
 import { FcGoogle } from "react-icons/fc";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { auth, db } from "@/firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
 
 const LoginPage = () => {
   const signInWithGoogle = () => {
@@ -25,6 +30,26 @@ const LoginPage = () => {
   //     });
   //   }
   // };
+
+  const habitName = "Running Club";
+
+  const recieverUID = "M8VXlBXNPDU1avgc9rpMhrNq4Xa2";
+
+  const createNotification = async () => {
+    if (user) {
+      await addDoc(collection(db, "users", recieverUID, "notifications"), {
+        timestamp: serverTimestamp(),
+        title:
+          user.displayName +
+          " has invited you to join their Group Habit: " +
+          habitName,
+        senderUID: user.uid,
+        hUID: "123456",
+        groupID: "1234719234",
+        status: "pending",
+      });
+    }
+  };
 
   // const [value, loading1, error1] = useCollection(collection(db, "users"));
 
@@ -46,6 +71,13 @@ const LoginPage = () => {
               alt="Abhi Patel"
               className="h-8 w-8 rounded-full"
             />
+            <Button
+              onClick={() => {
+                createNotification();
+              }}
+            >
+              Send a notification
+            </Button>
           </div>
         ) : (
           <Button
