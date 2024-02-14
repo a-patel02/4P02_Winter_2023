@@ -14,14 +14,32 @@ import {
 import { LogOut } from "lucide-react";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase/firebase";
+import { auth, db } from "@/firebase/firebase";
 import { signOut } from "firebase/auth";
+
+import { Bell } from "lucide-react";
+
+import { collection, doc, getDocs } from "firebase/firestore";
+
+import {
+  useCollection,
+  useDocument,
+  useCollectionData,
+} from "react-firebase-hooks/firestore";
+import { useEffect, useState } from "react";
+
+import Notification from "./ui/notifications";
+import Typography from "./ui/typography-variants";
 
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
   const handleLogOut = () => {
     signOut(auth);
   };
+
+  const [value, loading1, error1] = useCollectionData(
+    collection(db, `users/${user?.uid}/notifications`)
+  );
   return (
     <div className="flex justify-between p-8">
       <div className="flex justify-between w-full items-center">
@@ -45,22 +63,58 @@ const Navbar = () => {
         </Link> */}
         <div className="flex gap-4">
           {user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline">{user.displayName}</Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={handleLogOut}
-                  className="cursor-pointer"
-                >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Log out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className="relative">
+                    <Button variant="outline" size="icon">
+                      <Bell className="h-[1.2rem] w-[1.2rem]" />
+                    </Button>
+                    {(value?.length ?? 0) >= 1 && (
+                      <div className="absolute -top-1 -right-1 h-2 w-2 bg-red-500 rounded-full"></div>
+                    )}
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className=" w-96">
+                  <DropdownMenuLabel>Notifications</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {value?.length ?? 0 > 1 ? (
+                    value?.map((doc) => (
+                      <Notification
+                        title={doc.title}
+                        senderUID={doc.senderUID}
+                        hUID={doc.hUID}
+                        groupID={doc.groupID}
+                        status={doc.status}
+                      ></Notification>
+                    ))
+                  ) : (
+                    <div className="p-2 flex justify-center items-center">
+                      {" "}
+                      <Typography variant={"p"} affects={"muted"}>
+                        No new notifications
+                      </Typography>
+                    </div>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline">{user.displayName}</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={handleLogOut}
+                    className="cursor-pointer"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </>
           ) : (
             <Link href={"/login"}>
               <Button>Log in</Button>
