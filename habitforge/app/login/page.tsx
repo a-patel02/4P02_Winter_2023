@@ -27,28 +27,10 @@ const LoginPage = () => {
 
   const [user, loading, error] = useAuthState(auth);
 
-  // const addUserData = async () => {
-  //   if (user) {
-  //     await setDoc(doc(db, "users", user.uid), {
-  //       name: user.displayName,
-  //       email: user.email,
-  //       photoURL: user.photoURL,
-  //     });
-  //   }
-  // };
-
-  // const [value, loading1, error1] = useCollection(collection(db, "users"));
-
-  // if (!loading1 && value) {
-  //   value.docs.map((doc) => {
-  //     console.log(doc.data());
-  //   });
-  // }
-
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24  ">
-      <div className="box-content h-auto w-auto p-10 border-2">
-        <div className="flex flex-col gap-8 items-center">
+    <main className="flex flex-col items-center justify-center p-12 md:p-24  ">
+      <div className="p-8 rounded-md border-2">
+        <div className="flex flex-col gap-6 items-center text-center">
           <img
             src="/logoDark.svg"
             alt=""
@@ -59,11 +41,10 @@ const LoginPage = () => {
             alt=""
             className="hidden dark:block mr-3 h-8 w-auto"
           />
-          <Typography variant={"h5"}>Welcome to Habit Forge</Typography>
-          <Typography variant={"h6"}>
-            Sign in to your account and start forging habits .
+          <Typography variant={"h2"}>Welcome to Habit Forge</Typography>
+          <Typography variant={"p"} affects={"removePMargin"}>
+            Sign in to your account and start forging habits.
           </Typography>
-
           {user ? (
             <div className="flex flex-col gap-6">
               <Typography variant={"h2"}>Welcome {user.displayName}</Typography>
@@ -74,7 +55,7 @@ const LoginPage = () => {
               />
             </div>
           ) : (
-            <div className="flex flex-col gap-2 w-full">
+            <div className="flex flex-col gap-4 w-full">
               <Button
                 className="flex gap-2 "
                 size={"lg"}
