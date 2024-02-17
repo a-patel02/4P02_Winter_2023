@@ -1,7 +1,10 @@
 import Image from "next/image";
+'use client'
 import Typography from "@/components/ui/typography-variants";
 
+
 export default function Home() {
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="flex flex-col gap-9">
@@ -14,8 +17,10 @@ export default function Home() {
           <Typography variant="p" affects={"lead"}>
             This is a lead
           </Typography>
+        
         </div>
       </div>
+      
     </main>
   );
 }
