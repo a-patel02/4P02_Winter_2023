@@ -1,0 +1,47 @@
+[debug] [2024-02-17T20:49:40.547Z] ----------------------------------------------------------------------
+[debug] [2024-02-17T20:49:40.548Z] Command:       /usr/local/bin/firebase /Users/abhi/.cache/firebase/tools/lib/node_modules/firebase-tools/lib/bin/firebase deploy
+[debug] [2024-02-17T20:49:40.549Z] CLI Version:   13.0.3
+[debug] [2024-02-17T20:49:40.549Z] Platform:      darwin
+[debug] [2024-02-17T20:49:40.550Z] Node Version:  v18.5.0
+[debug] [2024-02-17T20:49:40.551Z] Time:          Sat Feb 17 2024 15:49:40 GMT-0500 (Eastern Standard Time)
+[debug] [2024-02-17T20:49:40.551Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-02-17T20:49:40.645Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-02-17T20:49:40.646Z] > authorizing via signed-in user (abhip181102@gmail.com)
+[debug] [2024-02-17T20:49:40.647Z] [iam] checking project habitforge-1832c for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-02-17T20:49:40.648Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions [none]
+[debug] [2024-02-17T20:49:40.649Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-02-17T20:49:40.650Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-02-17T20:49:41.077Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions 200
+[debug] [2024-02-17T20:49:41.080Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-02-17T20:49:41.082Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-02-17T20:49:41.082Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-02-17T20:49:41.416Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-02-17T20:49:41.419Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-02-17T20:49:41.421Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c [none]
+[debug] [2024-02-17T20:49:41.728Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c 200
+[debug] [2024-02-17T20:49:41.729Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c {"projectId":"habitforge-1832c","projectNumber":"346207026425","displayName":"HabitForge","name":"projects/habitforge-1832c","resources":{"hostingSite":"habitforge-1832c"},"state":"ACTIVE","etag":"1_a2972580-1c02-4638-a4d3-2b1a87f2d640"}
+[debug] [2024-02-17T20:49:44.185Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites pageToken=&pageSize=10
+[debug] [2024-02-17T20:49:44.702Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites 200
+[debug] [2024-02-17T20:49:44.703Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites {"sites":[{"name":"projects/habitforge-1832c/sites/habitforge-1832c","defaultUrl":"https://habitforge-1832c.web.app","appId":"1:346207026425:web:7a0d4efdef194a41697628","type":"DEFAULT_SITE"}]}
+[debug] [2024-02-17T20:49:44.704Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:346207026425:web:7a0d4efdef194a41697628/config [none]
+[debug] [2024-02-17T20:49:45.678Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:346207026425:web:7a0d4efdef194a41697628/config 200
+[debug] [2024-02-17T20:49:45.678Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:346207026425:web:7a0d4efdef194a41697628/config {"projectId":"habitforge-1832c","appId":"1:346207026425:web:7a0d4efdef194a41697628","storageBucket":"habitforge-1832c.appspot.com","apiKey":"AIzaSyCKiZ8-lZE8z9eHWEW4ZnwfAfcKwQp8tPQ","authDomain":"habitforge-1832c.firebaseapp.com","messagingSenderId":"346207026425","measurementId":"G-EGPQ778PN9"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-02-17T20:49:51.733Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites/habitforge-1832c [none]
+[debug] [2024-02-17T20:49:52.179Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites/habitforge-1832c 200
+[debug] [2024-02-17T20:49:52.185Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites/habitforge-1832c {"name":"projects/habitforge-1832c/sites/habitforge-1832c","defaultUrl":"https://habitforge-1832c.web.app","appId":"1:346207026425:web:7a0d4efdef194a41697628","type":"DEFAULT_SITE"}
+[info] You are using Node.js 18.5.0. For Next.js, Node.js version >= v18.17.0 is required.
+
+[debug] [2024-02-17T20:49:53.777Z] Error: ENOENT: no such file or directory, open '/Users/abhi/4P02_Winter_2024/habitforge/.next/export-marker.json'
+[error] 
+[error] Error: An unexpected error has occurred.
