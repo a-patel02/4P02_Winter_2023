@@ -17,7 +17,7 @@ export default function Home() {
               Small habits, big impact; your daily choices shape your destiny.
             </Typography>
           </div>
-          <Typography variant="h1" style={{ textAlign: 'center', fontSize: '57px' }}>Forge a better life one habit at a time.</Typography>
+          <Typography variant="h1" style={{ textAlign: 'center'}}>Forge a better life one habit at a time.</Typography>
           <Typography variant="p" style={{ color: '#949494' }}>Start your journey of accomplishing any challenge by tracking your habits with HabitForge</Typography>
           <button style={{ background: '#2563EB', color: 'white', padding: '10px', borderRadius: '10px' }}>
             <Typography variant="h4">Get Started For Free</Typography>
@@ -98,7 +98,7 @@ export default function Home() {
 
         {/* Call to action section */}
         <div className="flex flex-col items-center gap-9" style={{ marginTop: '7%' }}>
-          <Typography variant="h3" style={{ textAlign: 'center', fontSize: '60px' }}>HabitForge is free forever</Typography>
+          <Typography variant="h1" style={{ textAlign: 'center'}}>HabitForge is free forever</Typography>
           <Typography variant="p" style={{ color: '#949494' }}>HabitForge is completely free for habit formers like you! </Typography>
           <button style={{ background: '#2563EB', color: 'white', padding: '10px', borderRadius: '10px' }}>
             <Typography variant="h4">Get Started</Typography>
