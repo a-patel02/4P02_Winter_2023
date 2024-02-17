@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Typography from "@/components/ui/typography-variants";
 import { FcGoogle } from "react-icons/fc";
+
 import { AiFillGithub } from "react-icons/ai";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import {
@@ -9,9 +10,17 @@ import {
   GoogleAuthProvider,
   GithubAuthProvider,
 } from "firebase/auth";
+
+import {
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+
 import { auth, db } from "@/firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection } from "react-firebase-hooks/firestore";
 
 const LoginPage = () => {
   const signInWithGoogle = () => {
@@ -22,8 +31,32 @@ const LoginPage = () => {
   const signInWithGitHub = () => {
     const provider = new GithubAuthProvider();
 
+
     signInWithPopup(auth, provider);
   };
+
+  const habitName = "Running Club";
+
+  const recieverUID = "M8VXlBXNPDU1avgc9rpMhrNq4Xa2";
+
+  const createNotification = async () => {
+    if (user) {
+      await addDoc(collection(db, "users", recieverUID, "notifications"), {
+        timestamp: serverTimestamp(),
+        title:
+          user.displayName +
+          " has invited you to join their Group Habit: " +
+          habitName,
+        senderUID: user.uid,
+        hUID: "123456",
+        groupID: "1234719234",
+        status: "pending",
+      });
+    }
+  };
+
+  // const [value, loading1, error1] = useCollection(collection(db, "users"));
+
 
   const [user, loading, error] = useAuthState(auth);
 
