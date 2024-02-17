@@ -84,9 +84,9 @@ const LoginPage = () => {
                 <FcGoogle /> Sign In With Google
               </Button>
               <Button
-                className="flex gap-2 "
+                className="flex gap-2 bg-foreground"
                 size={"lg"}
-                variant={"outline"}
+                variant={"black"}
                 onClick={signInWithGitHub}
               >
                 <AiFillGithub /> Sign In With GitHub
