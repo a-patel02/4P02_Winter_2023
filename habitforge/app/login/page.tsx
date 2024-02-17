@@ -4,7 +4,6 @@ import Typography from "@/components/ui/typography-variants";
 import { FcGoogle } from "react-icons/fc";
 
 import { AiFillGithub } from "react-icons/ai";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -31,7 +30,6 @@ const LoginPage = () => {
   const signInWithGitHub = () => {
     const provider = new GithubAuthProvider();
 
-
     signInWithPopup(auth, provider);
   };
 
@@ -57,11 +55,10 @@ const LoginPage = () => {
 
   // const [value, loading1, error1] = useCollection(collection(db, "users"));
 
-
   const [user, loading, error] = useAuthState(auth);
 
   return (
-    <main className="flex flex-col items-center justify-center p-12 md:p-24  ">
+    <main className="flex flex-col min-h-screen items-center p-12 md:p-24  ">
       <div className="p-8 rounded-md border-2">
         <div className="flex flex-col gap-6 items-center text-center">
           <img
