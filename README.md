@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/a-patel02/4P02_Winter_2024">
+  <a href="https://habitforge.ca">
     <img src="images/Icon.png" alt="Logo" height="80">
   </a>
 
@@ -26,7 +26,7 @@
     Join HabitForge and turn your daily routine into an epic adventure of self-discovery and accomplishment. Forge the habits, conquer the challenges, and level up your life!"
     <br />
     <br />
-    <a href="https://github.com/a-patel02/4P02_Winter_2024">View Demo</a>
+    <a href="https://habitforge.ca">Visit the site</a>
   </p>
 </div>
 
