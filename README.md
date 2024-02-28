@@ -2,7 +2,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/a-patel02/4P02_Winter_2024">
-    <img src="images/logo.png" alt="Logo" height="80">
+    <img src="images/Icon.png" alt="Logo" height="80">
   </a>
 
 <h3 align="center">HabitForge</h3>
