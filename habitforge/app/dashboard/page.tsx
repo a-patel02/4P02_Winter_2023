@@ -136,10 +136,11 @@ const Dashboard = () => {
                     totalSkipped={habit.totalSkipped}
                     completed={habit.completed}
                     skipped={habit.skipped}
-                    fail={habit.fail}
+                    failed={habit.failed}
                     hUID={habit.hUID}
                     color={habit.color}
                     icon={habit.icon}
+                    tracked={habit.tracked}
                   />
                 ))}
               </div>

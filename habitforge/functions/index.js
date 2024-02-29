@@ -18,5 +18,41 @@ exports.createUserInFirestore = functions.auth.user().onCreate((user) => {
     email: email,
     displayName: displayName,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    level: 1,
+    habitCoins: 1,
+    rank: 0,
   });
 });
+
+exports.resetHabits = functions.pubsub
+  .schedule("every day 00:00")
+  .timeZone("America/Toronto")
+  .onRun(async () => {
+    try {
+      const usersSnapshot = await db.collection("users").get();
+
+      const batch = db.batch();
+
+      usersSnapshot.forEach((userDoc) => {
+        const habitsRef = db
+          .collection("users")
+          .doc(userDoc.id)
+          .collection("habits");
+        batch.update(habitsRef, {
+          tracked: false,
+          completed: false,
+          skipped: false,
+          failed: false,
+        });
+      });
+
+      await batch.commit();
+
+      console.log("Habit booleans reset successfully.");
+
+      return null;
+    } catch (error) {
+      console.error("Error resetting habit booleans:", error);
+      return null;
+    }
+  });

@@ -61,10 +61,10 @@ const formSchema = z.object({
   habitname: z
     .string()
     .min(2, {
-      message: "Habit names must be at least 2 characters wrong",
+      message: "Habit names must be at least 2 characters long",
     })
-    .max(100, {
-      message: "Habit names cannot be longer than 100 characters",
+    .max(25, {
+      message: "Habit names cannot be longer than 25 characters",
     }),
   goal: z.string().min(1).max(12),
   repeat: z.enum(["daily", "weekly", "monthly"]),
@@ -85,8 +85,8 @@ const HabitsDialog = () => {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
     createHabit(values);
+    form.reset();
     toast.success("Habit has been created 😎");
   };
 
@@ -98,6 +98,7 @@ const HabitsDialog = () => {
         goal: values.goal,
         repeat: values.repeat,
         startDate: values.startdate,
+        tracked: false,
         completed: false,
         skipped: false,
         failed: false,

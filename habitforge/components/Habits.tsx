@@ -13,6 +13,7 @@ import {
 import { db } from "@/firebase/firebase";
 import Icon from "./ui/Icons";
 import { IconType } from "./IconPicks";
+import Typography from "./ui/typography-variants";
 
 interface HabitsProps {
   habitName: string;
@@ -23,11 +24,12 @@ interface HabitsProps {
   totalCompleted: number;
   completed: boolean;
   skipped: boolean;
-  fail: boolean;
+  failed: boolean;
   hUID: string;
   uid: string;
   color: string;
   icon: string;
+  tracked: boolean;
 }
 
 const Habits: FC<HabitsProps> = ({
@@ -39,15 +41,17 @@ const Habits: FC<HabitsProps> = ({
   totalCompleted,
   completed,
   skipped,
-  fail,
+  failed,
   hUID,
   uid,
   color,
   icon,
+  tracked,
 }) => {
   const handleCompleted = async () => {
     await updateDoc(doc(db, "users", uid, "habits", hUID), {
       completed: true,
+      tracked: true,
       totalCompleted: totalCompleted + 1,
       lastCompltedDate: serverTimestamp(),
     });
@@ -55,12 +59,14 @@ const Habits: FC<HabitsProps> = ({
   const handleSkipped = async () => {
     await updateDoc(doc(db, "users", uid, "habits", hUID), {
       skipped: true,
+      tracked: true,
       totalSkipped: totalSkipped + 1,
     });
   };
   const handleFailed = async () => {
     await updateDoc(doc(db, "users", uid, "habits", hUID), {
       failed: true,
+      tracked: true,
       totalFailed: totalFailed + 1,
     });
   };
@@ -74,29 +80,64 @@ const Habits: FC<HabitsProps> = ({
           description={goal + " /times a day"}
         />
       </div>
-      <HabitsText title={"Streak 🔥"} description={streak + " days"} />
-      <HabitsText title={"Skipped"} description={totalSkipped + " days"} />
-      <HabitsText title={"Failed"} description={totalFailed + " days"} />
-      <HabitsText title={"Total"} description={totalCompleted + " done"} />
-      <div className="flex gap-4 justify-between">
-        <Button
-          variant={"success"}
-          onClick={handleCompleted}
-          className="w-full"
-        >
-          <Check /> Done
-        </Button>
-        <Button
-          variant={"destructive"}
-          onClick={handleFailed}
-          className="w-full"
-        >
-          <X /> Fail
-        </Button>
-        <Button variant={"ghost"} onClick={handleSkipped} className="w-full">
-          <ArrowRight /> Skip
-        </Button>
-      </div>
+      <HabitsText title={"Streak 🔥"} description={streak + " day(s)"} />
+      <HabitsText title={"Skipped"} description={totalSkipped + " day(s)"} />
+      <HabitsText title={"Failed"} description={totalFailed + " day(s)"} />
+      <HabitsText
+        title={"Completed"}
+        description={totalCompleted + " day(s)"}
+      />
+
+      {!tracked ? (
+        <div className="flex gap-4 justify-between">
+          <Button
+            variant={"success"}
+            onClick={handleCompleted}
+            className="w-full"
+          >
+            <Check /> Done
+          </Button>
+          <Button
+            variant={"destructive"}
+            onClick={handleFailed}
+            className="w-full"
+          >
+            <X /> Fail
+          </Button>
+          <Button variant={"ghost"} onClick={handleSkipped} className="w-full">
+            <ArrowRight /> Skip
+          </Button>
+        </div>
+      ) : completed ? (
+        <div className="flex gap-4 items-center w-[311px] ">
+          <div className="flex h-9 w-9 bg-green-600 rounded-md text-white justify-center items-center ">
+            <Check />
+          </div>
+          <Typography variant={"p"} affects={"muted"} className="!mt-0">
+            Completed, log again tomorrow
+          </Typography>
+        </div>
+      ) : failed ? (
+        <div className="flex gap-4 items-center w-[311px] ">
+          <div className="flex h-9 w-9 bg-destructive rounded-md text-white justify-center items-center ">
+            <X />
+          </div>
+          <Typography variant={"p"} affects={"muted"} className="!mt-0">
+            Failed, log again tomorrow
+          </Typography>
+        </div>
+      ) : skipped ? (
+        <div className="flex gap-4 items-center w-[311px] ">
+          <div className="flex h-9 w-9  bg-slate-600 rounded-md text-white justify-center items-center ">
+            <ArrowRight />
+          </div>
+          <Typography variant={"p"} affects={"muted"} className="!mt-0">
+            Skipped, log again tomorrow
+          </Typography>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
