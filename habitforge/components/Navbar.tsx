@@ -39,6 +39,18 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
+
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
+
 import { Skeleton } from "./ui/skeleton";
 
 const Navbar = () => {
@@ -82,33 +94,37 @@ const Navbar = () => {
             )}
           </div>
           <div className="md:hidden">
-            <Drawer direction="left">
-              <DrawerTrigger>
+            <Sheet>
+              <SheetTrigger>
                 <MenuIcon />
-              </DrawerTrigger>
-              <DrawerContent>
-                <DrawerHeader>
+              </SheetTrigger>
+              <SheetContent side={"left"}>
+                <SheetHeader>
                   <div className="flex justify-between items-center">
-                    <DrawerTitle>HabitForge</DrawerTitle>
-                    <DrawerClose asChild>
+                    <SheetTitle>HabitForge</SheetTitle>
+                    {/* <DrawerClose asChild>
                       <Button variant={"ghost"} size={"icon"}>
                         <X />
                       </Button>
-                    </DrawerClose>
+                    </DrawerClose> */}
                   </div>
-                </DrawerHeader>
+                </SheetHeader>
                 <div className="flex flex-col gap-2">
                   <Link href="/leaderboards">
-                    <Button variant={"ghost"}>Leaderboards</Button>
+                    <Button variant={"ghost"} className="w-full">
+                      Leaderboards
+                    </Button>
                   </Link>
                   {user && (
                     <Link href="/dashboard">
-                      <Button variant={"ghost"}>Dashboard</Button>
+                      <Button variant={"ghost"} className="w-full">
+                        Dashboard
+                      </Button>
                     </Link>
                   )}
                 </div>
 
-                <DrawerFooter>
+                <SheetFooter>
                   {user && (
                     <Button
                       onClick={handleLogOut}
@@ -119,9 +135,9 @@ const Navbar = () => {
                       <span>Log out</span>
                     </Button>
                   )}
-                </DrawerFooter>
-              </DrawerContent>
-            </Drawer>
+                </SheetFooter>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
         <div className="flex gap-4">
