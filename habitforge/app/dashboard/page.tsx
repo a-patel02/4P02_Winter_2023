@@ -98,7 +98,7 @@ const Dashboard = () => {
                 )}
                 <div className="flex flex-col gap-2 w-full">
                   <Typography variant={"h2"}>
-                    {getGreeting()} {user?.displayName}
+                    {getGreeting()}, {user?.displayName}
                   </Typography>
                   <Typography variant={"p"} affects={"muted"} className="!mt-0">
                     You are currently at Level {firebaseUser?.level}, level up

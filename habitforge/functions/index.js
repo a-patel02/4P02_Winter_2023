@@ -3,6 +3,8 @@ const admin = require("firebase-admin");
 
 admin.initializeApp();
 
+const db = admin.firestore();
+
 exports.createUserInFirestore = functions.auth.user().onCreate((user) => {
   // Get the user's UID and other information
   const uid = user.uid;
@@ -31,22 +33,26 @@ exports.resetHabits = functions.pubsub
     try {
       const usersSnapshot = await db.collection("users").get();
 
-      const batch = db.batch();
+      usersSnapshot.forEach(async (userDoc) => {
+        const batch = db.batch(); // Create a new batch for each user
 
-      usersSnapshot.forEach((userDoc) => {
-        const habitsRef = db
+        const habitsSnapshot = await db
           .collection("users")
           .doc(userDoc.id)
-          .collection("habits");
-        batch.update(habitsRef, {
-          tracked: false,
-          completed: false,
-          skipped: false,
-          failed: false,
-        });
-      });
+          .collection("habits")
+          .get();
 
-      await batch.commit();
+        habitsSnapshot.forEach((habitDoc) => {
+          batch.update(habitDoc.ref, {
+            tracked: false,
+            completed: false,
+            skipped: false,
+            failed: false,
+          });
+        });
+
+        await batch.commit(); // Commit batch for each user
+      });
 
       console.log("Habit booleans reset successfully.");
 

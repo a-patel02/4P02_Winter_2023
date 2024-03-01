@@ -87,6 +87,8 @@ const HabitsDialog = () => {
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     createHabit(values);
     form.reset();
+    setSelectedIcon("Sun");
+    setSelectedColor("blue");
     toast.success("Habit has been created 😎");
   };
 
