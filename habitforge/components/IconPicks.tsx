@@ -10,6 +10,7 @@ import {
   Pen,
   CigaretteOff,
   Camera,
+  CakeSlice,
 } from "lucide-react";
 
 export const IconType: { [key: string]: JSX.Element } = {
@@ -23,4 +24,5 @@ export const IconType: { [key: string]: JSX.Element } = {
   Pen: <Pen />,
   CigaretteOff: <CigaretteOff />,
   Camera: <Camera />,
+  CakeSlice: <CakeSlice />,
 };

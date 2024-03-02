@@ -53,7 +53,7 @@ const Habits: FC<HabitsProps> = ({
       completed: true,
       tracked: true,
       totalCompleted: totalCompleted + 1,
-      lastCompltedDate: serverTimestamp(),
+      lastCompletedDate: serverTimestamp(),
     });
   };
   const handleSkipped = async () => {
