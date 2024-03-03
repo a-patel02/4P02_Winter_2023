@@ -39,7 +39,7 @@ const Icon: React.FC<Props> = ({ color, children, colorDirect }) => {
 
   return (
     <div
-      className={`p-3 rounded-full w-fit ${
+      className={`p-3 rounded-full w-fit h-fit ${
         color ? colorClasses[color] : ""
       } bg-${colorDirect}-100 text-${colorDirect}-500`}
     >

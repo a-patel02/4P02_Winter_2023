@@ -15,13 +15,14 @@ import Image from "next/image";
 
 import HabitsDialog from "@/components/HabitsDialog";
 
-import { Coins } from "lucide-react";
+import { ArrowLeft, Coins, Settings2 } from "lucide-react";
 import Habits from "@/components/Habits";
 import { useEffect, useState } from "react";
 
 import { Loader2 } from "lucide-react";
-import { IconPicker } from "@/components/IconPicker";
-import Icon from "@/components/ui/Icons";
+
+import FirstHabit from "@/components/Dashboard/FirstHabit";
+import { Button } from "@/components/ui/button";
 
 const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -55,35 +56,17 @@ const Dashboard = () => {
     }
   }, [loading, user]);
 
-  const [color, setColor] = useState("blue");
-
-  const [icon, setIcon] = useState("Sun");
+  const [manageHabits, setManageHabits] = useState(false);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-8 md:p-24">
       {loading1 ? (
         // <Skeleton className="w-full h-4"></Skeleton>
         <Loader2 className="animate-spin" />
       ) : (
         <div className="flex flex-col gap-12 w-full">
           {value?.length === 0 ? (
-            <div className="flex flex-col justify-center items-center gap-12">
-              <Typography variant={"h2"}>Create your first habit</Typography>
-              <Image
-                src="FirstHabit.svg"
-                alt="Description"
-                width={475}
-                height={284}
-              />
-              <div className="flex flex-col items-center text-center gap-2">
-                <Typography variant={"h4"}> Start your journey!</Typography>
-                <Typography variant={"p"} affects={"muted"} className="!mt-0">
-                  One habit at a time you can accomplish any goal you set out
-                  too!
-                </Typography>
-              </div>
-              <HabitsDialog></HabitsDialog>
-            </div>
+            <FirstHabit />
           ) : (
             <>
               <div className="flex gap-4 flex-col items-center text-center md:flex-row md:text-left w-full">
@@ -120,7 +103,15 @@ const Dashboard = () => {
               <div className="flex flex-col w-full">
                 <div className="flex w-full flex-col gap-2 md:flex-row md:justify-between py-2 md:items-center">
                   <Typography variant={"h4"}>All Habits</Typography>
-                  <HabitsDialog></HabitsDialog>
+                  <div className="flex gap-2">
+                    <Button
+                      variant={"outline"}
+                      onClick={() => setManageHabits(!manageHabits)}
+                    >
+                      {manageHabits ? <ArrowLeft /> : <Settings2 />}
+                    </Button>
+                    <HabitsDialog></HabitsDialog>
+                  </div>
                 </div>
                 <hr />
               </div>
@@ -141,6 +132,7 @@ const Dashboard = () => {
                     color={habit.color}
                     icon={habit.icon}
                     tracked={habit.tracked}
+                    manage={manageHabits}
                   />
                 ))}
               </div>
