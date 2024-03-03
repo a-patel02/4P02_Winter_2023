@@ -3,7 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,15 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  // Also supported by less commonly used
+  // interactiveWidget: 'resizes-visual',
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -42,6 +52,7 @@ export default function RootLayout({
         >
           <Navbar />
           {children}
+          <Toaster position="top-right" richColors />
           <Footer />
         </ThemeProvider>
       </body>

@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 
-import { LogOut } from "lucide-react";
+import { LogOut, MenuIcon, X } from "lucide-react";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "@/firebase/firebase";
@@ -30,6 +30,30 @@ import { useEffect, useState } from "react";
 
 import Notification from "./ui/notifications";
 import Typography from "./ui/typography-variants";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "./ui/drawer";
+
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
+
+import { Skeleton } from "./ui/skeleton";
+import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -40,6 +64,8 @@ const Navbar = () => {
   const [value, loading1, error1] = useCollectionData(
     collection(db, `users/${user?.uid}/notifications`)
   );
+
+  const pathName = usePathname();
   return (
     <div className="flex justify-between p-8">
       <div className="flex justify-between w-full items-center">
@@ -59,24 +85,94 @@ const Navbar = () => {
               <h4 className="text-lg font-bold hidden sm:block">HabitForge</h4>
             </div>
           </Link>
-          <div className="flex gap-4">
+          <div className=" hidden md:flex gap-2">
+            <Link href="/leaderboards">
+              <Button
+                variant={"ghost"}
+                className={` ${
+                  pathName === "/leaderboards" ? "text-primary" : ""
+                } `}
+              >
+                Leaderboards
+              </Button>
+            </Link>
             {user ? (
-              <Link href={"/dashboard"}>
-                <Button variant={"ghost"}>Dashboard</Button>
+              <Link href="/dashboard">
+                <Button
+                  variant={"ghost"}
+                  className={` ${
+                    pathName === "/dashboard" ? "text-primary" : ""
+                  } `}
+                >
+                  Dashboard
+                </Button>
               </Link>
             ) : (
               <></>
             )}
-            <Link href={"/leaderboards"}>
-              <Button variant={"ghost"}>Leaderboards</Button>
-            </Link>
+          </div>
+          {/* Mobile Navbar */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger>
+                <MenuIcon />
+              </SheetTrigger>
+              <SheetContent side={"left"}>
+                <SheetHeader>
+                  <div className="flex justify-between items-center">
+                    <SheetTitle>HabitForge</SheetTitle>
+                    {/* <DrawerClose asChild>
+                      <Button variant={"ghost"} size={"icon"}>
+                        <X />
+                      </Button>
+                    </DrawerClose> */}
+                  </div>
+                </SheetHeader>
+                <div className="flex flex-col gap-2">
+                  <Link href="/leaderboards">
+                    <Button
+                      variant={"ghost"}
+                      className={`w-full ${
+                        pathName === "/leaderboards" ? "text-primary" : ""
+                      } `}
+                    >
+                      Leaderboards
+                    </Button>
+                  </Link>
+                  {user && (
+                    <Link href="/dashboard">
+                      <Button
+                        variant={"ghost"}
+                        className={`w-full ${
+                          pathName === "/dashboard" ? "text-primary" : ""
+                        } `}
+                      >
+                        Dashboard
+                      </Button>
+                    </Link>
+                  )}
+                </div>
+
+                <SheetFooter>
+                  {user && (
+                    <Button
+                      onClick={handleLogOut}
+                      variant={"destructive"}
+                      className="w-full"
+                    >
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </Button>
+                  )}
+                </SheetFooter>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
-        {/* <Link href={"/"}>
-          <Button variant={"link"}>Home</Button>
-        </Link> */}
         <div className="flex gap-4">
-          {user ? (
+          {loading ? (
+            <Skeleton className="h-9 w-9 rounded-md"></Skeleton>
+          ) : user ? (
             <>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -92,7 +188,9 @@ const Navbar = () => {
                 <DropdownMenuContent className=" w-96">
                   <DropdownMenuLabel>Notifications</DropdownMenuLabel>
                   <DropdownMenuSeparator />
-                  {value?.length ?? 0 > 1 ? (
+                  {loading1 ? (
+                    <Skeleton className="h-4 w-4"></Skeleton>
+                  ) : value?.length ?? 0 > 1 ? (
                     value?.map((doc) => (
                       <Notification
                         key={doc.uid}

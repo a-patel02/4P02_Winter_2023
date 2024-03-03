@@ -23,17 +23,15 @@ const Footer = () => {
             <h4 className="text-lg font-bold hidden sm:block">HabitForge</h4>
           </div>
         </Link>
-        <div className="flex gap-4">
-          {user ? (
-            <Link href={"/dashboard"}>
-              <Button variant={"ghost"}>Dashboard</Button>
-            </Link>
-          ) : (
-            <></>
-          )}
+        <div className="flex gap-2">
           <Link href={"/leaderboards"}>
             <Button variant={"ghost"}>Leaderboards</Button>
           </Link>
+          {user && (
+            <Link href={"/dashboard"}>
+              <Button variant={"ghost"}>Dashboard</Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
