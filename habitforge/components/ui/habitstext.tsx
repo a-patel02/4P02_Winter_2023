@@ -9,7 +9,7 @@ interface HabitsTextProps {
 
 const HabitsText: FC<HabitsTextProps> = ({ title, description, main }) => {
   return (
-    <div className={`flex flex-col ${main ? "w-48" : "w-24"}`}>
+    <div className={`flex flex-col  ${main ? "" : "ml-[72px] md:m-0"}`}>
       <Typography variant={"p"} affects={"removePMargin"} className="text-lg">
         {title}
       </Typography>
