@@ -133,6 +133,7 @@ const Dashboard = () => {
                     icon={habit.icon}
                     tracked={habit.tracked}
                     manage={manageHabits}
+                    key={habit.hUID}
                   />
                 ))}
               </div>
