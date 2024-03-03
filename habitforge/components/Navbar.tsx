@@ -52,6 +52,8 @@ import {
 } from "./ui/sheet";
 
 import { Skeleton } from "./ui/skeleton";
+import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -62,6 +64,8 @@ const Navbar = () => {
   const [value, loading1, error1] = useCollectionData(
     collection(db, `users/${user?.uid}/notifications`)
   );
+
+  const pathName = usePathname();
   return (
     <div className="flex justify-between p-8">
       <div className="flex justify-between w-full items-center">
@@ -83,16 +87,31 @@ const Navbar = () => {
           </Link>
           <div className=" hidden md:flex gap-2">
             <Link href="/leaderboards">
-              <Button variant={"ghost"}>Leaderboards</Button>
+              <Button
+                variant={"ghost"}
+                className={` ${
+                  pathName === "/leaderboards" ? "text-primary" : ""
+                } `}
+              >
+                Leaderboards
+              </Button>
             </Link>
             {user ? (
               <Link href="/dashboard">
-                <Button variant={"ghost"}>Dashboard</Button>
+                <Button
+                  variant={"ghost"}
+                  className={` ${
+                    pathName === "/dashboard" ? "text-primary" : ""
+                  } `}
+                >
+                  Dashboard
+                </Button>
               </Link>
             ) : (
               <></>
             )}
           </div>
+          {/* Mobile Navbar */}
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger>
@@ -111,13 +130,23 @@ const Navbar = () => {
                 </SheetHeader>
                 <div className="flex flex-col gap-2">
                   <Link href="/leaderboards">
-                    <Button variant={"ghost"} className="w-full">
+                    <Button
+                      variant={"ghost"}
+                      className={`w-full ${
+                        pathName === "/leaderboards" ? "text-primary" : ""
+                      } `}
+                    >
                       Leaderboards
                     </Button>
                   </Link>
                   {user && (
                     <Link href="/dashboard">
-                      <Button variant={"ghost"} className="w-full">
+                      <Button
+                        variant={"ghost"}
+                        className={`w-full ${
+                          pathName === "/dashboard" ? "text-primary" : ""
+                        } `}
+                      >
                         Dashboard
                       </Button>
                     </Link>
