@@ -354,7 +354,19 @@ const HabitsDialog = () => {
     );
   };
 
-  
+  const [audioHabitFrequency, setAudioHabitFrequency] = useState('');
+  useEffect(() => {
+    if (!isListening) {
+      if (audioStage === 1) {
+        // When the audioStage is 1, we're setting the habit name
+        setAudioHabitName(text);
+      } else if (audioStage === 2) {
+        // When the audioStage is 2, we're setting the habit frequency
+        setAudioHabitGoal(text); // Assuming this should be a number, you might want to parse it
+      }
+    }
+  }, [isListening, text]);
+
   const GetAudioStage = () => {
     switch (audioStage) {
       case 0:
@@ -382,46 +394,40 @@ const HabitsDialog = () => {
           </div>
         );
         case 1:
-          return (
-            <div className="flex flex-col gap-6 justify-center items-center">
-              <Typography variant={"h4"}>
-                What will we call your habit?
-              </Typography>
-              <div className="flex gap-2 w-full">
-                <Input value={audioHabitName} disabled />
-                <IconPicker
-                  color={selectedColor}
-                  icon={selectedIcon}
-                  setColor={setSelectedColor}
-                  setIcon={setSelectedIcon}
-                />
-              </div>
-  
-              <div className="flex gap-6">
-                <Button
-                  variant={"audioSecondary"}
-                  onClick={() => setAudioStage(audioStage - 1)}
-                >
-                  <RotateCcw />
-                </Button>
-                <Button
-                  variant={"audioPrimary"}
-                  onClick={() => setAudioStage(audioStage + 1)}
-                  // onClick={() => {
-                  //   if (!isListening) {
-                  //     startListening();
-                  //   } else {
-                  //     stopListening();
-                  //   }
-                  // }}
-                >
-                  <Check />
+  return (
+    <div className="flex flex-col gap-6 justify-center items-center">
+      <Typography variant={"h4"}>
+        What will we call your habit?
+      </Typography>
+      <div className="flex gap-2 w-full">
+        <Input value={audioHabitName} disabled={isListening} />
+        <IconPicker
+          color={selectedColor}
+          icon={selectedIcon}
+          setColor={setSelectedColor}
+          setIcon={setSelectedIcon}
+        />
+      </div>
 
-                  {/* {isListening ? <MicOffIcon /> : <MicIcon />} */}
-                </Button>
-              </div>
-            </div>
-          );
+      <div className="flex gap-6">
+        <Button
+          variant={"audioSecondary"}
+          onClick={() => setAudioStage(audioStage - 1)}
+        >
+          <RotateCcw />
+        </Button>
+        <Button
+          variant={"audioPrimary"}
+          onClick={() => {
+            stopListening(); // Ensure we stop listening when the checkmark is clicked
+            setAudioStage(audioStage + 1);
+          }}
+        >
+          <Check />
+        </Button>
+      </div>
+    </div>
+  );
       case 2:
         return (
           <div className="flex flex-col gap-6 justify-center items-center">

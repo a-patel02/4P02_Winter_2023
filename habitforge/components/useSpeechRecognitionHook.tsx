@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-// Define a type that includes null and SpeechRecognition
 type SpeechRecognitionType = SpeechRecognition | null;
 
 const useSpeechRecognition = () => {
