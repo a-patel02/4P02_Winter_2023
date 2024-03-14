@@ -6,8 +6,10 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "@/firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-
+import useSpeechRecognition from "./useSpeechRecognitionHook";
 import { Button } from "./ui/button";
+import React, { useEffect } from 'react';
+
 import {
   Dialog,
   DialogContent,
@@ -56,6 +58,7 @@ import { IconPicker } from "./IconPicker";
 import { useState } from "react";
 import Typography from "./ui/typography-variants";
 import Edit from "./Edit";
+import SpeechToText from "./useSpeechRecognitionHook";
 
 import { useMediaQuery } from "@/lib/use-media-query";
 import {
@@ -82,6 +85,14 @@ const formSchema = z.object({
 });
 
 const HabitsDialog = () => {
+  const {
+    text,
+    isListening,
+    startListening,
+    stopListening,
+    hasRecognitionSupport,
+  } = useSpeechRecognition();
+
   const [user, loading, error] = useAuthState(auth);
 
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -182,6 +193,12 @@ const HabitsDialog = () => {
     setSelectedColor("blue");
     toast.success("Habit has been created 😎");
   };
+
+  useEffect(() => {
+    if (!isListening) {
+      setAudioHabitName(text);
+    }
+  }, [isListening, text, setAudioHabitName]);
 
   const TextForm = () => {
     return (
@@ -337,6 +354,7 @@ const HabitsDialog = () => {
     );
   };
 
+  
   const GetAudioStage = () => {
     switch (audioStage) {
       case 0:
@@ -348,45 +366,62 @@ const HabitsDialog = () => {
             <div className="flex gap-6">
               <Button
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
+                // onClick={() => setAudioStage(audioStage + 1)}
+                onClick={() => {
+                  setAudioStage(audioStage + 1)
+                    if (!isListening) {
+                      startListening();
+                    } else {
+                      stopListening();
+                    }
+                  }}
               >
                 <Mic />
               </Button>
             </div>
           </div>
         );
-      case 1:
-        return (
-          <div className="flex flex-col gap-6 justify-center items-center">
-            <Typography variant={"h4"}>
-              What will we call your habit?
-            </Typography>
-            <div className="flex gap-2 w-full">
-              <Input value={audioHabitName} disabled />
-              <IconPicker
-                color={selectedColor}
-                icon={selectedIcon}
-                setColor={setSelectedColor}
-                setIcon={setSelectedIcon}
-              />
-            </div>
+        case 1:
+          return (
+            <div className="flex flex-col gap-6 justify-center items-center">
+              <Typography variant={"h4"}>
+                What will we call your habit?
+              </Typography>
+              <div className="flex gap-2 w-full">
+                <Input value={audioHabitName} disabled />
+                <IconPicker
+                  color={selectedColor}
+                  icon={selectedIcon}
+                  setColor={setSelectedColor}
+                  setIcon={setSelectedIcon}
+                />
+              </div>
+  
+              <div className="flex gap-6">
+                <Button
+                  variant={"audioSecondary"}
+                  onClick={() => setAudioStage(audioStage - 1)}
+                >
+                  <RotateCcw />
+                </Button>
+                <Button
+                  variant={"audioPrimary"}
+                  onClick={() => setAudioStage(audioStage + 1)}
+                  // onClick={() => {
+                  //   if (!isListening) {
+                  //     startListening();
+                  //   } else {
+                  //     stopListening();
+                  //   }
+                  // }}
+                >
+                  <Check />
 
-            <div className="flex gap-6">
-              <Button
-                variant={"audioSecondary"}
-                onClick={() => setAudioStage(audioStage - 1)}
-              >
-                <RotateCcw />
-              </Button>
-              <Button
-                variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
-              >
-                <Check />
-              </Button>
+                  {/* {isListening ? <MicOffIcon /> : <MicIcon />} */}
+                </Button>
+              </div>
             </div>
-          </div>
-        );
+          );
       case 2:
         return (
           <div className="flex flex-col gap-6 justify-center items-center">
