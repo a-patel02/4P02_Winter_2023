@@ -354,20 +354,22 @@ const HabitsDialog = () => {
   };
 
   useEffect(() => {
-    if (!isListening && text) {
-      switch (audioStage) {
-        case 1:
-          // When the user is supposed to set the habit name
-          setAudioHabitName(text);
-          break;
-        case 3:
-          // When the user is supposed to set the habit goal
-          setAudioHabitGoal(text);
-          break;
+    if (!isListening) {
+      if (audioStage === 1) {
+        // Update habit name only if we are in stage 1
+        setAudioHabitName(text);
+        console.log("WE ARE IN STAGE 1")
+      } else if (audioStage === 3) {
+        // Update habit goal only if we are in stage 3
+        setAudioHabitGoal(text);
+        console.log("WE ARE IN STAGE 3")
+      } else if(audioStage ===5){
+        setAudioHabitRepeat(text);
       }
     }
   }, [isListening, text, audioStage]);
-
+  
+  
 
   const GetAudioStage = () => {
     switch (audioStage) {
@@ -402,7 +404,8 @@ const HabitsDialog = () => {
         What will we call your habit?
       </Typography>
       <div className="flex gap-2 w-full">
-        <Input value={audioHabitName} disabled={isListening} />
+        <Input value={audioHabitName} disabled />
+
         <IconPicker
           color={selectedColor}
           icon={selectedIcon}
@@ -468,6 +471,7 @@ const HabitsDialog = () => {
 
             <Typography variant={"h4"}>How many times in a day?</Typography>
             <Input value={audioHabitGoal} disabled />
+
             <div className="flex gap-6">
               <Button
                 variant={"audioSecondary"}
