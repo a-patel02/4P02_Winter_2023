@@ -83,7 +83,6 @@ const formSchema = z.object({
   repeat: z.enum(["daily", "weekly", "monthly"]),
   startdate: z.date(),
 });
-
 const HabitsDialog = () => {
   const {
     text,
@@ -354,18 +353,21 @@ const HabitsDialog = () => {
     );
   };
 
-  const [audioHabitFrequency, setAudioHabitFrequency] = useState('');
   useEffect(() => {
-    if (!isListening) {
-      if (audioStage === 1) {
-        // When the audioStage is 1, we're setting the habit name
-        setAudioHabitName(text);
-      } else if (audioStage === 2) {
-        // When the audioStage is 2, we're setting the habit frequency
-        setAudioHabitGoal(text); // Assuming this should be a number, you might want to parse it
+    if (!isListening && text) {
+      switch (audioStage) {
+        case 1:
+          // When the user is supposed to set the habit name
+          setAudioHabitName(text);
+          break;
+        case 3:
+          // When the user is supposed to set the habit goal
+          setAudioHabitGoal(text);
+          break;
       }
     }
-  }, [isListening, text]);
+  }, [isListening, text, audioStage]);
+
 
   const GetAudioStage = () => {
     switch (audioStage) {
@@ -428,33 +430,42 @@ const HabitsDialog = () => {
       </div>
     </div>
   );
-      case 2:
-        return (
-          <div className="flex flex-col gap-6 justify-center items-center">
-            <Edit
-              text={audioHabitName}
-              label="Habit Name"
-              audioStage={() => setAudioStage(1)}
-            />
-            <Typography variant={"h4"}>How many times in a day?</Typography>
-            <div className="flex gap-6">
-              <Button
-                variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
-              >
-                <Mic />
-              </Button>
-            </div>
-          </div>
-        );
+  case 2:
+    return (
+      <div className="flex flex-col gap-6 justify-center items-center">
+        <Edit
+          text={audioHabitName}
+          label="Habit Name"
+          audioStage={() => setAudioStage(2)}
+        />
+        <Typography variant={"h4"}>How many times in a day?</Typography>
+        
+        <div className="flex gap-6">
+          <Button
+            variant={"audioPrimary"}
+            onClick={() => {
+              setAudioStage(audioStage + 1)
+                if (!isListening) {
+                  startListening();
+                } else {
+                  stopListening();
+                }
+              }}
+          >
+            <Mic />
+          </Button>
+        </div>
+      </div>
+    ); 
       case 3:
         return (
           <div className="flex flex-col gap-6 justify-center items-center">
             <Edit
               text={audioHabitName}
               label="Habit Name"
-              audioStage={() => setAudioStage(1)}
+              audioStage={() => setAudioStage(3)}
             />
+
             <Typography variant={"h4"}>How many times in a day?</Typography>
             <Input value={audioHabitGoal} disabled />
             <div className="flex gap-6">
@@ -465,8 +476,13 @@ const HabitsDialog = () => {
                 <RotateCcw />
               </Button>
               <Button
+                // variant={"audioPrimary"}
+                // onClick={() => setAudioStage(audioStage + 1)}
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
+                onClick={() => {
+                  stopListening(); // Ensure we stop listening when the checkmark is clicked
+                  setAudioStage(audioStage + 1);
+                }}
               >
                 <Check />
               </Button>
@@ -492,8 +508,15 @@ const HabitsDialog = () => {
             <div className="flex gap-6">
               <Button
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
-              >
+                onClick={() => {
+                  setAudioStage(audioStage + 1)
+                    if (!isListening) {
+                      startListening();
+                    } else {
+                      stopListening();
+                    }
+                  }}
+                  >
                 <Mic />
               </Button>
             </div>
@@ -526,7 +549,10 @@ const HabitsDialog = () => {
               </Button>
               <Button
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
+                onClick={() => {
+                  stopListening(); // Ensure we stop listening when the checkmark is clicked
+                  setAudioStage(audioStage + 1);
+                }}
               >
                 <Check />
               </Button>
