@@ -23,6 +23,8 @@ import {
   CandyOff,
   Dribbble,
   Gamepad2,
+  Banana,
+  Drum,
 } from "lucide-react";
 
 export const IconType: { [key: string]: JSX.Element } = {
@@ -42,6 +44,7 @@ export const IconType: { [key: string]: JSX.Element } = {
   Bike: <Bike />,
   Sprout: <Sprout />,
   Apple: <Apple />,
+  Banana: <Banana />,
   Palette: <Palette />,
   Bed: <Bed />,
   Coffee: <Coffee />,
@@ -49,4 +52,5 @@ export const IconType: { [key: string]: JSX.Element } = {
   CandyOff: <CandyOff />,
   Dribbble: <Dribbble />,
   Gamepad2: <Gamepad2 />,
+  Drum: <Drum />,
 };
