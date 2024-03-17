@@ -352,6 +352,23 @@ const HabitsDialog = () => {
       </Form>
     );
   };
+  function wordToNumber(word: string): number | undefined {
+    const wordsToNumbers: Record<string, number> = {
+      zero: 0,
+      one: 1,
+      two: 2,
+      three: 3,
+      four: 4,
+      five: 5,
+      six: 6,
+      seven: 7,
+      eight: 8,
+      nine: 9,
+      ten: 10,
+      // Add more as needed
+    };
+    return wordsToNumbers[word.toLowerCase()];
+  }
   
   useEffect(() => {
     if (!isListening) {
@@ -362,11 +379,17 @@ const HabitsDialog = () => {
       } 
       else if (audioStage === 3) {
         // Update habit goal only if we are in stage 3
-        setAudioHabitGoal(text);
-        console.log("WE ARE IN STAGE 3")
+        const numberValue = wordToNumber(text);
+        if(numberValue!==undefined){
+        if (!isNaN(numberValue)) {
+          setAudioHabitGoal(numberValue.toString()); // Convert number back to string if needed
+          console.log("WE ARE IN STAGE 3")
+        }
+      }
       } else if(audioStage ===5){
         setAudioHabitRepeat(text);
       }
+    
     }
   }, [isListening, text, audioStage]);
   
