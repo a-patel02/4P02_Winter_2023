@@ -10,6 +10,7 @@ exports.createUserInFirestore = functions.auth.user().onCreate((user) => {
   const uid = user.uid;
   const email = user.email;
   const displayName = user.displayName;
+  const photoURL = user.photoURL;
 
   // Create a reference to the Firestore collection
   const usersCollection = admin.firestore().collection("users");
@@ -22,7 +23,8 @@ exports.createUserInFirestore = functions.auth.user().onCreate((user) => {
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
     level: 1,
     habitCoins: 1,
-    rank: 0,
+    rank: 1,
+    photoURL: photoURL,
   });
 });
 
@@ -59,6 +61,35 @@ exports.resetHabits = functions.pubsub
       return null;
     } catch (error) {
       console.error("Error resetting habit booleans:", error);
+      return null;
+    }
+  });
+
+exports.updateLeaderboards = functions.pubsub
+  .schedule("every day 01:00")
+  .timeZone("America/Toronto")
+  .onRun(async () => {
+    try {
+      // Get all users from users collection
+      const usersSnapshot = await db.collection("users").get();
+
+      // Iterate through users
+      usersSnapshot.forEach(async (userDoc) => {
+        const userData = userDoc.data();
+        const userId = userDoc.id;
+
+        // Set data for the user in the "leaderboards" collection
+        await admin.firestore().collection("leaderboards").doc(userId).set({
+          userName: userData.displayName,
+          rank: userData.rank,
+          photoURL: userData.photoURL,
+        });
+      });
+
+      console.log("Daily leaderboard updated successfully.");
+      return null;
+    } catch (error) {
+      console.error("Error updating leaderboards", error);
       return null;
     }
   });

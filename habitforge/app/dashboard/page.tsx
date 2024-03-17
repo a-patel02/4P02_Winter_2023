@@ -69,7 +69,7 @@ const Dashboard = () => {
             <FirstHabit />
           ) : (
             <>
-              <div className="flex gap-4 flex-col items-center text-center md:flex-row md:text-left w-full">
+              <div className="flex gap-4 flex-col items-start md:items-center text-left md:flex-row w-full">
                 {user?.photoURL && (
                   <img
                     src={user.photoURL}
