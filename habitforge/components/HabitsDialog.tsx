@@ -33,7 +33,7 @@ import { Input } from "./ui/input";
 import { format } from "date-fns";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { boolean, z } from "zod";
 import {
   Form,
   FormControl,
@@ -193,11 +193,11 @@ const HabitsDialog = () => {
     toast.success("Habit has been created 😎");
   };
 
-  useEffect(() => {
-    if (!isListening) {
-      setAudioHabitName(text);
-    }
-  }, [isListening, text, setAudioHabitName]);
+  // useEffect(() => {
+  //   if (!isListening) {
+  //     setAudioHabitName(text);
+  //   }
+  // }, [isListening, text, setAudioHabitName]);
 
   const TextForm = () => {
     return (
@@ -352,14 +352,15 @@ const HabitsDialog = () => {
       </Form>
     );
   };
-
+  
   useEffect(() => {
     if (!isListening) {
       if (audioStage === 1) {
         // Update habit name only if we are in stage 1
         setAudioHabitName(text);
         console.log("WE ARE IN STAGE 1")
-      } else if (audioStage === 3) {
+      } 
+      else if (audioStage === 3) {
         // Update habit goal only if we are in stage 3
         setAudioHabitGoal(text);
         console.log("WE ARE IN STAGE 3")
@@ -369,8 +370,6 @@ const HabitsDialog = () => {
     }
   }, [isListening, text, audioStage]);
   
-  
-
   const GetAudioStage = () => {
     switch (audioStage) {
       case 0:
@@ -484,7 +483,7 @@ const HabitsDialog = () => {
                 // onClick={() => setAudioStage(audioStage + 1)}
                 variant={"audioPrimary"}
                 onClick={() => {
-                  stopListening(); // Ensure we stop listening when the checkmark is clicked
+                  stopListening(); // stop listening when the checkmark is clicked
                   setAudioStage(audioStage + 1);
                 }}
               >
