@@ -374,22 +374,34 @@ const HabitsDialog = () => {
     if (!isListening) {
       if (audioStage === 1) {
         // Update habit name only if we are in stage 1
-        setAudioHabitName(text);
-        console.log("WE ARE IN STAGE 1")
+        if(text.length <= 25){
+          setAudioHabitName(text);
+          console.log("WE ARE IN STAGE 1" + "TEXT IS: " + text)
+        } else {
+          setAudioHabitName("Habit name must be less than 25 characters")
+        }
       } 
       else if (audioStage === 3) {
-        // Update habit goal only if we are in stage 3
         const numberValue = wordToNumber(text);
         if(numberValue!==undefined){
         if (!isNaN(numberValue)) {
           setAudioHabitGoal(numberValue.toString()); // Convert number back to string if needed
           console.log("WE ARE IN STAGE 3")
-        }
+        } 
+      }
+      else {
+        setAudioHabitGoal("Please only say a number")
       }
       } else if(audioStage ===5){
-        setAudioHabitRepeat(text);
+        const allowedWords = ['daily','weekly','monthly','Daily','Weekly','Monthly'];
+        if(allowedWords.includes(text)){
+          setAudioHabitRepeat(text);
+          console.log("WE ARE IN STAGE 5" + "TEXT IS: " + text)
+        } else {
+          console.log("Text does not match allowed words. Text is: " + text);
+          setAudioHabitRepeat("Options are either daily, weekly, or Monthly")
+        }
       }
-    
     }
   }, [isListening, text, audioStage]);
   
