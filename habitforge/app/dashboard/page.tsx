@@ -9,8 +9,8 @@ const Dashboard = () => {
   const sendNoticiation = () => {
     if('Notification' in window && Notification.permission === 'granted'){
       new Notification('Hello Developer!' , {
-        body: 'this is your notification message!',
-        icon: './public/logolight.svg'
+        body: 'Trigger notification is now active!',
+        icon: './logo.png'
       })
     }
   
