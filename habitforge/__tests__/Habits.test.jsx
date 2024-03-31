@@ -22,7 +22,7 @@ jest.mock('sonner', () => ({
 }));
 
 describe('Habits Component', () => {
-  // Define mockProps here, to be used in all tests
+    // ive created a mock user so we can test based off this.
   const mockProps = {
     habitName: 'Read',
     goal: 1,
@@ -77,19 +77,19 @@ describe('Habits Component', () => {
     it('displays the correct state when habit is already completed', () => {
       render(<Habits {...mockProps} completed={true} tracked={true} />);
       expect(screen.getByText('Completed, log again tomorrow')).toBeInTheDocument();
-      expect(screen.queryByText('Done')).toBeNull(); // 'Done' button should not be present
+      expect(screen.queryByText('Done')).toBeNull(); // Done button should not be present
     });
 
     it('displays the correct state when habit is failed', () => {
       render(<Habits {...mockProps} failed={true} tracked={true} />);
       expect(screen.getByText('Failed, log again tomorrow')).toBeInTheDocument();
-      expect(screen.queryByText('Fail')).toBeNull(); // 'Fail' button should not be present
+      expect(screen.queryByText('Fail')).toBeNull(); // Fail button should not be present
     });
 
     it('displays the correct state when habit is skipped', () => {
       render(<Habits {...mockProps} skipped={true} tracked={true} />);
       expect(screen.getByText('Skipped, log again tomorrow')).toBeInTheDocument();
-      expect(screen.queryByText('Skip')).toBeNull(); // 'Skip' button should not be present
+      expect(screen.queryByText('Skip')).toBeNull(); // Skip button should not be present
     });
 
     describe('Managing habits', () => {
