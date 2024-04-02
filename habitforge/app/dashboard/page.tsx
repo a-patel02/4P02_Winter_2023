@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 import FirstHabit from "@/components/Dashboard/FirstHabit";
+import Analytics from "@/components/Dashboard/analytics";
 import { Button } from "@/components/ui/button";
 
 const Dashboard = () => {
@@ -139,6 +140,9 @@ const Dashboard = () => {
               </div>
             </>
           )}
+          <div>
+            {value ? <Analytics /> : <></>}
+          </div>
         </div>
       )}
     </main>

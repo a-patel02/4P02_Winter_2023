@@ -3,6 +3,7 @@
     "firebase": "^10.7.1",
     "lucide-react": "^0.309.0",
     "next-themes": "^0.2.1",
+    "react-circular-progressbar": "^2.1.0",
     "react-icons": "^5.0.1"
   }
 }
