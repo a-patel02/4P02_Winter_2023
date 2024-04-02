@@ -36,28 +36,6 @@ const LoginPage = () => {
     signInWithPopup(auth, provider);
   };
 
-  const habitName = "Running Club";
-
-  const recieverUID = "M8VXlBXNPDU1avgc9rpMhrNq4Xa2";
-
-  const createNotification = async () => {
-    if (user) {
-      await addDoc(collection(db, "users", recieverUID, "notifications"), {
-        timestamp: serverTimestamp(),
-        title:
-          user.displayName +
-          " has invited you to join their Group Habit: " +
-          habitName,
-        senderUID: user.uid,
-        hUID: "123456",
-        groupID: "1234719234",
-        status: "pending",
-      });
-    }
-  };
-
-  // const [value, loading1, error1] = useCollection(collection(db, "users"));
-
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {

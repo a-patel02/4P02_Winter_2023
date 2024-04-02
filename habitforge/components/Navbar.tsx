@@ -30,15 +30,7 @@ import { useEffect, useState } from "react";
 
 import Notification from "./ui/notifications";
 import Typography from "./ui/typography-variants";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "./ui/drawer";
+import { toast } from "sonner";
 
 import {
   Sheet,
@@ -64,6 +56,14 @@ const Navbar = () => {
   const [value, loading1, error1] = useCollectionData(
     collection(db, `users/${user?.uid}/notifications`)
   );
+
+  const [showed, setShowed] = useState(false);
+  if (value?.length) {
+    if (!showed && value.length > 0) {
+      toast("You have new notifications!");
+      setShowed(true);
+    }
+  }
 
   const pathName = usePathname();
   return (
@@ -193,21 +193,24 @@ const Navbar = () => {
                     )}
                   </div>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className=" w-96">
+                <DropdownMenuContent className="w-96">
                   <DropdownMenuLabel>Notifications</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   {loading1 ? (
                     <Skeleton className="h-4 w-4"></Skeleton>
                   ) : value?.length ?? 0 > 1 ? (
-                    value?.map((doc) => (
-                      <Notification
-                        title={doc.title}
-                        senderUID={doc.senderUID}
-                        hUID={doc.hUID}
-                        groupID={doc.groupID}
-                        status={doc.status}
-                      ></Notification>
-                    ))
+                    <div className="flex flex-col gap-2">
+                      {value?.map((doc) => (
+                        <Notification
+                          title={doc.title}
+                          senderUID={doc.senderUID}
+                          hUID={doc.hUID}
+                          groupID={doc.groupID}
+                          status={doc.status}
+                          edit={doc.edit}
+                        ></Notification>
+                      ))}
+                    </div>
                   ) : (
                     <div className="p-2 flex justify-center items-center">
                       {" "}
