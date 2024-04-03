@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import Typography from "@/components/ui/typography-variants";
-import CompletionBox from '@/components/ui/completionBox';
+import CompletionBox from '@/components/ui/completionBoxes';
 import {
     Zap,
     Sparkles,
@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 import Icon from "@/components/ui/Icons";
-import GrayBox from '../ui/grayBox';
+import GrayBox from '../ui/greyBox';
 
 
 // Function to calculate percentage completion
