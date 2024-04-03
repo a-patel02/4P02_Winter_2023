@@ -201,6 +201,7 @@ const Navbar = () => {
                   ) : value?.length ?? 0 > 1 ? (
                     value?.map((doc) => (
                       <Notification
+                        key={doc.uid}
                         title={doc.title}
                         senderUID={doc.senderUID}
                         hUID={doc.hUID}
