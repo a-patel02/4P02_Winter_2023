@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-type SpeechRecognitionType = SpeechRecognition | null;
+type SpeechRecognitionType = any | null;
 
 const useSpeechRecognition = () => {
   const [text, setText] = useState<string>("");
@@ -16,7 +16,7 @@ const useSpeechRecognition = () => {
       const recognitionInstance = new webkitSpeechRecognition();
       recognitionInstance.continuous = true;
       recognitionInstance.lang = "en-US";
-      recognitionInstance.onresult = (event: SpeechRecognitionEvent) => {
+      recognitionInstance.onresult = (event: any) => {
         const transcript = event.results[event.resultIndex][0].transcript;
         setText(transcript);
         setIsListening(false);
