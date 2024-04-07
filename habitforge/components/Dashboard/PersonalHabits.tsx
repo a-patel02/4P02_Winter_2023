@@ -19,7 +19,7 @@ const PersonalHabits: FC<PersonalHabitsProps> = ({ sortedHabits, user }) => {
   const [manageHabits, setManageHabits] = useState(false);
 
   return (
-    <div className="flex flex-col gap-12 w-full">
+    <div className="flex flex-col gap-6 w-full">
       <div className="flex flex-col w-full">
         <div className="flex w-full flex-col gap-2 md:flex-row md:justify-between py-2 md:items-center">
           <Typography variant={"h4"}>All Habits</Typography>

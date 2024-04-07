@@ -17,6 +17,7 @@ import { Loader2 } from "lucide-react";
 import FirstHabit from "@/components/Dashboard/FirstHabit";
 import PersonalHabits from "@/components/Dashboard/PersonalHabits";
 import GroupHabits from "@/components/Dashboard/GroupHabits";
+import Analytics from "@/components/Dashboard/analyticsSec";
 
 const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
