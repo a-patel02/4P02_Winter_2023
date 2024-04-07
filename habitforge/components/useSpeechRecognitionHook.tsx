@@ -5,12 +5,14 @@ type SpeechRecognitionType = SpeechRecognition | null;
 const useSpeechRecognition = () => {
   const [text, setText] = useState<string>("");
   const [isListening, setIsListening] = useState<boolean>(false);
-  const [hasRecognitionSupport, setHasRecognitionSupport] = useState<boolean>(false);
+  const [hasRecognitionSupport, setHasRecognitionSupport] =
+    useState<boolean>(false);
   const [recognition, setRecognition] = useState<SpeechRecognitionType>(null);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && 'webkitSpeechRecognition' in window) {
-      const webkitSpeechRecognition: any = (window as any).webkitSpeechRecognition;
+    if (typeof window !== "undefined" && "webkitSpeechRecognition" in window) {
+      const webkitSpeechRecognition: any = (window as any)
+        .webkitSpeechRecognition;
       const recognitionInstance = new webkitSpeechRecognition();
       recognitionInstance.continuous = true;
       recognitionInstance.lang = "en-US";
@@ -20,7 +22,7 @@ const useSpeechRecognition = () => {
         setIsListening(false);
       };
       recognitionInstance.onerror = (event: any) => {
-        console.error('Speech recognition error:', event.error);
+        console.error("Speech recognition error:", event.error);
         setIsListening(false);
       };
       setRecognition(recognitionInstance);
@@ -30,7 +32,7 @@ const useSpeechRecognition = () => {
 
   const startListening = () => {
     if (recognition) {
-      setText('');
+      setText("");
       setIsListening(true);
       recognition.start();
     }

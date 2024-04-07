@@ -54,7 +54,7 @@ import { cn } from "@/lib/utils";
 import { Calendar } from "../ui/calendar";
 import { toast } from "sonner";
 import { IconPicker } from "../IconPicker";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Typography from "../ui/typography-variants";
 import Edit from "../Edit";
 
@@ -67,6 +67,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
+import useSpeechRecognition from "../useSpeechRecognitionHook";
 
 const formSchema = z.object({
   habitname: z
@@ -101,6 +102,14 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
   icon,
   repeat,
 }) => {
+  const {
+    text,
+    isListening,
+    startListening,
+    stopListening,
+    hasRecognitionSupport,
+  } = useSpeechRecognition();
+
   const [user, loading, error] = useAuthState(auth);
 
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -221,6 +230,64 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
     toast.success("Habit has been created 😎");
   };
 
+  function wordToNumber(word: string): number | undefined {
+    const wordsToNumbers: Record<string, number> = {
+      zero: 0,
+      one: 1,
+      two: 2,
+      three: 3,
+      four: 4,
+      five: 5,
+      six: 6,
+      seven: 7,
+      eight: 8,
+      nine: 9,
+      ten: 10,
+      // Add more as needed
+    };
+    return wordsToNumbers[word.toLowerCase()];
+  }
+
+  useEffect(() => {
+    if (!isListening) {
+      if (audioStage === 1) {
+        // Update habit name only if we are in stage 1
+        if (text.length <= 25) {
+          setAudioHabitName(text);
+          console.log("WE ARE IN STAGE 1" + "TEXT IS: " + text);
+        } else {
+          setAudioHabitName("Habit name must be less than 25 characters");
+        }
+      } else if (audioStage === 3) {
+        const numberValue = wordToNumber(text);
+        if (numberValue !== undefined) {
+          if (!isNaN(numberValue)) {
+            setAudioHabitGoal(numberValue.toString()); // Convert number back to string if needed
+            console.log("WE ARE IN STAGE 3");
+          }
+        } else {
+          setAudioHabitGoal("Please only say a number");
+        }
+      } else if (audioStage === 5) {
+        const allowedWords = [
+          "daily",
+          "weekly",
+          "monthly",
+          "Daily",
+          "Weekly",
+          "Monthly",
+        ];
+        if (allowedWords.includes(text)) {
+          setAudioHabitRepeat(text);
+          console.log("WE ARE IN STAGE 5" + "TEXT IS: " + text);
+        } else {
+          console.log("Text does not match allowed words. Text is: " + text);
+          setAudioHabitRepeat("Options are either daily, weekly, or Monthly");
+        }
+      }
+    }
+  }, [isListening, text, audioStage]);
+
   const GetAudioStage = () => {
     switch (audioStage) {
       case 0:
@@ -232,7 +299,15 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
             <div className="flex gap-6">
               <Button
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
+                // onClick={() => setAudioStage(audioStage + 1)}
+                onClick={() => {
+                  setAudioStage(audioStage + 1);
+                  if (!isListening) {
+                    startListening();
+                  } else {
+                    stopListening();
+                  }
+                }}
               >
                 <Mic />
               </Button>
@@ -247,6 +322,7 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
             </Typography>
             <div className="flex gap-2 w-full">
               <Input value={audioHabitName} disabled />
+
               <IconPicker
                 color={selectedColor}
                 icon={selectedIcon}
@@ -264,7 +340,10 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
               </Button>
               <Button
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
+                onClick={() => {
+                  stopListening(); // Ensure we stop listening when the checkmark is clicked
+                  setAudioStage(audioStage + 1);
+                }}
               >
                 <Check />
               </Button>
@@ -277,13 +356,21 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
             <Edit
               text={audioHabitName}
               label="Habit Name"
-              audioStage={() => setAudioStage(1)}
+              audioStage={() => setAudioStage(2)}
             />
             <Typography variant={"h4"}>How many times in a day?</Typography>
+
             <div className="flex gap-6">
               <Button
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
+                onClick={() => {
+                  setAudioStage(audioStage + 1);
+                  if (!isListening) {
+                    startListening();
+                  } else {
+                    stopListening();
+                  }
+                }}
               >
                 <Mic />
               </Button>
@@ -296,10 +383,12 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
             <Edit
               text={audioHabitName}
               label="Habit Name"
-              audioStage={() => setAudioStage(1)}
+              audioStage={() => setAudioStage(3)}
             />
+
             <Typography variant={"h4"}>How many times in a day?</Typography>
             <Input value={audioHabitGoal} disabled />
+
             <div className="flex gap-6">
               <Button
                 variant={"audioSecondary"}
@@ -308,8 +397,13 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
                 <RotateCcw />
               </Button>
               <Button
+                // variant={"audioPrimary"}
+                // onClick={() => setAudioStage(audioStage + 1)}
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
+                onClick={() => {
+                  stopListening(); // stop listening when the checkmark is clicked
+                  setAudioStage(audioStage + 1);
+                }}
               >
                 <Check />
               </Button>
@@ -335,7 +429,14 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
             <div className="flex gap-6">
               <Button
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
+                onClick={() => {
+                  setAudioStage(audioStage + 1);
+                  if (!isListening) {
+                    startListening();
+                  } else {
+                    stopListening();
+                  }
+                }}
               >
                 <Mic />
               </Button>
@@ -369,7 +470,10 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
               </Button>
               <Button
                 variant={"audioPrimary"}
-                onClick={() => setAudioStage(audioStage + 1)}
+                onClick={() => {
+                  stopListening(); // Ensure we stop listening when the checkmark is clicked
+                  setAudioStage(audioStage + 1);
+                }}
               >
                 <Check />
               </Button>
