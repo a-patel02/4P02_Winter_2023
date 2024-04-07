@@ -83,6 +83,8 @@ const formSchema = z.object({
   repeat: z.enum(["daily", "weekly", "monthly"]),
   startdate: z.date(),
 });
+
+
 const HabitsDialog = () => {
   const {
     text,
@@ -404,6 +406,7 @@ const HabitsDialog = () => {
       }
     }
   }, [isListening, text, audioStage]);
+
   
   const GetAudioStage = () => {
     switch (audioStage) {
@@ -431,15 +434,15 @@ const HabitsDialog = () => {
             </div>
           </div>
         );
-        case 1:
-  return (
+  case 1:
+    return (
     <div className="flex flex-col gap-6 justify-center items-center">
       <Typography variant={"h4"}>
         What will we call your habit?
       </Typography>
+
       <div className="flex gap-2 w-full">
         <Input value={audioHabitName} disabled />
-
         <IconPicker
           color={selectedColor}
           icon={selectedIcon}
@@ -458,7 +461,7 @@ const HabitsDialog = () => {
         <Button
           variant={"audioPrimary"}
           onClick={() => {
-            stopListening(); // Ensure we stop listening when the checkmark is clicked
+            stopListening(); 
             setAudioStage(audioStage + 1);
           }}
         >
