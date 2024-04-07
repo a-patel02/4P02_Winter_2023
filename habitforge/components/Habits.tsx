@@ -49,6 +49,7 @@ interface HabitsProps {
   group?: boolean;
   groupId?: string;
   repeat: string;
+  muted: boolean;
 }
 
 const Habits: FC<HabitsProps> = ({
@@ -71,6 +72,7 @@ const Habits: FC<HabitsProps> = ({
   groupId,
   group,
   repeat,
+  muted,
 }) => {
   const [value, loading, error] = useCollectionData(
     collection(db, `groups/${groupId}/members`)
@@ -114,6 +116,38 @@ const Habits: FC<HabitsProps> = ({
     setManage(false);
     toast.info("Habit Deleted 😢");
   };
+  const failedSound = () => {
+    if (muted) {
+      toast("The page is muted. Please unmute to play sounds.");
+    } else {
+      new Audio("error.mp3").play();
+    }
+  };
+
+  const skippedSound = () => {
+    if (muted) {
+      toast("The page is muted. Please unmute to play sounds.");
+    } else {
+      new Audio("skipped.mp3").play();
+    }
+  };
+
+  const successSound = () => {
+    if (muted) {
+      toast("The page is muted. Please unmute to play sounds.");
+    } else {
+      new Audio("success.mp3").play();
+    }
+  };
+
+  const completedSound = () => {
+    if (muted) {
+      toast("The page is muted. Please unmute to play sounds.");
+    } else {
+      new Audio("complete.mp3").play();
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 border-b-2 border-muted py-4">
       <div className="flex flex-col md:flex-row gap-4 w-full md:justify-between ">
@@ -138,21 +172,30 @@ const Habits: FC<HabitsProps> = ({
             <div className="flex gap-4 justify-between">
               <Button
                 variant={"success"}
-                onClick={handleCompleted}
+                onClick={() => {
+                  handleCompleted();
+                  completedSound();
+                }}
                 className="w-full"
               >
                 <Check /> Done
               </Button>
               <Button
                 variant={"destructive"}
-                onClick={handleFailed}
+                onClick={() => {
+                  handleFailed();
+                  failedSound();
+                }}
                 className="w-full"
               >
                 <X /> Fail
               </Button>
               <Button
                 variant={"secondary"}
-                onClick={handleSkipped}
+                onClick={() => {
+                  handleSkipped();
+                  skippedSound();
+                }}
                 className="w-full"
               >
                 <ArrowRight /> Skip

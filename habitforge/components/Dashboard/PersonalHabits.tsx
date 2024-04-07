@@ -14,8 +14,13 @@ import { FC, useState } from "react";
 interface PersonalHabitsProps {
   sortedHabits: any;
   user: any;
+  muted: boolean;
 }
-const PersonalHabits: FC<PersonalHabitsProps> = ({ sortedHabits, user }) => {
+const PersonalHabits: FC<PersonalHabitsProps> = ({
+  sortedHabits,
+  user,
+  muted,
+}) => {
   const [manageHabits, setManageHabits] = useState(false);
 
   return (
@@ -57,6 +62,7 @@ const PersonalHabits: FC<PersonalHabitsProps> = ({ sortedHabits, user }) => {
               setManage={setManageHabits}
               key={habit.hUID}
               repeat={habit.repeat}
+              muted={muted}
             />
           ))}
         </div>
