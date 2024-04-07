@@ -4,14 +4,14 @@ import React, { useState } from "react";
 export default function Home() {
   const [muted, setMuted] = useState(false);
 
-  const playSound = () => {
+  const levelUpSound = () => {
     if (muted) {
       alert("The page is muted. Please unmute to play sounds.");
     } else {
       new Audio("level-up.wav").play();
     }
   };
-  const playSound2 = () => {
+  const errorSound = () => {
     if (muted) {
       alert("The page is muted. Please unmute to play sounds.");
     } else {
@@ -19,7 +19,7 @@ export default function Home() {
     }
   };
 
-  const playSound3 = () => {
+  const skippedSound = () => {
     if (muted) {
       alert("The page is muted. Please unmute to play sounds.");
     } else {
@@ -27,7 +27,7 @@ export default function Home() {
     }
   };
 
-  const playSound4 = () => {
+  const successSound = () => {
     if (muted) {
       alert("The page is muted. Please unmute to play sounds.");
     } else {
@@ -35,7 +35,7 @@ export default function Home() {
     }
   };
 
-  const playSound5 = () => {
+  const completedSound = () => {
     if (muted) {
       alert("The page is muted. Please unmute to play sounds.");
     } else {
@@ -58,39 +58,39 @@ export default function Home() {
         <h1 className="text-3xl font-bold">One Button Page</h1>
         <button
           className="text-md bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={playSound}
+          onClick={levelUpSound}
         >
           Level Up
         </button>
 
         <button
           className="text-md bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={playSound4}
+          onClick={successSound}
         >
           Success
         </button>
 
         <button
           className="text-md bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={playSound3}
+          onClick={skippedSound}
         >
           Skipped
         </button>
 
         <button
           className="text-md bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={playSound5}
+          onClick={completedSound}
         >
           Completed
         </button>
 
         <button
           className="text-md bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          onClick={playSound2}
+          onClick={errorSound}
         >
           Error
         </button>
-        
+
         <button
           className="text-md bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
           onClick={toggleMute}
@@ -101,4 +101,3 @@ export default function Home() {
     </main>
   );
 }
-

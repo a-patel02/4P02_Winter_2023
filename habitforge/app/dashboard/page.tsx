@@ -9,8 +9,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 import Typography from "@/components/ui/typography-variants";
 
-import { Coins } from "lucide-react";
-import { useEffect } from "react";
+import { Coins, Volume2, VolumeX } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { Loader2 } from "lucide-react";
 
@@ -58,8 +58,24 @@ const Dashboard = () => {
     }
   }, [loading, user]);
 
+  const [muted, setMuted] = useState(false);
+
+  const toggleMute = () => {
+    setMuted(!muted);
+  };
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8 md:p-24">
+      <div
+        className="p-4 rounded-full bg-slate-900 shadow-xl flex justify-center items-center absolute bottom-10 right-10 cursor-pointer"
+        onClick={toggleMute}
+      >
+        {muted ? (
+          <VolumeX className=" text-red-600" />
+        ) : (
+          <Volume2 className=" text-white" />
+        )}
+      </div>
       {loading1 ? (
         // <Skeleton className="w-full h-4"></Skeleton>
         <Loader2 className="animate-spin" />
@@ -103,6 +119,7 @@ const Dashboard = () => {
               <PersonalHabits
                 sortedHabits={sortedIndvidualHabits}
                 user={user}
+                muted={muted}
               />
               <GroupHabits sortedHabits={sortedGroupHabits} user={user} />
             </>
