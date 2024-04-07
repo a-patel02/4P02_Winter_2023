@@ -2,7 +2,7 @@ import { FC } from "react";
 import HabitsText from "./ui/habitstext";
 import { Button } from "./ui/button";
 
-import { Check, ArrowRight, X, Trash } from "lucide-react";
+import { Check, ArrowRight, X, Trash, Group } from "lucide-react";
 import {
   collection,
   deleteDoc,
@@ -16,6 +16,18 @@ import Icon from "./ui/Icons";
 import { IconType } from "./IconPicks";
 import Typography from "./ui/typography-variants";
 import { toast } from "sonner";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+import GroupHabitsDialog from "./Dashboard/GroupHabitsDialog";
 
 interface HabitsProps {
   habitName: string;
@@ -33,6 +45,10 @@ interface HabitsProps {
   icon: string;
   tracked: boolean;
   manage: boolean;
+  setManage: (value: boolean) => void;
+  group?: boolean;
+  groupId?: string;
+  repeat: string;
 }
 
 const Habits: FC<HabitsProps> = ({
@@ -51,7 +67,15 @@ const Habits: FC<HabitsProps> = ({
   icon,
   tracked,
   manage,
+  setManage,
+  groupId,
+  group,
+  repeat,
 }) => {
+  const [value, loading, error] = useCollectionData(
+    collection(db, `groups/${groupId}/members`)
+  );
+
   const handleCompleted = async () => {
     await updateDoc(doc(db, "users", uid, "habits", hUID), {
       completed: true,
@@ -77,90 +101,145 @@ const Habits: FC<HabitsProps> = ({
 
   const handleDelete = async () => {
     await deleteDoc(doc(db, "users", uid, "habits", hUID));
+    console.log("group: ", group, "groupId: ", groupId);
+    if (group && groupId) {
+      console.log("trying to delete");
+      await deleteDoc(doc(db, "groups", groupId, "members", uid));
+      console.log("deleted");
+    }
   };
 
   const onDelete = () => {
     handleDelete();
+    setManage(false);
     toast.info("Habit Deleted 😢");
   };
   return (
-    <div className="flex flex-col md:flex-row gap-4 w-full md:justify-between border-b-2 border-muted py-4">
-      <div className="flex gap-6">
-        <Icon colorDirect={color}> {IconType[icon]} </Icon>
+    <div className="flex flex-col gap-4 border-b-2 border-muted py-4">
+      <div className="flex flex-col md:flex-row gap-4 w-full md:justify-between ">
+        <div className="flex gap-6">
+          <Icon colorDirect={color}> {IconType[icon]} </Icon>
+          <HabitsText
+            main={true}
+            title={habitName}
+            description={goal + " /times a day"}
+          />
+        </div>
+        <HabitsText title={"Streak 🔥"} description={streak + " day(s)"} />
+        <HabitsText title={"Skipped"} description={totalSkipped + " day(s)"} />
+        <HabitsText title={"Failed"} description={totalFailed + " day(s)"} />
         <HabitsText
-          main={true}
-          title={habitName}
-          description={goal + " /times a day"}
+          title={"Completed"}
+          description={totalCompleted + " day(s)"}
         />
-      </div>
-      <HabitsText title={"Streak 🔥"} description={streak + " day(s)"} />
-      <HabitsText title={"Skipped"} description={totalSkipped + " day(s)"} />
-      <HabitsText title={"Failed"} description={totalFailed + " day(s)"} />
-      <HabitsText
-        title={"Completed"}
-        description={totalCompleted + " day(s)"}
-      />
 
-      {!manage ? (
-        !tracked ? (
-          <div className="flex gap-4 justify-between">
-            <Button
-              variant={"success"}
-              onClick={handleCompleted}
-              className="w-full"
-            >
-              <Check /> Done
-            </Button>
-            <Button
-              variant={"destructive"}
-              onClick={handleFailed}
-              className="w-full"
-            >
-              <X /> Fail
-            </Button>
-            <Button
-              variant={"ghost"}
-              onClick={handleSkipped}
-              className="w-full"
-            >
-              <ArrowRight /> Skip
-            </Button>
-          </div>
-        ) : completed ? (
-          <div className="flex gap-4 items-center w-[311px] ">
-            <div className="flex h-9 w-9 bg-green-600 rounded-md text-white justify-center items-center ">
-              <Check />
+        {!manage ? (
+          !tracked ? (
+            <div className="flex gap-4 justify-between">
+              <Button
+                variant={"success"}
+                onClick={handleCompleted}
+                className="w-full"
+              >
+                <Check /> Done
+              </Button>
+              <Button
+                variant={"destructive"}
+                onClick={handleFailed}
+                className="w-full"
+              >
+                <X /> Fail
+              </Button>
+              <Button
+                variant={"secondary"}
+                onClick={handleSkipped}
+                className="w-full"
+              >
+                <ArrowRight /> Skip
+              </Button>
             </div>
-            <Typography variant={"p"} affects={"muted"} className="!mt-0">
-              Completed, log again tomorrow
-            </Typography>
-          </div>
-        ) : failed ? (
-          <div className="flex gap-4 items-center w-[311px] ">
-            <div className="flex h-9 w-9 bg-destructive rounded-md text-white justify-center items-center ">
-              <X />
+          ) : completed ? (
+            <div className="flex gap-4 items-center w-[311px] ">
+              <div className="flex h-9 w-9 bg-green-600 rounded-md text-white justify-center items-center ">
+                <Check />
+              </div>
+              <Typography variant={"p"} affects={"muted"} className="!mt-0">
+                Completed, log again tomorrow
+              </Typography>
             </div>
-            <Typography variant={"p"} affects={"muted"} className="!mt-0">
-              Failed, log again tomorrow
-            </Typography>
-          </div>
-        ) : skipped ? (
-          <div className="flex gap-4 items-center w-[311px] ">
-            <div className="flex h-9 w-9  bg-slate-600 rounded-md text-white justify-center items-center ">
-              <ArrowRight />
+          ) : failed ? (
+            <div className="flex gap-4 items-center w-[311px] ">
+              <div className="flex h-9 w-9 bg-destructive rounded-md text-white justify-center items-center ">
+                <X />
+              </div>
+              <Typography variant={"p"} affects={"muted"} className="!mt-0">
+                Failed, log again tomorrow
+              </Typography>
             </div>
-            <Typography variant={"p"} affects={"muted"} className="!mt-0">
-              Skipped, log again tomorrow
-            </Typography>
-          </div>
+          ) : skipped ? (
+            <div className="flex gap-4 items-center w-[311px] ">
+              <div className="flex h-9 w-9  bg-slate-600 rounded-md text-white justify-center items-center ">
+                <ArrowRight />
+              </div>
+              <Typography variant={"p"} affects={"muted"} className="!mt-0">
+                Skipped, log again tomorrow
+              </Typography>
+            </div>
+          ) : (
+            <></>
+          )
         ) : (
-          <></>
-        )
-      ) : (
-        <div className="w-[311px]">
-          <Button variant={"destructive"} onClick={onDelete}>
-            <Trash /> Delete Habit
-          </Button>
+          <div className="w-[311px] flex gap-4">
+            {group ? (
+              <GroupHabitsDialog
+                habitName={habitName}
+                goal={goal}
+                repeat={
+                  repeat == "daily"
+                    ? "daily"
+                    : repeat == "weekly"
+                    ? "weekly"
+                    : "monthly"
+                }
+                hUID={hUID}
+                color={color}
+                icon={icon}
+                edit={true}
+                groupEmails={value?.map((member: any) => member.email) ?? []}
+                groupID={groupId}
+              />
+            ) : (
+              <></>
+            )}
+
+            <Button variant={"destructive"} onClick={onDelete}>
+              <Trash /> Delete Habit
+            </Button>
+          </div>
+        )}
+      </div>
+      {group && (
+        <div className="flex gap-2">
+          {value?.map(
+            (member: any) =>
+              member.status === "accepted" && (
+                <TooltipProvider>
+                  <Tooltip delayDuration={50}>
+                    <TooltipTrigger>
+                      <Avatar>
+                        <AvatarImage src={member.photoURL} />
+                        <AvatarFallback>
+                          {member.displayName.toString().slice(0, 1)}
+                        </AvatarFallback>
+                      </Avatar>
+                    </TooltipTrigger>
+                    <TooltipContent side="top">
+                      <p>{member.displayName}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              )
+          )}
         </div>
       )}
     </div>

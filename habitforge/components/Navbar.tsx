@@ -30,15 +30,7 @@ import { useEffect, useState } from "react";
 
 import Notification from "./ui/notifications";
 import Typography from "./ui/typography-variants";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "./ui/drawer";
+import { toast } from "sonner";
 
 import {
   Sheet,
@@ -64,6 +56,14 @@ const Navbar = () => {
   const [value, loading1, error1] = useCollectionData(
     collection(db, `users/${user?.uid}/notifications`)
   );
+
+  const [showed, setShowed] = useState(false);
+  if (value?.length) {
+    if (!showed && value.length > 0) {
+      toast("You have new notifications!");
+      setShowed(true);
+    }
+  }
 
   const pathName = usePathname();
   return (
@@ -193,7 +193,7 @@ const Navbar = () => {
                     )}
                   </div>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className=" w-96">
+                <DropdownMenuContent className="w-96">
                   <DropdownMenuLabel>Notifications</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   {loading1 ? (
