@@ -8,6 +8,7 @@ const useSpeechRecognition = () => {
   const [hasRecognitionSupport, setHasRecognitionSupport] =
     useState<boolean>(false);
   const [recognition, setRecognition] = useState<SpeechRecognitionType>(null);
+// adding button indicator
 
   useEffect(() => {
     if (typeof window !== "undefined" && "webkitSpeechRecognition" in window) {
