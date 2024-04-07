@@ -199,18 +199,16 @@ const Navbar = () => {
                   {loading1 ? (
                     <Skeleton className="h-4 w-4"></Skeleton>
                   ) : value?.length ?? 0 > 1 ? (
-                    <div className="flex flex-col gap-2">
-                      {value?.map((doc) => (
-                        <Notification
-                          title={doc.title}
-                          senderUID={doc.senderUID}
-                          hUID={doc.hUID}
-                          groupID={doc.groupID}
-                          status={doc.status}
-                          edit={doc.edit}
-                        ></Notification>
-                      ))}
-                    </div>
+                    value?.map((doc) => (
+                      <Notification
+                        key={doc.uid}
+                        title={doc.title}
+                        senderUID={doc.senderUID}
+                        hUID={doc.hUID}
+                        groupID={doc.groupID}
+                        status={doc.status}
+                      ></Notification>
+                    ))
                   ) : (
                     <div className="p-2 flex justify-center items-center">
                       {" "}
