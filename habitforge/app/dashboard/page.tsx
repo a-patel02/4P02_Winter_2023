@@ -106,6 +106,7 @@ const Dashboard = () => {
               <GroupHabits sortedHabits={sortedGroupHabits} user={user} />
             </>
           )}
+          <div>{value ? <Analytics /> : <></>}</div>
         </div>
       )}
     </main>
