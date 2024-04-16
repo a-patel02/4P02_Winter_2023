@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Typography from "@/components/ui/typography-variants";
 import { Button } from "@/components/ui/button";
+
+
 import {
   Zap,
   Sparkles,
@@ -175,7 +177,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         {/* Call to action section */}
         <div className="flex flex-col items-center gap-8 text-center">
           <Typography variant="h1">HabitForge is free forever</Typography>

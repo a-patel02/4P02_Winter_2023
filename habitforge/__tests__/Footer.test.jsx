@@ -12,6 +12,13 @@ jest.mock('react-firebase-hooks/auth', () => ({
 jest.mock('next/link', () => {
   return ({ children }) => children;
 });
+jest.mock('firebase/messaging', () => ({
+  getMessaging: jest.fn(() => ({
+      // Mock the methods you need, for example:
+      onMessage: jest.fn(),
+      getToken: jest.fn(() => Promise.resolve('mock-token'))
+  }))
+}));
 
 
 describe('Footer Component', () => {

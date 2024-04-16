@@ -20,6 +20,14 @@ jest.mock('sonner', () => ({
     info: jest.fn(),
   },
 }));
+jest.mock('firebase/firestore', () => ({
+  collection: jest.fn().mockReturnThis(),
+  doc: jest.fn().mockReturnThis(),
+  updateDoc: jest.fn(),
+  deleteDoc: jest.fn(),
+  setDoc: jest.fn(),
+  serverTimestamp: jest.fn()
+}));
 
 describe('Habits Component', () => {
     // ive created a mock user so we can test based off this.
@@ -68,12 +76,15 @@ describe('Habits Component', () => {
     });
 
     it('calls deleteDoc and shows a toast on delete', async () => {
-      render(<Habits {...mockProps} manage={true} />);
+      const mockSetManage = jest.fn();  // Mock the function
+      render(<Habits {...mockProps} manage={true} setManage={mockSetManage} />);
+    
       fireEvent.click(screen.getByText('Delete Habit'));
       expect(deleteDoc).toHaveBeenCalled();
+      expect(mockSetManage).toHaveBeenCalledWith(false); 
       expect(toast.info).toHaveBeenCalledWith('Habit Deleted 😢');
     });
-
+    
     it('displays the correct state when habit is already completed', () => {
       render(<Habits {...mockProps} completed={true} tracked={true} />);
       expect(screen.getByText('Completed, log again tomorrow')).toBeInTheDocument();
