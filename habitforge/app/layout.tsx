@@ -55,7 +55,7 @@ export default function RootLayout({
           <Navbar />
           <FirebaseMessagingComponent /> {/* Wrap with useClient */}
           {children}
-          <Toaster position="top-right" richColors />
+          <Toaster position="top-center" richColors />
           <Footer />
         </ThemeProvider>
       </body>
