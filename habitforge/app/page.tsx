@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Typography from "@/components/ui/typography-variants";
 import { Button } from "@/components/ui/button";
+
+
 import {
   Zap,
   Sparkles,
@@ -175,7 +177,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
         {/* Call to action section */}
         <div className="flex flex-col items-center gap-8 text-center">
           <Typography variant="h1">HabitForge is free forever</Typography>
@@ -197,38 +198,6 @@ export default function Home() {
             </div>
             <div className="flex gap-2">
               <CheckIcon /> Access all your analytics
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      {/* Analytics*/}
-      <div className="flex flex-col w-full">
-        <div className="flex flex-row border-b-2 border-black w-full">
-          <Typography variant="h4">Analytics</Typography>
-        </div>
-        <div id="gray-box" className="flex flex-row gap-10">
-          <div id="labelAndText" className="flex flex-col bg-[#F1F5F9] w-60 mt-5 rounded-lg p-2">
-            <Typography variant="p" affects={"lead"} className="!mt-0 text-base">
-              Total Habits Completed
-            </Typography>
-            <Typography variant="h3" className="!mt-0 pt-2">10</Typography>
-          </div>
-        </div>
-        <div id="completionBox" className="flex flex-col gap-3 mt-10">
-          <Typography variant="p" affects={"lead"} className="!mt-0 text-base">
-            Percent of Habits Completed
-          </Typography>
-          <div className="flex flex-row">
-            <div id="habit" className="flex flex-row items-center outline rounded-lg p-3 gap-3">
-              <Icon color="blue">
-                <Zap />
-              </Icon>
-              <Typography variant="p" className="!mt-0 text-base">
-                HabitName
-              </Typography>
-
             </div>
           </div>
         </div>
