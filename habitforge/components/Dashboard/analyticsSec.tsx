@@ -70,10 +70,6 @@ const Analytics: FC<AnalyticsProps> = ({ habits, user }) => {
   // Check streak if it continued to today
   longestStreak = Math.max(longestStreak, currentStreak);
 
-  console.log("Total habits completed in the last 7 days:", totalCompleted);
-  console.log("Last 7 days progress (percentage):", last7DaysProgress);
-  console.log("Habit completion rate (percentage):", habitCompletionRate);
-  console.log("Longest streak:", longestStreak);
   return (
     <div className="flex flex-col gap-6 w-full">
       {/* Analytics*/}
@@ -82,7 +78,7 @@ const Analytics: FC<AnalyticsProps> = ({ habits, user }) => {
           <Typography variant="h4">Analytics</Typography>
         </div>
       </div>
-      {1 > 0 ? (
+      {habits.length > 0 ? (
         <div className="flex flex-col">
           {/* GrayBox*/}
           <div className="flex flex-col gap-5 mt-3 flex-grow md:flex-row">
@@ -120,7 +116,7 @@ const Analytics: FC<AnalyticsProps> = ({ habits, user }) => {
                 icon={habit.icon}
                 color={habit.color}
                 completePercent={
-                  (habit.totalCompletedWeekly / (habit.goal * 7)) * 100
+                  (habit.totalCompletedWeekly / (habit.goal * 7)) * 100 || 0
                 }
               />
             ))}
@@ -131,11 +127,11 @@ const Analytics: FC<AnalyticsProps> = ({ habits, user }) => {
           <Image src={"AnalyticsEmpty.svg"} height={60} width={60} alt="" />
           <div className="flex flex-col gap-2">
             <Typography variant={"h4"}>
-              Track habits for 7 days to see your analytics
+              Start tracking your habits to see a weekly analytics.
             </Typography>
             <Typography variant={"p"} affects={"muted"} className="!mt-0">
-              Continue making and tracking habits and come back after 7 days to
-              see your analytics
+              Start making and tracking habits and come back to see your weekly
+              analytics.
             </Typography>
           </div>
         </div>
