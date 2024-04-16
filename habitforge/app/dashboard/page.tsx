@@ -19,6 +19,7 @@ import PersonalHabits from "@/components/Dashboard/PersonalHabits";
 import GroupHabits from "@/components/Dashboard/GroupHabits";
 import Analytics from "@/components/Dashboard/analyticsSec";
 import Image from "next/image";
+import Mute from "@/components/ui/mute";
 
 const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -61,6 +62,7 @@ const Dashboard = () => {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8 md:p-24">
+      <Mute />
       {loading1 ? (
         // <Skeleton className="w-full h-4"></Skeleton>
         <Loader2 className="animate-spin" />

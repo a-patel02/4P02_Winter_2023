@@ -53,7 +53,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <MuteProvider>
-            <Mute />
             <Navbar />
             {children}
             <Toaster position="top-center" richColors />
