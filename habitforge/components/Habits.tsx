@@ -29,6 +29,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import GroupHabitsDialog from "./Dashboard/GroupHabitsDialog";
 
+import { useMute } from "./Dashboard/MuteProvider";
+
 interface HabitsProps {
   habitName: string;
   goal: number;
@@ -49,7 +51,6 @@ interface HabitsProps {
   group?: boolean;
   groupId?: string;
   repeat: string;
-  muted: boolean;
 }
 
 const Habits: FC<HabitsProps> = ({
@@ -72,17 +73,19 @@ const Habits: FC<HabitsProps> = ({
   groupId,
   group,
   repeat,
-  muted,
 }) => {
   const [value, loading, error] = useCollectionData(
     collection(db, `groups/${groupId}/members`)
   );
+
+  const { muted, setMuted } = useMute();
 
   const handleCompleted = async () => {
     await updateDoc(doc(db, "users", uid, "habits", hUID), {
       completed: true,
       tracked: true,
       totalCompleted: totalCompleted + 1,
+      totalCompletedWeekly: totalCompleted + 1,
       lastCompletedDate: serverTimestamp(),
     });
   };

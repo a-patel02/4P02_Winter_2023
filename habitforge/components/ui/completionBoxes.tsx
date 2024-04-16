@@ -32,7 +32,7 @@ const CompletionBox: FC<CompletionBoxProps> = ({
   completePercent,
 }) => {
   return (
-    <div className="flex flex-row items-center justify-between border rounded-lg p-3 gap-3">
+    <div className="flex flex-row items-center justify-between w-full border rounded-lg p-3 gap-3">
       <div className="flex gap-3 items-center">
         <Icon color={color}>{IconType[icon]}</Icon>
         <Typography variant="p" className="!mt-0 text-base font-bold">

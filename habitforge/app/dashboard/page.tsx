@@ -18,6 +18,7 @@ import FirstHabit from "@/components/Dashboard/FirstHabit";
 import PersonalHabits from "@/components/Dashboard/PersonalHabits";
 import GroupHabits from "@/components/Dashboard/GroupHabits";
 import Analytics from "@/components/Dashboard/analyticsSec";
+import Image from "next/image";
 
 const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -58,24 +59,8 @@ const Dashboard = () => {
     }
   }, [loading, user]);
 
-  const [muted, setMuted] = useState(false);
-
-  const toggleMute = () => {
-    setMuted(!muted);
-  };
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8 md:p-24">
-      <div
-        className="p-4 rounded-full bg-slate-900 shadow-xl flex justify-center items-center absolute bottom-10 right-10 cursor-pointer"
-        onClick={toggleMute}
-      >
-        {muted ? (
-          <VolumeX className=" text-red-600" />
-        ) : (
-          <Volume2 className=" text-white" />
-        )}
-      </div>
       {loading1 ? (
         // <Skeleton className="w-full h-4"></Skeleton>
         <Loader2 className="animate-spin" />
@@ -119,12 +104,33 @@ const Dashboard = () => {
               <PersonalHabits
                 sortedHabits={sortedIndvidualHabits}
                 user={user}
-                muted={muted}
               />
               <GroupHabits sortedHabits={sortedGroupHabits} user={user} />
             </>
           )}
-          <div>{value ? <Analytics /> : <></>}</div>
+          <div>
+            {value ? (
+              <Analytics user={user} habits={value} />
+            ) : (
+              <div className="flex w-full gap-2 justify-center items-center bg-slate-100 p-2">
+                <Image
+                  src={"AnalyticsEmpty.svg"}
+                  height={200}
+                  width={200}
+                  alt=""
+                />
+                <div className="flex flex-col gap-3">
+                  <Typography variant={"h4"}>
+                    Track habits for 7 days to see your analytics
+                  </Typography>
+                  <Typography variant={"p"} affects={"muted"} className="!mt-0">
+                    Continue making and tracking habits and come back after 7
+                    days to see your analytics
+                  </Typography>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </main>

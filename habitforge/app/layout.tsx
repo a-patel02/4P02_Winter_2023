@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Metadata, Viewport } from "next";
 import { Toaster } from "@/components/ui/sonner";
+import { MuteProvider } from "@/components/Dashboard/MuteProvider";
+import Mute from "@/components/ui/mute";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -50,10 +52,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
-          <Toaster position="top-center" richColors />
-          <Footer />
+          <MuteProvider>
+            <Mute />
+            <Navbar />
+            {children}
+            <Toaster position="top-center" richColors />
+            <Footer />
+          </MuteProvider>
         </ThemeProvider>
       </body>
     </html>
