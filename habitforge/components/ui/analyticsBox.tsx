@@ -1,22 +1,22 @@
 import React, { FC } from "react";
 import Typography from "./typography-variants";
 
-interface GrayBoxProps {
+interface AnalyticsBoxProps {
   title: string;
-  totalCompleted: number;
+  number: string;
 }
 
-const GrayBox: FC<GrayBoxProps> = ({ title, totalCompleted }) => {
+const AnalyticsBox: FC<AnalyticsBoxProps> = ({ title, number }) => {
   return (
-    <div className="flex flex-col bg-slate-100 rounded-lg p-3 gap-3">
+    <div className="flex flex-col bg-slate-100 rounded-lg w-full p-3 gap-3">
       <Typography variant="p" affects="muted" className="!mt-0">
         {title}
       </Typography>
       <Typography variant="h3" className="!mt-0">
-        {totalCompleted}
+        {number}
       </Typography>
     </div>
   );
 };
 
-export default GrayBox;
+export default AnalyticsBox;
