@@ -9,7 +9,7 @@ import AnalyticsBox from "../ui/analyticsBox";
 import Image from "next/image";
 
 interface AnalyticsProps {
-  habits: any[];
+  habits: any;
   user: any;
 }
 
@@ -18,7 +18,7 @@ const Analytics: FC<AnalyticsProps> = ({ habits, user }) => {
   const today = new Date();
   const lastWeek = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000); // 7 days ago
 
-  const habitsLastWeek = habits.filter((habit) => {
+  const habitsLastWeek = habits.filter((habit: any) => {
     let habitLastCompletedDate;
     if (habit.lastCompletedDate instanceof Timestamp) {
       habitLastCompletedDate = habit.lastCompletedDate.toDate();
@@ -31,7 +31,7 @@ const Analytics: FC<AnalyticsProps> = ({ habits, user }) => {
 
   // Step 3: Calculate Total Habits Completed
   const totalCompleted = habitsLastWeek.reduce(
-    (total, habit) => total + (habit.completed ? 1 : 0),
+    (total: any, habit: any) => total + (habit.completed ? 1 : 0),
     0
   );
 
@@ -50,7 +50,7 @@ const Analytics: FC<AnalyticsProps> = ({ habits, user }) => {
   let longestStreak = 0;
   let currentStreak = 0;
 
-  habits.forEach((habit) => {
+  habits.forEach((habit: any) => {
     if (habit.completed) {
       const habitLastCompletedDate = new Date(habit.lastCompletedDate);
       const diffTime = Math.abs(
@@ -82,7 +82,7 @@ const Analytics: FC<AnalyticsProps> = ({ habits, user }) => {
           <Typography variant="h4">Analytics</Typography>
         </div>
       </div>
-      {-1 > 0 ? (
+      {1 > 0 ? (
         <div className="flex flex-col">
           {/* GrayBox*/}
           <div className="flex flex-col gap-5 mt-3 flex-grow md:flex-row">

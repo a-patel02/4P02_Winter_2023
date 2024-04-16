@@ -111,27 +111,25 @@ const Dashboard = () => {
             </>
           )}
           <div>
-            {value ? (
-              <Analytics user={user} habits={value} />
-            ) : (
-              <div className="flex w-full gap-2 justify-center items-center bg-slate-100 p-2">
-                <Image
-                  src={"AnalyticsEmpty.svg"}
-                  height={200}
-                  width={200}
-                  alt=""
-                />
-                <div className="flex flex-col gap-3">
-                  <Typography variant={"h4"}>
-                    Track habits for 7 days to see your analytics
-                  </Typography>
-                  <Typography variant={"p"} affects={"muted"} className="!mt-0">
-                    Continue making and tracking habits and come back after 7
-                    days to see your analytics
-                  </Typography>
-                </div>
+            <Analytics user={user} habits={value} />
+
+            {/* <div className="flex w-full gap-2 justify-center items-center bg-slate-100 p-2">
+              <Image
+                src={"AnalyticsEmpty.svg"}
+                height={200}
+                width={200}
+                alt=""
+              />
+              <div className="flex flex-col gap-3">
+                <Typography variant={"h4"}>
+                  Track habits for 7 days to see your analytics
+                </Typography>
+                <Typography variant={"p"} affects={"muted"} className="!mt-0">
+                  Continue making and tracking habits and come back after 7 days
+                  to see your analytics
+                </Typography>
               </div>
-            )}
+            </div> */}
           </div>
         </div>
       )}
