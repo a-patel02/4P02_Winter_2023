@@ -5,7 +5,6 @@ import "firebase/firestore";
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getMessaging, getToken } from "firebase/messaging";
 
-
 const clientCredentials = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -20,19 +19,17 @@ const app = getApps().length > 0 ? getApp() : initializeApp(clientCredentials);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-
-
 export const messaging = getMessaging(app);
-export const generateToken = async() => {
+export const generateToken = async () => {
   const permission = await Notification.requestPermission();
   console.log(permission);
-  if(permission === "granted"){
-      const token = await getToken(messaging,{vapidKey: "BMmOSKYwe4lOgqvySO20jpnvsKIR9igPKfylpVG-IElVpqibZE-syt22hlakB3Y0Krur4ethF8G0vD6zzfVIMRc"} );
-  console.log(token);
+  if (permission === "granted") {
+    const token = await getToken(messaging, {
+      vapidKey:
+        "BMmOSKYwe4lOgqvySO20jpnvsKIR9igPKfylpVG-IElVpqibZE-syt22hlakB3Y0Krur4ethF8G0vD6zzfVIMRc",
+    });
+    console.log(token);
   }
-  }
-
-
+};
 
 export { app, auth, db };
-
