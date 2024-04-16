@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Metadata, Viewport } from "next";
 import { Toaster } from "@/components/ui/sonner";
+import FirebaseMessagingComponent from '@/firebase/firebaseMessagingComponent';
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -51,6 +53,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
+          <FirebaseMessagingComponent /> {/* Wrap with useClient */}
           {children}
           <Toaster position="top-right" richColors />
           <Footer />
