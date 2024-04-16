@@ -1,8 +1,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/a-patel02/4P02_Winter_2024">
-    <img src="images/logo.png" alt="Logo" height="80">
+  <a href="https://habitforge.ca">
+    <img src="images/Icon.png" alt="Logo" height="80">
   </a>
 
 <h3 align="center">HabitForge</h3>
@@ -26,7 +26,7 @@
     Join HabitForge and turn your daily routine into an epic adventure of self-discovery and accomplishment. Forge the habits, conquer the challenges, and level up your life!"
     <br />
     <br />
-    <a href="https://github.com/a-patel02/4P02_Winter_2024">View Demo</a>
+    <a href="https://habitforge.ca">Visit the site</a>
   </p>
 </div>
 
@@ -48,7 +48,6 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -90,15 +89,6 @@ This is where you write installation instructions
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-  - [ ] Nested Feature
 
 <!-- LICENSE -->
 
