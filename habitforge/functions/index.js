@@ -73,7 +73,7 @@ exports.resetHabits = functions.pubsub
     }
   });
 
-  exports.calculateStreaks = functions.pubsub
+exports.calculateStreaks = functions.pubsub
   .schedule("every day 00:00")
   .timeZone("America/Toronto")
   .onRun(async () => {
@@ -121,6 +121,11 @@ exports.resetHabits = functions.pubsub
             });
         });
       });
+    } catch (error) {
+      console.error("Error calculating streaks", error);
+      return null;
+    }
+  });
 
 exports.resetHabitsBasedOnGoal = functions.pubsub
   .schedule("every hour")
