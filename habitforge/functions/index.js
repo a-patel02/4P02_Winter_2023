@@ -73,6 +73,55 @@ exports.resetHabits = functions.pubsub
     }
   });
 
+  exports.calculateStreaks = functions.pubsub
+  .schedule("every day 00:00")
+  .timeZone("America/Toronto")
+  .onRun(async () => {
+    try {
+      // Get all users from users collection
+      const usersSnapshot = await db.collection("users").get();
+      // Fetch habits data for each user
+      usersSnapshot.forEach(async (userDoc) => {
+        const userId = userDoc.id;
+        const habitsSnapshot = await db
+          .collection("users")
+          .doc(userDoc.id)
+          .collection("habits")
+          .get();
+
+        habitsSnapshot.forEach(async (habitDoc) => {
+          const habitData = habitDoc.data();
+          const habit = habitDoc.data().habitName;
+          const habitLastCompleted = habitDoc.data().lastCompletedDate.seconds;
+          const getStreak = habitDoc.data().streak;
+          console.log("habit name: ", habit);
+          console.log("time: ", habitLastCompleted);
+          console.log("streak: ", getStreak);
+
+          // Update streak based on lastCompletedDate
+          let habitStreak = 0;
+          const currentTime = Math.floor(Date.now() / 1000);
+          console.log("currentTime: ", currentTime);
+          let timeDifference = currentTime - habitLastCompleted;
+          if (habitData.completed === true && timeDifference <= 86400) {
+            habitStreak = habitData.streak + 1;
+            console.log("streak +1");
+          } else {
+            habitStreak = 0;
+            console.log("no streak");
+          }
+          await admin
+            .firestore()
+            .collection("users")
+            .doc(userId)
+            .collection("habits")
+            .doc(habitDoc.id)
+            .update({
+              streak: habitStreak,
+            });
+        });
+      });
+
 exports.resetHabitsBasedOnGoal = functions.pubsub
   .schedule("every hour")
   .onRun(async () => {
