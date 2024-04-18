@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "app/context/AuthContext.js",
     "app/context/AuthContext.js"
-  ],
+, "__tests__/HomePageNotLoggedIn.test.jsx"  ],
   "exclude": ["node_modules"]
 }

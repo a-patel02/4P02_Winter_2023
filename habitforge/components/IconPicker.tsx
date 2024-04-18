@@ -93,3 +93,4 @@ export function IconPicker({
     </Popover>
   );
 }
+export default IconPicker;

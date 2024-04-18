@@ -32,4 +32,4 @@ export const generateToken = async () => {
   }
 };
 
-export { app, auth, db };
+export { app, auth, db};
