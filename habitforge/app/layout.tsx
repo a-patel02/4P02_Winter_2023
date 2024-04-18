@@ -7,7 +7,7 @@ import { Metadata, Viewport } from "next";
 import { Toaster } from "@/components/ui/sonner";
 import { MuteProvider } from "@/components/Dashboard/MuteProvider";
 import Mute from "@/components/ui/mute";
-import FirebaseMessagingComponent from '@/firebase/firebaseMessagingComponent';
+import FirebaseMessagingComponent from "@/firebase/firebaseMessagingComponent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -55,12 +55,11 @@ export default function RootLayout({
         >
           <MuteProvider>
             <Navbar />
-          <FirebaseMessagingComponent /> {/* Wrap with useClient */}
-          {children}
-          <Toaster position="top-center" richColors />
-          <Footer />
-                      </MuteProvider>
-
+            <FirebaseMessagingComponent /> {/* Wrap with useClient */}
+            {children}
+            <Toaster position="top-center" richColors />
+            <Footer />
+          </MuteProvider>
         </ThemeProvider>
       </body>
     </html>
