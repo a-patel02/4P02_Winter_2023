@@ -73,7 +73,7 @@ exports.resetHabits = functions.pubsub
     }
   });
 
-exports.calculateStreaks = functions.pubsub
+  exports.calculateStreaks = functions.pubsub
   .schedule("every day 00:00")
   .timeZone("America/Toronto")
   .onRun(async () => {
@@ -122,10 +122,50 @@ exports.calculateStreaks = functions.pubsub
         });
       });
 
-      console.log("Streaks calculator updated successfully.");
+exports.resetHabitsBasedOnGoal = functions.pubsub
+  .schedule("every hour")
+  .onRun(async () => {
+    try {
+      const usersSnapshot = await db.collection("users").get();
+
+      usersSnapshot.forEach(async (userDoc) => {
+        const batch = db.batch(); // Create a new batch for each user
+
+        const habitsSnapshot = await db
+          .collection("users")
+          .doc(userDoc.id)
+          .collection("habits")
+          .get();
+
+        habitsSnapshot.forEach((habitDoc) => {
+          const habitData = habitDoc.data();
+          const goal = habitData.goal || 1; // Default goal to 1 if not provided
+          const interval = 24 / goal; // Calculate interval based on goal
+          const currentTime = new Date();
+          const lastResetTime = habitData.lastReset
+            ? new Date(habitData.lastReset.toDate())
+            : new Date(0); // Default to epoch if last reset time not set
+
+          // Check if it's time to reset based on interval
+          if (currentTime - lastResetTime >= interval * 60 * 60 * 1000) {
+            batch.update(habitDoc.ref, {
+              tracked: false,
+              completed: false,
+              skipped: false,
+              failed: false,
+              lastReset: admin.firestore.Timestamp.fromDate(currentTime),
+            });
+          }
+        });
+
+        await batch.commit(); // Commit batch for each user
+      });
+
+      console.log("Habit booleans reset successfully.");
+
       return null;
     } catch (error) {
-      console.error("Error calculating streaks", error);
+      console.error("Error resetting habit booleans:", error);
       return null;
     }
   });
