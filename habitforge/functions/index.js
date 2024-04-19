@@ -153,13 +153,24 @@ exports.resetHabitsBasedOnGoal = functions.pubsub
 
           // Check if it's time to reset based on interval
           if (currentTime - lastResetTime >= interval * 60 * 60 * 1000) {
-            batch.update(habitDoc.ref, {
-              tracked: false,
-              completed: false,
-              skipped: false,
-              failed: false,
-              lastReset: admin.firestore.Timestamp.fromDate(currentTime),
-            });
+            if (habitData.completed === true) {
+              batch.update(habitDoc.ref, {
+                tracked: false,
+                completed: false,
+                skipped: false,
+                failed: false,
+                lastReset: admin.firestore.Timestamp.fromDate(currentTime),
+              });
+            } else {
+              batch.update(habitDoc.ref, {
+                tracked: false,
+                completed: false,
+                skipped: false,
+                failed: false,
+                lastReset: admin.firestore.Timestamp.fromDate(currentTime),
+                totalFailed: admin.firestore.FieldValue.increment(1),
+              });
+            }
           }
         });
 

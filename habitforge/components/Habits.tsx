@@ -16,7 +16,10 @@ import Icon from "./ui/Icons";
 import { IconType } from "./IconPicks";
 import Typography from "./ui/typography-variants";
 import { toast } from "sonner";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import {
+  useCollectionData,
+  useDocumentData,
+} from "react-firebase-hooks/firestore";
 
 import {
   Tooltip,
@@ -78,6 +81,10 @@ const Habits: FC<HabitsProps> = ({
     collection(db, `groups/${groupId}/members`)
   );
 
+  const [firebaseUser, loading2, error2] = useDocumentData(
+    doc(db, `users/${uid}`)
+  );
+
   const { muted, setMuted } = useMute();
 
   const handleCompleted = async () => {
@@ -87,6 +94,9 @@ const Habits: FC<HabitsProps> = ({
       totalCompleted: totalCompleted + 1,
       totalCompletedWeekly: totalCompleted + 1,
       lastCompletedDate: serverTimestamp(),
+    });
+    await updateDoc(doc(db, "users", uid), {
+      habitCoins: firebaseUser?.habitCoins + 1,
     });
   };
   const handleSkipped = async () => {
