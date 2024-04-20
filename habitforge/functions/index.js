@@ -235,7 +235,6 @@ exports.calculateRanks = functions.pubsub
 
         let totalCompleted = 0;
         let totalHabits = 0;
-        let goal = 0;
         let failed = 0;
         let skipped = 0;
         let streak = 0;
@@ -246,9 +245,6 @@ exports.calculateRanks = functions.pubsub
           totalHabits++;
           if (habitData.completed === true) {
             totalCompleted++;
-          }
-          if (habitData.goal > 0 && habitData.completed === true) {
-            goal++;
           }
           if (habitData.failed === true) {
             failed++;
@@ -265,23 +261,16 @@ exports.calculateRanks = functions.pubsub
         let completionRate = totalCompleted / totalHabits;
         // Calculate users weights
         let completionScore = completionRate * completionRateWeight;
-        let goalScore = goal * goalWeight;
         let failedScore = failed * failedWeight;
         let skippedScore = skipped * skippedWeight;
         let streakScore = streak * streakWeight;
 
         // Sum up all rank scores
         let userRank =
-          completionScore +
-          goalScore +
-          failedScore +
-          skippedScore +
-          streakScore;
+          completionScore + failedScore + skippedScore + streakScore;
 
         console.log(
           completionScore +
-            " " +
-            goalScore +
             " " +
             failedScore +
             " " +
@@ -290,13 +279,15 @@ exports.calculateRanks = functions.pubsub
             streakScore
         );
         console.log(userRank + " userRank");
-
+        if (isNaN(userRank)) {
+          userRank = 0;
+        }
         await admin
           .firestore()
           .collection("users")
           .doc(userId)
           .update({
-            rank: Math.trunc(userRank * 100),
+            rank: (userRank * 100).toFixed(0),
           });
       });
 

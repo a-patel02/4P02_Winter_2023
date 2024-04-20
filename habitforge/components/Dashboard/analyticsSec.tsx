@@ -74,8 +74,11 @@ const Analytics: FC<AnalyticsProps> = ({ habits, user }) => {
     <div className="flex flex-col gap-6 w-full">
       {/* Analytics*/}
       <div className="flex flex-col w-full">
-        <div className="flex flex-row border-b-2 border-lead w-full pb-3">
+        <div className="flex border-b-2 border-lead w-full pb-3 items-center gap-2">
           <Typography variant="h4">Analytics</Typography>
+          <Typography variant="p" affects={"muted"} className="!mt-0">
+            Last 7 days
+          </Typography>
         </div>
       </div>
       {habits.length > 0 ? (

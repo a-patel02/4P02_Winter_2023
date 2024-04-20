@@ -20,6 +20,7 @@ import GroupHabits from "@/components/Dashboard/GroupHabits";
 import Analytics from "@/components/Dashboard/analyticsSec";
 import Image from "next/image";
 import Mute from "@/components/ui/mute";
+import EditProfile from "@/components/Dashboard/EditProfile";
 
 const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -73,14 +74,8 @@ const Dashboard = () => {
           ) : (
             <>
               <div className="flex gap-4 flex-col items-start md:items-center text-left md:flex-row w-full">
-                {user?.photoURL && (
-                  <img
-                    src={user.photoURL}
-                    height={70}
-                    width={70}
-                    alt=""
-                    className="rounded-full"
-                  />
+                {firebaseUser?.photoURL && (
+                  <EditProfile photoURL={firebaseUser.photoURL} />
                 )}
                 <div className="flex flex-col gap-2 w-full">
                   <Typography variant={"h2"}>
