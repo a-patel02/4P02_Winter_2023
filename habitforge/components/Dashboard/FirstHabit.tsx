@@ -1,6 +1,6 @@
 import Typography from "@/components/ui/typography-variants";
 import Image from "next/image";
-import HabitsDialog from "../HabitsDialog";
+import HabitsDialog from "./HabitsDialog";
 const FirstHabit = () => {
   return (
     <div className="flex flex-col justify-center items-center gap-12">

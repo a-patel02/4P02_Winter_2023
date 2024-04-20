@@ -2,27 +2,24 @@
 import { collection, doc, getDocs } from "firebase/firestore";
 import { auth, db } from "@/firebase/firebase";
 import {
-  useCollection,
-  useDocument,
   useCollectionData,
   useDocumentData,
 } from "react-firebase-hooks/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 import Typography from "@/components/ui/typography-variants";
-import { Skeleton } from "@/components/ui/skeleton";
-import Image from "next/image";
 
-import HabitsDialog from "@/components/HabitsDialog";
-
-import { ArrowLeft, Coins, Settings2 } from "lucide-react";
-import Habits from "@/components/Habits";
+import { Coins, Volume2, VolumeX } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Loader2 } from "lucide-react";
 
 import FirstHabit from "@/components/Dashboard/FirstHabit";
-import { Button } from "@/components/ui/button";
+import PersonalHabits from "@/components/Dashboard/PersonalHabits";
+import GroupHabits from "@/components/Dashboard/GroupHabits";
+import Analytics from "@/components/Dashboard/analyticsSec";
+import Image from "next/image";
+import Mute from "@/components/ui/mute";
 
 const Dashboard = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -44,8 +41,15 @@ const Dashboard = () => {
     }
   }
 
+  const individualHabits = value?.filter((habit) => !habit.groupID);
+  const groupHabits = value?.filter((habit) => habit.groupID);
+
   // Sorting the habits based on timestamp from oldest to newest
-  const sortedHabits = value?.slice().sort((a, b) => {
+  const sortedIndvidualHabits = individualHabits?.slice().sort((a, b) => {
+    return a.timestamp - b.timestamp;
+  });
+
+  const sortedGroupHabits = groupHabits?.slice().sort((a, b) => {
     return a.timestamp - b.timestamp;
   });
 
@@ -56,10 +60,9 @@ const Dashboard = () => {
     }
   }, [loading, user]);
 
-  const [manageHabits, setManageHabits] = useState(false);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8 md:p-24">
+      <Mute />
       {loading1 ? (
         // <Skeleton className="w-full h-4"></Skeleton>
         <Loader2 className="animate-spin" />
@@ -69,7 +72,7 @@ const Dashboard = () => {
             <FirstHabit />
           ) : (
             <>
-              <div className="flex gap-4 flex-col items-center text-center md:flex-row md:text-left w-full">
+              <div className="flex gap-4 flex-col items-start md:items-center text-left md:flex-row w-full">
                 {user?.photoURL && (
                   <img
                     src={user.photoURL}
@@ -100,43 +103,12 @@ const Dashboard = () => {
                   </Typography>
                 </div>
               </div>
-              <div className="flex flex-col w-full">
-                <div className="flex w-full flex-col gap-2 md:flex-row md:justify-between py-2 md:items-center">
-                  <Typography variant={"h4"}>All Habits</Typography>
-                  <div className="flex gap-2">
-                    <Button
-                      variant={"outline"}
-                      onClick={() => setManageHabits(!manageHabits)}
-                    >
-                      {manageHabits ? <ArrowLeft /> : <Settings2 />}
-                    </Button>
-                    <HabitsDialog></HabitsDialog>
-                  </div>
-                </div>
-                <hr />
-              </div>
-              <div className="flex flex-col gap-4 w-full">
-                {sortedHabits?.map((habit: any) => (
-                  <Habits
-                    uid={user?.uid ? user.uid : ""}
-                    habitName={habit.habitName}
-                    goal={habit.goal}
-                    streak={habit.streak}
-                    totalCompleted={habit.totalCompleted}
-                    totalFailed={habit.totalFailed}
-                    totalSkipped={habit.totalSkipped}
-                    completed={habit.completed}
-                    skipped={habit.skipped}
-                    failed={habit.failed}
-                    hUID={habit.hUID}
-                    color={habit.color}
-                    icon={habit.icon}
-                    tracked={habit.tracked}
-                    manage={manageHabits}
-                    key={habit.hUID}
-                  />
-                ))}
-              </div>
+              <PersonalHabits
+                sortedHabits={sortedIndvidualHabits}
+                user={user}
+              />
+              <GroupHabits sortedHabits={sortedGroupHabits} user={user} />
+              <Analytics user={user} habits={value} />
             </>
           )}
         </div>

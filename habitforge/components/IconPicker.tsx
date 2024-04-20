@@ -72,7 +72,10 @@ export function IconPicker({
             ))}
           </TabsContent>
 
-          <TabsContent value="icons" className="flex flex-wrap gap-1 mt-0">
+          <TabsContent
+            value="icons"
+            className="flex flex-wrap gap-2 mt-0 justify-center"
+          >
             {Object.keys(IconType).map((iconName) => (
               <Button
                 key={iconName}
@@ -90,3 +93,4 @@ export function IconPicker({
     </Popover>
   );
 }
+export default IconPicker;

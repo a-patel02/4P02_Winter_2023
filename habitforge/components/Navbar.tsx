@@ -30,15 +30,7 @@ import { useEffect, useState } from "react";
 
 import Notification from "./ui/notifications";
 import Typography from "./ui/typography-variants";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "./ui/drawer";
+import { toast } from "sonner";
 
 import {
   Sheet,
@@ -65,6 +57,14 @@ const Navbar = () => {
     collection(db, `users/${user?.uid}/notifications`)
   );
 
+  const [showed, setShowed] = useState(false);
+  if (value?.length) {
+    if (!showed && value.length > 0) {
+      toast("You have new notifications!");
+      setShowed(true);
+    }
+  }
+
   const pathName = usePathname();
   return (
     <div className="flex justify-between p-8">
@@ -85,18 +85,19 @@ const Navbar = () => {
               <h4 className="text-lg font-bold hidden sm:block">HabitForge</h4>
             </div>
           </Link>
-          <div className=" hidden md:flex gap-2">
-            <Link href="/leaderboards">
-              <Button
-                variant={"ghost"}
-                className={` ${
-                  pathName === "/leaderboards" ? "text-primary" : ""
-                } `}
-              >
-                Leaderboards
-              </Button>
-            </Link>
-            {user ? (
+          {user ? (
+            <div className=" hidden md:flex gap-2">
+              <Link href="/leaderboards">
+                <Button
+                  variant={"ghost"}
+                  className={` ${
+                    pathName === "/leaderboards" ? "text-primary" : ""
+                  } `}
+                >
+                  Leaderboards
+                </Button>
+              </Link>
+
               <Link href="/dashboard">
                 <Button
                   variant={"ghost"}
@@ -107,68 +108,75 @@ const Navbar = () => {
                   Dashboard
                 </Button>
               </Link>
-            ) : (
-              <></>
-            )}
-          </div>
+            </div>
+          ) : (
+            <></>
+          )}
           {/* Mobile Navbar */}
-          <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger>
-                <MenuIcon />
-              </SheetTrigger>
-              <SheetContent side={"left"}>
-                <SheetHeader>
-                  <div className="flex justify-between items-center">
-                    <SheetTitle>HabitForge</SheetTitle>
-                    {/* <DrawerClose asChild>
+          {user ? (
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger>
+                  <MenuIcon />
+                </SheetTrigger>
+                <SheetContent side={"left"}>
+                  <SheetHeader>
+                    <div className="flex justify-between items-center">
+                      <SheetTitle>HabitForge</SheetTitle>
+                      {/* <DrawerClose asChild>
                       <Button variant={"ghost"} size={"icon"}>
                         <X />
                       </Button>
                     </DrawerClose> */}
-                  </div>
-                </SheetHeader>
-                <div className="flex flex-col gap-2">
-                  <Link href="/leaderboards">
-                    <Button
-                      variant={"ghost"}
-                      className={`w-full ${
-                        pathName === "/leaderboards" ? "text-primary" : ""
-                      } `}
-                    >
-                      Leaderboards
-                    </Button>
-                  </Link>
-                  {user && (
-                    <Link href="/dashboard">
-                      <Button
-                        variant={"ghost"}
-                        className={`w-full ${
-                          pathName === "/dashboard" ? "text-primary" : ""
-                        } `}
-                      >
-                        Dashboard
-                      </Button>
-                    </Link>
-                  )}
-                </div>
+                    </div>
+                  </SheetHeader>
 
-                <SheetFooter>
-                  {user && (
-                    <Button
-                      onClick={handleLogOut}
-                      variant={"destructive"}
-                      className="w-full"
-                    >
-                      <LogOut className="mr-2 h-4 w-4" />
-                      <span>Log out</span>
-                    </Button>
-                  )}
-                </SheetFooter>
-              </SheetContent>
-            </Sheet>
-          </div>
+                  <div className="flex flex-col gap-2">
+                    <SheetClose asChild>
+                      <Link href="/leaderboards">
+                        <Button
+                          variant={"ghost"}
+                          className={`w-full ${
+                            pathName === "/leaderboards" ? "text-primary" : ""
+                          } `}
+                        >
+                          Leaderboards
+                        </Button>
+                      </Link>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <Link href="/dashboard">
+                        <Button
+                          variant={"ghost"}
+                          className={`w-full ${
+                            pathName === "/dashboard" ? "text-primary" : ""
+                          } `}
+                        >
+                          Dashboard
+                        </Button>
+                      </Link>
+                    </SheetClose>
+                  </div>
+                  <SheetFooter>
+                    {user && (
+                      <Button
+                        onClick={handleLogOut}
+                        variant={"destructive"}
+                        className="w-full"
+                      >
+                        <LogOut className="mr-2 h-4 w-4" />
+                        <span>Log out</span>
+                      </Button>
+                    )}
+                  </SheetFooter>
+                </SheetContent>
+              </Sheet>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
+
         <div className="flex gap-4">
           {loading ? (
             <Skeleton className="h-9 w-9 rounded-md"></Skeleton>
@@ -185,7 +193,7 @@ const Navbar = () => {
                     )}
                   </div>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className=" w-96">
+                <DropdownMenuContent className="w-96">
                   <DropdownMenuLabel>Notifications</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   {loading1 ? (
