@@ -17,13 +17,11 @@ type AllowedColors =
 interface CircularProgressProps {
   percentage: number;
   pathColor?: string;
-  textColor?: string;
 }
 
 const circularProgress: React.FC<CircularProgressProps> = ({
   percentage,
   pathColor,
-  textColor,
 }) => {
   const colorClass: { [key: string]: string } = {
     blue: "stroke-blue-500",
@@ -101,11 +99,11 @@ const circularProgress: React.FC<CircularProgressProps> = ({
           x="50%"
           y="50%"
           textAnchor="middle"
-          stroke={textColor}
           strokeWidth="0.5px"
           dy=".3em"
           transform={`rotate(-${rotation} ${size / 2} ${size / 2})`}
           style={{ fontSize: `${size * 0.2}px` }}
+          className="fill-foreground"
         >
           {Math.round(percentage)}%
         </text>

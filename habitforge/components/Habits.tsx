@@ -33,6 +33,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import GroupHabitsDialog from "./Dashboard/GroupHabitsDialog";
 
 import { useMute } from "./Dashboard/MuteProvider";
+import HabitsDialog from "./HabitsDialog";
 
 interface HabitsProps {
   habitName: string;
@@ -79,6 +80,10 @@ const Habits: FC<HabitsProps> = ({
 }) => {
   const [value, loading, error] = useCollectionData(
     collection(db, `groups/${groupId}/members`)
+  );
+
+  const [users, usersLoading, usersError] = useCollectionData(
+    collection(db, "users")
   );
 
   const [firebaseUser, loading2, error2] = useDocumentData(
@@ -173,11 +178,11 @@ const Habits: FC<HabitsProps> = ({
           />
         </div>
         <HabitsText title={"Streak 🔥"} description={streak + " day(s)"} />
-        <HabitsText title={"Skipped"} description={totalSkipped + " day(s)"} />
-        <HabitsText title={"Failed"} description={totalFailed + " day(s)"} />
+        <HabitsText title={"Skipped"} description={totalSkipped.toString()} />
+        <HabitsText title={"Failed"} description={totalFailed.toString()} />
         <HabitsText
           title={"Completed"}
-          description={totalCompleted + " day(s)"}
+          description={totalCompleted.toString()}
         />
 
         {!manage ? (
@@ -220,7 +225,9 @@ const Habits: FC<HabitsProps> = ({
                 <Check />
               </div>
               <Typography variant={"p"} affects={"muted"} className="!mt-0">
-                Completed, log again tomorrow
+                {goal == 1
+                  ? "Completed, log again tomorrow."
+                  : "Completed, log again in " + 24 / goal + " hours"}
               </Typography>
             </div>
           ) : failed ? (
@@ -229,7 +236,9 @@ const Habits: FC<HabitsProps> = ({
                 <X />
               </div>
               <Typography variant={"p"} affects={"muted"} className="!mt-0">
-                Failed, log again tomorrow
+                {goal == 1
+                  ? "Failed, log again tomorrow."
+                  : "Failed, log again in " + 24 / goal + " hours"}
               </Typography>
             </div>
           ) : skipped ? (
@@ -238,7 +247,9 @@ const Habits: FC<HabitsProps> = ({
                 <ArrowRight />
               </div>
               <Typography variant={"p"} affects={"muted"} className="!mt-0">
-                Skipped, log again tomorrow
+                {goal == 1
+                  ? "Skipped, log again tomorrow."
+                  : "Skipped, log again in " + 24 / goal + " hours"}
               </Typography>
             </div>
           ) : (
@@ -265,7 +276,21 @@ const Habits: FC<HabitsProps> = ({
                 groupID={groupId}
               />
             ) : (
-              <></>
+              <HabitsDialog
+                habitName={habitName}
+                goal={goal}
+                repeat={
+                  repeat == "daily"
+                    ? "daily"
+                    : repeat == "weekly"
+                    ? "weekly"
+                    : "monthly"
+                }
+                hUID={hUID}
+                color={color}
+                icon={icon}
+                edit={true}
+              ></HabitsDialog>
             )}
 
             <Button variant={"destructive"} onClick={onDelete}>
@@ -283,7 +308,12 @@ const Habits: FC<HabitsProps> = ({
                   <Tooltip delayDuration={50}>
                     <TooltipTrigger>
                       <Avatar>
-                        <AvatarImage src={member.photoURL} />
+                        <AvatarImage
+                          src={
+                            users?.find((user: any) => user.uid === member.uid)
+                              ?.photoURL || member.photoURL
+                          }
+                        />
                         <AvatarFallback>
                           {member.displayName.toString().slice(0, 1)}
                         </AvatarFallback>

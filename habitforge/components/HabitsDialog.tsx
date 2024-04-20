@@ -3,12 +3,13 @@ import {
   collection,
   updateDoc,
   serverTimestamp,
+  doc,
 } from "firebase/firestore";
 import { auth, db } from "@/firebase/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import useSpeechRecognition from "./useSpeechRecognitionHook";
 import { Button } from "./ui/button";
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from "react";
 
 import {
   Dialog,
@@ -25,6 +26,7 @@ import {
   Check,
   Keyboard,
   Mic,
+  PencilLine,
   Plus,
   RotateCcw,
 } from "lucide-react";
@@ -84,8 +86,25 @@ const formSchema = z.object({
   startdate: z.date(),
 });
 
+interface HabitsDialogProps {
+  edit?: boolean;
+  hUID?: string;
+  habitName?: string;
+  goal?: number;
+  color?: string;
+  icon?: string;
+  repeat?: "daily" | "weekly" | "monthly";
+}
 
-const HabitsDialog = () => {
+const HabitsDialog: FC<HabitsDialogProps> = ({
+  edit,
+  hUID,
+  habitName,
+  goal,
+  color,
+  icon,
+  repeat,
+}) => {
   const {
     text,
     isListening,
@@ -101,9 +120,9 @@ const HabitsDialog = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      habitname: "My Habit",
-      goal: "1",
-      repeat: "daily",
+      habitname: habitName || "My Habit",
+      goal: goal?.toString() || "1",
+      repeat: repeat || "daily",
       startdate: new Date(),
     },
   });
@@ -114,32 +133,50 @@ const HabitsDialog = () => {
     setSelectedIcon("Sun");
     setSelectedColor("blue");
     setOpen(false);
-    toast.success("Habit has been created 😎");
+    {
+      edit
+        ? toast.success("Habit has been edited 😎")
+        : toast.success("Habit has been created 😎");
+    }
   };
 
   const createHabit = async (values: z.infer<typeof formSchema>) => {
     if (user) {
-      const docRef = await addDoc(collection(db, "users", user.uid, "habits"), {
-        timestamp: serverTimestamp(),
-        habitName: values.habitname,
-        goal: values.goal,
-        repeat: values.repeat,
-        startDate: values.startdate,
-        tracked: false,
-        completed: false,
-        skipped: false,
-        failed: false,
-        totalCompleted: 0,
-        totalSkipped: 0,
-        totalFailed: 0,
-        streak: 0,
-        lastCompletedDate: "",
-        hUID: "",
-        icon: selectedIcon,
-        color: selectedColor,
-      });
-      // Update the document with the ID
-      await updateDoc(docRef, { hUID: docRef.id });
+      if (edit && hUID) {
+        await updateDoc(doc(db, "users", user.uid, "habits", hUID), {
+          habitName: values.habitname,
+          goal: values.goal,
+          repeat: values.repeat,
+          startDate: values.startdate,
+          icon: selectedIcon,
+          color: selectedColor,
+        });
+      } else {
+        const docRef = await addDoc(
+          collection(db, "users", user.uid, "habits"),
+          {
+            timestamp: serverTimestamp(),
+            habitName: values.habitname,
+            goal: values.goal,
+            repeat: values.repeat,
+            startDate: values.startdate,
+            tracked: false,
+            completed: false,
+            skipped: false,
+            failed: false,
+            totalCompleted: 0,
+            totalSkipped: 0,
+            totalFailed: 0,
+            streak: 0,
+            lastCompletedDate: "",
+            hUID: "",
+            icon: selectedIcon,
+            color: selectedColor,
+          }
+        );
+        // Update the document with the ID
+        await updateDoc(docRef, { hUID: docRef.id });
+      }
     }
   };
 
@@ -200,160 +237,6 @@ const HabitsDialog = () => {
   //     setAudioHabitName(text);
   //   }
   // }, [isListening, text, setAudioHabitName]);
-
-  const TextForm = () => {
-    return (
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full flex flex-col gap-4"
-        >
-          <FormField
-            control={form.control}
-            name="habitname"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Habit Name</FormLabel>
-                  <FormControl>
-                    <div className="flex gap-2">
-                      <Input {...field} placeholder="Habit Name" />
-                      <IconPicker
-                        color={selectedColor}
-                        icon={selectedIcon}
-                        setColor={setSelectedColor}
-                        setIcon={setSelectedIcon}
-                      />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-
-          <FormField
-            control={form.control}
-            name="goal"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>
-                    Goal{" "}
-                    <span className=" text-muted-foreground ">/per day</span>
-                  </FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Number of times to perform habit in a day" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent className=" max-h-48">
-                      <SelectGroup>
-                        <SelectItem value="1">1</SelectItem>
-                        <SelectItem value="2">2</SelectItem>
-                        <SelectItem value="3">3</SelectItem>
-                        <SelectItem value="4">4</SelectItem>
-                        <SelectItem value="5">5</SelectItem>
-                        <SelectItem value="6">6</SelectItem>
-                        <SelectItem value="7">7</SelectItem>
-                        <SelectItem value="8">8</SelectItem>
-                        <SelectItem value="9">9</SelectItem>
-                        <SelectItem value="10">10</SelectItem>
-                        <SelectItem value="11">11</SelectItem>
-                        <SelectItem value="12">12</SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-
-          <FormField
-            control={form.control}
-            name="repeat"
-            render={({ field }) => {
-              return (
-                <FormItem>
-                  <FormLabel>Repeat</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="When to repeat habit" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value="daily">Daily</SelectItem>
-                        <SelectItem value="weekly">Weekly</SelectItem>
-                        <SelectItem value="monthly">Monthly</SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              );
-            }}
-          />
-
-          <FormField
-            control={form.control}
-            name="startdate"
-            render={({ field }) => (
-              <FormItem className="flex flex-col">
-                <FormLabel>Start Date</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        variant={"outline"}
-                        className={cn(
-                          "w-full pl-3 text-left font-normal",
-                          !field.value && "text-muted-foreground"
-                        )}
-                      >
-                        {field.value ? (
-                          format(field.value, "PPP")
-                        ) : (
-                          <span>Pick a date</span>
-                        )}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      mode="single"
-                      selected={field.value}
-                      onSelect={field.onChange}
-                      initialFocus
-                    />
-                  </PopoverContent>
-                </Popover>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <DialogFooter>
-            <DialogClose>
-              <Button variant={"outline"} type="button">
-                Cancel
-              </Button>
-            </DialogClose>
-            <Button type="submit">Save</Button>
-          </DialogFooter>
-        </form>
-      </Form>
-    );
-  };
   function wordToNumber(word: string): number | undefined {
     const wordsToNumbers: Record<string, number> = {
       zero: 0,
@@ -371,43 +254,47 @@ const HabitsDialog = () => {
     };
     return wordsToNumbers[word.toLowerCase()];
   }
-  
+
   useEffect(() => {
     if (!isListening) {
       if (audioStage === 1) {
         // Update habit name only if we are in stage 1
-        if(text.length <= 25){
+        if (text.length <= 25) {
           setAudioHabitName(text);
-          console.log("WE ARE IN STAGE 1" + "TEXT IS: " + text)
+          console.log("WE ARE IN STAGE 1" + "TEXT IS: " + text);
         } else {
-          setAudioHabitName("Habit name must be less than 25 characters")
+          setAudioHabitName("Habit name must be less than 25 characters");
         }
-      } 
-      else if (audioStage === 3) {
+      } else if (audioStage === 3) {
         const numberValue = wordToNumber(text);
-        if(numberValue!==undefined){
-        if (!isNaN(numberValue)) {
-          setAudioHabitGoal(numberValue.toString()); // Convert number back to string if needed
-          console.log("WE ARE IN STAGE 3")
-        } 
-      }
-      else {
-        setAudioHabitGoal("Please only say a number")
-      }
-      } else if(audioStage ===5){
-        const allowedWords = ['daily','weekly','monthly','Daily','Weekly','Monthly'];
-        if(allowedWords.includes(text)){
+        if (numberValue !== undefined) {
+          if (!isNaN(numberValue)) {
+            setAudioHabitGoal(numberValue.toString()); // Convert number back to string if needed
+            console.log("WE ARE IN STAGE 3");
+          }
+        } else {
+          setAudioHabitGoal("Please only say a number");
+        }
+      } else if (audioStage === 5) {
+        const allowedWords = [
+          "daily",
+          "weekly",
+          "monthly",
+          "Daily",
+          "Weekly",
+          "Monthly",
+        ];
+        if (allowedWords.includes(text)) {
           setAudioHabitRepeat(text);
-          console.log("WE ARE IN STAGE 5" + "TEXT IS: " + text)
+          console.log("WE ARE IN STAGE 5" + "TEXT IS: " + text);
         } else {
           console.log("Text does not match allowed words. Text is: " + text);
-          setAudioHabitRepeat("Options are either daily, weekly, or Monthly")
+          setAudioHabitRepeat("Options are either daily, weekly, or Monthly");
         }
       }
     }
   }, [isListening, text, audioStage]);
 
-  
   const GetAudioStage = () => {
     switch (audioStage) {
       case 0:
@@ -421,82 +308,82 @@ const HabitsDialog = () => {
                 variant={"audioPrimary"}
                 // onClick={() => setAudioStage(audioStage + 1)}
                 onClick={() => {
-                  setAudioStage(audioStage + 1)
-                    if (!isListening) {
-                      startListening();
-                    } else {
-                      stopListening();
-                    }
-                  }}
+                  setAudioStage(audioStage + 1);
+                  if (!isListening) {
+                    startListening();
+                  } else {
+                    stopListening();
+                  }
+                }}
               >
                 <Mic />
               </Button>
             </div>
           </div>
         );
-  case 1:
-    return (
-    <div className="flex flex-col gap-6 justify-center items-center">
-      <Typography variant={"h4"}>
-        What will we call your habit?
-      </Typography>
+      case 1:
+        return (
+          <div className="flex flex-col gap-6 justify-center items-center">
+            <Typography variant={"h4"}>
+              What will we call your habit?
+            </Typography>
 
-      <div className="flex gap-2 w-full">
-        <Input value={audioHabitName} disabled />
-        <IconPicker
-          color={selectedColor}
-          icon={selectedIcon}
-          setColor={setSelectedColor}
-          setIcon={setSelectedIcon}
-        />
-      </div>
+            <div className="flex gap-2 w-full">
+              <Input value={audioHabitName} disabled />
+              <IconPicker
+                color={selectedColor}
+                icon={selectedIcon}
+                setColor={setSelectedColor}
+                setIcon={setSelectedIcon}
+              />
+            </div>
 
-      <div className="flex gap-6">
-        <Button
-          variant={"audioSecondary"}
-          onClick={() => setAudioStage(audioStage - 1)}
-        >
-          <RotateCcw />
-        </Button>
-        <Button
-          variant={"audioPrimary"}
-          onClick={() => {
-            stopListening(); 
-            setAudioStage(audioStage + 1);
-          }}
-        >
-          <Check />
-        </Button>
-      </div>
-    </div>
-  );
-  case 2:
-    return (
-      <div className="flex flex-col gap-6 justify-center items-center">
-        <Edit
-          text={audioHabitName}
-          label="Habit Name"
-          audioStage={() => setAudioStage(2)}
-        />
-        <Typography variant={"h4"}>How many times in a day?</Typography>
-        
-        <div className="flex gap-6">
-          <Button
-            variant={"audioPrimary"}
-            onClick={() => {
-              setAudioStage(audioStage + 1)
-                if (!isListening) {
-                  startListening();
-                } else {
+            <div className="flex gap-6">
+              <Button
+                variant={"audioSecondary"}
+                onClick={() => setAudioStage(audioStage - 1)}
+              >
+                <RotateCcw />
+              </Button>
+              <Button
+                variant={"audioPrimary"}
+                onClick={() => {
                   stopListening();
-                }
-              }}
-          >
-            <Mic />
-          </Button>
-        </div>
-      </div>
-    ); 
+                  setAudioStage(audioStage + 1);
+                }}
+              >
+                <Check />
+              </Button>
+            </div>
+          </div>
+        );
+      case 2:
+        return (
+          <div className="flex flex-col gap-6 justify-center items-center">
+            <Edit
+              text={audioHabitName}
+              label="Habit Name"
+              audioStage={() => setAudioStage(2)}
+            />
+            <Typography variant={"h4"}>How many times in a day?</Typography>
+
+            <div className="flex gap-6">
+              <Button
+                variant={"audioPrimary"}
+                onClick={() => {
+                  setAudioStage(audioStage + 1);
+                  if (!isListening) {
+                    startListening();
+                  } else {
+                    stopListening();
+                  }
+                }}
+              >
+                <Mic />
+              </Button>
+            </div>
+          </div>
+        );
       case 3:
         return (
           <div className="flex flex-col gap-6 justify-center items-center">
@@ -550,14 +437,14 @@ const HabitsDialog = () => {
               <Button
                 variant={"audioPrimary"}
                 onClick={() => {
-                  setAudioStage(audioStage + 1)
-                    if (!isListening) {
-                      startListening();
-                    } else {
-                      stopListening();
-                    }
-                  }}
-                  >
+                  setAudioStage(audioStage + 1);
+                  if (!isListening) {
+                    startListening();
+                  } else {
+                    stopListening();
+                  }
+                }}
+              >
                 <Mic />
               </Button>
             </div>
@@ -663,8 +550,9 @@ const HabitsDialog = () => {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button>
-            <Plus /> Add Habit
+          <Button variant={edit ? "secondary" : "default"}>
+            {edit ? <PencilLine /> : <Plus />}
+            {edit ? "Edit Habit" : "Add Habit"}
           </Button>
         </DialogTrigger>
 
@@ -672,7 +560,203 @@ const HabitsDialog = () => {
           <DialogHeader>
             <div className="flex justify-between items-center">
               <DialogTitle>New Habit</DialogTitle>
-              {!audioHabit ? (
+              {!edit ? (
+                !audioHabit ? (
+                  <Button
+                    variant={"ghost"}
+                    size={"icon"}
+                    onClick={() => setAudioHabit(true)}
+                  >
+                    <Mic className="text-destructive" />
+                  </Button>
+                ) : (
+                  <Button
+                    variant={"ghost"}
+                    size={"icon"}
+                    onClick={() => setAudioHabit(false)}
+                  >
+                    <Keyboard className="text-primary" />
+                  </Button>
+                )
+              ) : (
+                <></>
+              )}
+            </div>
+          </DialogHeader>
+          {audioHabit ? (
+            <GetAudioStage />
+          ) : (
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="w-full flex flex-col gap-4"
+              >
+                <FormField
+                  control={form.control}
+                  name="habitname"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel>Habit Name</FormLabel>
+                        <FormControl>
+                          <div className="flex gap-2">
+                            <Input {...field} placeholder="Habit Name" />
+                            <IconPicker
+                              color={selectedColor}
+                              icon={selectedIcon}
+                              setColor={setSelectedColor}
+                              setIcon={setSelectedIcon}
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="goal"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel>
+                          Goal{" "}
+                          <span className=" text-muted-foreground ">
+                            /per day
+                          </span>
+                        </FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Number of times to perform habit in a day" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className=" max-h-48">
+                            <SelectGroup>
+                              <SelectItem value="1">1</SelectItem>
+                              <SelectItem value="2">2</SelectItem>
+                              <SelectItem value="3">3</SelectItem>
+                              <SelectItem value="4">4</SelectItem>
+                              <SelectItem value="5">5</SelectItem>
+                              <SelectItem value="6">6</SelectItem>
+                              <SelectItem value="7">7</SelectItem>
+                              <SelectItem value="8">8</SelectItem>
+                              <SelectItem value="9">9</SelectItem>
+                              <SelectItem value="10">10</SelectItem>
+                              <SelectItem value="11">11</SelectItem>
+                              <SelectItem value="12">12</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="repeat"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormLabel>Repeat</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="When to repeat habit" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectItem value="daily">Daily</SelectItem>
+                              <SelectItem value="weekly">Weekly</SelectItem>
+                              <SelectItem value="monthly">Monthly</SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    );
+                  }}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="startdate"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                      <FormLabel>Start Date</FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <DialogFooter>
+                  <DialogClose>
+                    <Button variant={"outline"} type="button">
+                      Cancel
+                    </Button>
+                  </DialogClose>
+                  <Button type="submit">Save</Button>
+                </DialogFooter>
+              </form>
+            </Form>
+          )}
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
+  return (
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger asChild>
+        <Button variant={edit ? "secondary" : "default"}>
+          {edit ? <PencilLine /> : <Plus />}
+          {edit ? "Edit Habit" : "Add Habit"}
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent className="px-6">
+        <DrawerHeader className="text-left">
+          <div className="flex justify-between items-centern w-full">
+            <DrawerTitle>New Habit</DrawerTitle>
+            {!edit ? (
+              !audioHabit ? (
                 <Button
                   variant={"ghost"}
                   size={"icon"}
@@ -688,46 +772,167 @@ const HabitsDialog = () => {
                 >
                   <Keyboard className="text-primary" />
                 </Button>
-              )}
-            </div>
-          </DialogHeader>
-          {audioHabit ? <GetAudioStage /> : <TextForm />}
-        </DialogContent>
-      </Dialog>
-    );
-  }
-
-  return (
-    <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        <Button>
-          <Plus /> Add Habit
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent className="px-6">
-        <DrawerHeader className="text-left">
-          <div className="flex justify-between items-centern w-full">
-            <DrawerTitle>New Habit</DrawerTitle>
-            {!audioHabit ? (
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                onClick={() => setAudioHabit(true)}
-              >
-                <Mic className="text-destructive" />
-              </Button>
+              )
             ) : (
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                onClick={() => setAudioHabit(false)}
-              >
-                <Keyboard className="text-primary" />
-              </Button>
+              <></>
             )}
           </div>
         </DrawerHeader>
-        {audioHabit ? <GetAudioStage /> : <TextForm />}
+        {audioHabit ? (
+          <GetAudioStage />
+        ) : (
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="w-full flex flex-col gap-4"
+            >
+              <FormField
+                control={form.control}
+                name="habitname"
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>Habit Name</FormLabel>
+                      <FormControl>
+                        <div className="flex gap-2">
+                          <Input {...field} placeholder="Habit Name" />
+                          <IconPicker
+                            color={selectedColor}
+                            icon={selectedIcon}
+                            setColor={setSelectedColor}
+                            setIcon={setSelectedIcon}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name="goal"
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>
+                        Goal{" "}
+                        <span className=" text-muted-foreground ">
+                          /per day
+                        </span>
+                      </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Number of times to perform habit in a day" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent className=" max-h-48">
+                          <SelectGroup>
+                            <SelectItem value="1">1</SelectItem>
+                            <SelectItem value="2">2</SelectItem>
+                            <SelectItem value="3">3</SelectItem>
+                            <SelectItem value="4">4</SelectItem>
+                            <SelectItem value="5">5</SelectItem>
+                            <SelectItem value="6">6</SelectItem>
+                            <SelectItem value="7">7</SelectItem>
+                            <SelectItem value="8">8</SelectItem>
+                            <SelectItem value="9">9</SelectItem>
+                            <SelectItem value="10">10</SelectItem>
+                            <SelectItem value="11">11</SelectItem>
+                            <SelectItem value="12">12</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name="repeat"
+                render={({ field }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>Repeat</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="When to repeat habit" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectItem value="daily">Daily</SelectItem>
+                            <SelectItem value="weekly">Weekly</SelectItem>
+                            <SelectItem value="monthly">Monthly</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
+              <FormField
+                control={form.control}
+                name="startdate"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Start Date</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant={"outline"}
+                            className={cn(
+                              "w-full pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground"
+                            )}
+                          >
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>Pick a date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <DialogFooter>
+                <DialogClose>
+                  <Button variant={"outline"} type="button">
+                    Cancel
+                  </Button>
+                </DialogClose>
+                <Button type="submit">Save</Button>
+              </DialogFooter>
+            </form>
+          </Form>
+        )}
         <DrawerFooter></DrawerFooter>
       </DrawerContent>
     </Drawer>
