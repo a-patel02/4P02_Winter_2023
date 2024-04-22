@@ -114,13 +114,7 @@ Zakir Raza - zr19zt@brocku.ca
 
 Project Link: [https://github.com/a-patel02/4P02_Winter_2024](https://github.com/a-patel02/4P02_Winter_2024)
 
-<!-- ACKNOWLEDGMENTS -->
 
-## Acknowledgments
-
-- []()
-- []()
-- []()
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
