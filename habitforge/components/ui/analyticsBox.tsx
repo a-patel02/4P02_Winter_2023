@@ -8,7 +8,7 @@ interface AnalyticsBoxProps {
 
 const AnalyticsBox: FC<AnalyticsBoxProps> = ({ title, number }) => {
   return (
-    <div className="flex flex-col bg-slate-100 rounded-lg w-full p-3 gap-3">
+    <div className="flex flex-col bg-foreground/5 rounded-lg w-full p-3 gap-3">
       <Typography variant="p" affects="muted" className="!mt-0">
         {title}
       </Typography>

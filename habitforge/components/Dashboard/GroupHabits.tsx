@@ -12,6 +12,10 @@ interface GroupHabitsProps {
 }
 const GroupHabits: FC<GroupHabitsProps> = ({ sortedHabits, user }) => {
   const [manageHabits, setManageHabits] = useState(false);
+
+  const maxHabitsAllowed = user.level;
+
+  const isMaxHabits = sortedHabits?.length >= maxHabitsAllowed;
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="flex flex-col w-full">
@@ -24,7 +28,7 @@ const GroupHabits: FC<GroupHabitsProps> = ({ sortedHabits, user }) => {
             >
               {manageHabits ? <ArrowLeft /> : <Settings2 />}
             </Button>
-            <GroupHabitsDialog />
+            <GroupHabitsDialog isMaxHabits={isMaxHabits} />
           </div>
         </div>
         <hr />

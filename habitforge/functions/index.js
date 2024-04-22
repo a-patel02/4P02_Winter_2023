@@ -33,6 +33,7 @@ exports.createUserInFirestore = functions.auth.user().onCreate((user) => {
     rank: 1,
     habitScore: 0,
     photoURL: photoURL,
+    unlockedPhotos: [photoURL],
   });
 });
 
@@ -53,12 +54,14 @@ exports.resetHabits = functions.pubsub
           .get();
 
         habitsSnapshot.forEach((habitDoc) => {
-          batch.update(habitDoc.ref, {
-            tracked: false,
-            completed: false,
-            skipped: false,
-            failed: false,
-          });
+          if (habitDoc.data().goal == 1) {
+            batch.update(habitDoc.ref, {
+              tracked: false,
+              completed: false,
+              skipped: false,
+              failed: false,
+            });
+          }
         });
 
         await batch.commit(); // Commit batch for each user
@@ -143,33 +146,35 @@ exports.resetHabitsBasedOnGoal = functions.pubsub
           .get();
 
         habitsSnapshot.forEach((habitDoc) => {
-          const habitData = habitDoc.data();
-          const goal = habitData.goal || 1; // Default goal to 1 if not provided
-          const interval = 24 / goal; // Calculate interval based on goal
-          const currentTime = new Date();
-          const lastResetTime = habitData.lastReset
-            ? new Date(habitData.lastReset.toDate())
-            : new Date(0); // Default to epoch if last reset time not set
+          if (habitDoc.data().goal != 1) {
+            const habitData = habitDoc.data();
+            const goal = habitData.goal || 1; // Default goal to 1 if not provided
+            const interval = 24 / goal; // Calculate interval based on goal
+            const currentTime = new Date();
+            const lastResetTime = habitData.lastReset
+              ? new Date(habitData.lastReset.toDate())
+              : new Date(0); // Default to epoch if last reset time not set
 
-          // Check if it's time to reset based on interval
-          if (currentTime - lastResetTime >= interval * 60 * 60 * 1000) {
-            if (habitData.completed === true) {
-              batch.update(habitDoc.ref, {
-                tracked: false,
-                completed: false,
-                skipped: false,
-                failed: false,
-                lastReset: admin.firestore.Timestamp.fromDate(currentTime),
-              });
-            } else {
-              batch.update(habitDoc.ref, {
-                tracked: false,
-                completed: false,
-                skipped: false,
-                failed: false,
-                lastReset: admin.firestore.Timestamp.fromDate(currentTime),
-                totalFailed: admin.firestore.FieldValue.increment(1),
-              });
+            // Check if it's time to reset based on interval
+            if (currentTime - lastResetTime >= interval * 60 * 60 * 1000) {
+              if (habitData.completed === true) {
+                batch.update(habitDoc.ref, {
+                  tracked: false,
+                  completed: false,
+                  skipped: false,
+                  failed: false,
+                  lastReset: admin.firestore.Timestamp.fromDate(currentTime),
+                });
+              } else {
+                batch.update(habitDoc.ref, {
+                  tracked: false,
+                  completed: false,
+                  skipped: false,
+                  failed: false,
+                  lastReset: admin.firestore.Timestamp.fromDate(currentTime),
+                  totalFailed: admin.firestore.FieldValue.increment(1),
+                });
+              }
             }
           }
         });
@@ -235,7 +240,6 @@ exports.calculateRanks = functions.pubsub
 
         let totalCompleted = 0;
         let totalHabits = 0;
-        let goal = 0;
         let failed = 0;
         let skipped = 0;
         let streak = 0;
@@ -246,9 +250,6 @@ exports.calculateRanks = functions.pubsub
           totalHabits++;
           if (habitData.completed === true) {
             totalCompleted++;
-          }
-          if (habitData.goal > 0 && habitData.completed === true) {
-            goal++;
           }
           if (habitData.failed === true) {
             failed++;
@@ -265,23 +266,16 @@ exports.calculateRanks = functions.pubsub
         let completionRate = totalCompleted / totalHabits;
         // Calculate users weights
         let completionScore = completionRate * completionRateWeight;
-        let goalScore = goal * goalWeight;
         let failedScore = failed * failedWeight;
         let skippedScore = skipped * skippedWeight;
         let streakScore = streak * streakWeight;
 
         // Sum up all rank scores
         let userRank =
-          completionScore +
-          goalScore +
-          failedScore +
-          skippedScore +
-          streakScore;
+          completionScore + failedScore + skippedScore + streakScore;
 
         console.log(
           completionScore +
-            " " +
-            goalScore +
             " " +
             failedScore +
             " " +
@@ -290,13 +284,15 @@ exports.calculateRanks = functions.pubsub
             streakScore
         );
         console.log(userRank + " userRank");
-
+        if (isNaN(userRank)) {
+          userRank = 0;
+        }
         await admin
           .firestore()
           .collection("users")
           .doc(userId)
           .update({
-            rank: Math.trunc(userRank * 100),
+            rank: (userRank * 100).toFixed(0),
           });
       });
 
