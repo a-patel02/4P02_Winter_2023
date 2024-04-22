@@ -24,6 +24,7 @@ import {
   Check,
   Keyboard,
   Mic,
+  PencilLine,
   Plus,
   RotateCcw,
 } from "lucide-react";
@@ -91,6 +92,7 @@ interface HabitsDialogProps {
   color?: string;
   icon?: string;
   repeat?: "daily" | "weekly" | "monthly";
+  isMaxHabits?: boolean;
 }
 
 const HabitsDialog: FC<HabitsDialogProps> = ({
@@ -101,6 +103,7 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
   color,
   icon,
   repeat,
+  isMaxHabits,
 }) => {
   const {
     text,
@@ -178,8 +181,8 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
     }
   };
 
-  const [selectedColor, setSelectedColor] = useState("blue"); // State for selected color
-  const [selectedIcon, setSelectedIcon] = useState("Sun"); // State for selected icon
+  const [selectedColor, setSelectedColor] = useState(color || "blue"); // State for selected color
+  const [selectedIcon, setSelectedIcon] = useState(icon || "Sun"); // State for selected icon
 
   const [audioHabit, setAudioHabit] = useState(false);
   const [audioHabitName, setAudioHabitName] = useState("My Habit"); // State for audio habit name
@@ -543,8 +546,12 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button>
-            <Plus /> Add Habit
+          <Button
+            disabled={isMaxHabits}
+            variant={edit ? "secondary" : "default"}
+          >
+            {edit ? <PencilLine /> : <Plus />}
+            {edit ? "Edit Habit" : "Add Habit"}
           </Button>
         </DialogTrigger>
 
@@ -552,22 +559,26 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
           <DialogHeader>
             <div className="flex justify-between items-center">
               <DialogTitle>New Habit</DialogTitle>
-              {!audioHabit ? (
-                <Button
-                  variant={"ghost"}
-                  size={"icon"}
-                  onClick={() => setAudioHabit(true)}
-                >
-                  <Mic className="text-destructive" />
-                </Button>
+              {!edit ? (
+                !audioHabit ? (
+                  <Button
+                    variant={"ghost"}
+                    size={"icon"}
+                    onClick={() => setAudioHabit(true)}
+                  >
+                    <Mic className="text-destructive" />
+                  </Button>
+                ) : (
+                  <Button
+                    variant={"ghost"}
+                    size={"icon"}
+                    onClick={() => setAudioHabit(false)}
+                  >
+                    <Keyboard className="text-primary" />
+                  </Button>
+                )
               ) : (
-                <Button
-                  variant={"ghost"}
-                  size={"icon"}
-                  onClick={() => setAudioHabit(false)}
-                >
-                  <Keyboard className="text-primary" />
-                </Button>
+                <></>
               )}
             </div>
           </DialogHeader>
@@ -734,30 +745,35 @@ const HabitsDialog: FC<HabitsDialogProps> = ({
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button>
-          <Plus /> Add Habit
+        <Button variant={edit ? "secondary" : "default"} disabled={isMaxHabits}>
+          {edit ? <PencilLine /> : <Plus />}
+          {edit ? "Edit Habit" : "Add Habit"}
         </Button>
       </DrawerTrigger>
       <DrawerContent className="px-6">
         <DrawerHeader className="text-left">
           <div className="flex justify-between items-centern w-full">
             <DrawerTitle>New Habit</DrawerTitle>
-            {!audioHabit ? (
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                onClick={() => setAudioHabit(true)}
-              >
-                <Mic className="text-destructive" />
-              </Button>
+            {!edit ? (
+              !audioHabit ? (
+                <Button
+                  variant={"ghost"}
+                  size={"icon"}
+                  onClick={() => setAudioHabit(true)}
+                >
+                  <Mic className="text-destructive" />
+                </Button>
+              ) : (
+                <Button
+                  variant={"ghost"}
+                  size={"icon"}
+                  onClick={() => setAudioHabit(false)}
+                >
+                  <Keyboard className="text-primary" />
+                </Button>
+              )
             ) : (
-              <Button
-                variant={"ghost"}
-                size={"icon"}
-                onClick={() => setAudioHabit(false)}
-              >
-                <Keyboard className="text-primary" />
-              </Button>
+              <></>
             )}
           </div>
         </DrawerHeader>

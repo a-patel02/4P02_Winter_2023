@@ -44,11 +44,7 @@ const EditProfile: FC<EditProfileProps> = ({ photoURL }) => {
         } else {
           const unlockedPhotos = firebaseUser?.unlockedPhotos as string[];
           await updateDoc(doc(db, "users", user.uid), {
-            unlockedPhotos: [
-              ...unlockedPhotos,
-              user.photoURL,
-              selectedPhotoURL,
-            ],
+            unlockedPhotos: [...unlockedPhotos, selectedPhotoURL],
             photoURL: selectedPhotoURL,
             habitCoins: firebaseUser?.habitCoins - selectedPhotoPrice,
           });

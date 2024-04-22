@@ -92,6 +92,7 @@ interface GroupHabitsDialogProps {
   repeat?: "daily" | "weekly" | "monthly";
   groupEmails?: any[];
   groupID?: string;
+  isMaxHabits?: boolean;
 }
 
 const GroupHabitsDialog: FC<GroupHabitsDialogProps> = ({
@@ -104,6 +105,7 @@ const GroupHabitsDialog: FC<GroupHabitsDialogProps> = ({
   repeat,
   groupEmails,
   groupID,
+  isMaxHabits,
 }) => {
   const [user, loading, error] = useAuthState(auth);
   const [value, loading1, error1] = useCollectionData(collection(db, "users"));
@@ -297,6 +299,7 @@ const GroupHabitsDialog: FC<GroupHabitsDialogProps> = ({
               setSelectedColor(color ?? "blue");
             }}
             variant={edit ? "secondary" : "default"}
+            disabled={isMaxHabits}
           >
             {edit ? <PencilLine /> : <Plus />}
             {edit ? "Edit Habit" : "Add Habit"}
@@ -499,7 +502,11 @@ const GroupHabitsDialog: FC<GroupHabitsDialogProps> = ({
                 Cancel
               </Button>
             </DialogClose>
-            <Button type="submit" form="habit-form">
+            <Button
+              type="submit"
+              form="habit-form"
+              disabled={emails.length < 1}
+            >
               Save
             </Button>
           </DialogFooter>
@@ -521,6 +528,7 @@ const GroupHabitsDialog: FC<GroupHabitsDialogProps> = ({
             setSelectedColor(color ?? "blue");
           }}
           variant={edit ? "secondary" : "default"}
+          disabled={isMaxHabits}
         >
           {edit ? <PencilLine /> : <Plus />}
           {edit ? "Edit Habit" : "Add Habit"}

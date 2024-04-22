@@ -33,6 +33,7 @@ exports.createUserInFirestore = functions.auth.user().onCreate((user) => {
     rank: 1,
     habitScore: 0,
     photoURL: photoURL,
+    unlockedPhotos: [photoURL],
   });
 });
 
@@ -53,12 +54,14 @@ exports.resetHabits = functions.pubsub
           .get();
 
         habitsSnapshot.forEach((habitDoc) => {
-          batch.update(habitDoc.ref, {
-            tracked: false,
-            completed: false,
-            skipped: false,
-            failed: false,
-          });
+          if (habitDoc.data().goal == 1) {
+            batch.update(habitDoc.ref, {
+              tracked: false,
+              completed: false,
+              skipped: false,
+              failed: false,
+            });
+          }
         });
 
         await batch.commit(); // Commit batch for each user
@@ -143,33 +146,35 @@ exports.resetHabitsBasedOnGoal = functions.pubsub
           .get();
 
         habitsSnapshot.forEach((habitDoc) => {
-          const habitData = habitDoc.data();
-          const goal = habitData.goal || 1; // Default goal to 1 if not provided
-          const interval = 24 / goal; // Calculate interval based on goal
-          const currentTime = new Date();
-          const lastResetTime = habitData.lastReset
-            ? new Date(habitData.lastReset.toDate())
-            : new Date(0); // Default to epoch if last reset time not set
+          if (habitDoc.data().goal != 1) {
+            const habitData = habitDoc.data();
+            const goal = habitData.goal || 1; // Default goal to 1 if not provided
+            const interval = 24 / goal; // Calculate interval based on goal
+            const currentTime = new Date();
+            const lastResetTime = habitData.lastReset
+              ? new Date(habitData.lastReset.toDate())
+              : new Date(0); // Default to epoch if last reset time not set
 
-          // Check if it's time to reset based on interval
-          if (currentTime - lastResetTime >= interval * 60 * 60 * 1000) {
-            if (habitData.completed === true) {
-              batch.update(habitDoc.ref, {
-                tracked: false,
-                completed: false,
-                skipped: false,
-                failed: false,
-                lastReset: admin.firestore.Timestamp.fromDate(currentTime),
-              });
-            } else {
-              batch.update(habitDoc.ref, {
-                tracked: false,
-                completed: false,
-                skipped: false,
-                failed: false,
-                lastReset: admin.firestore.Timestamp.fromDate(currentTime),
-                totalFailed: admin.firestore.FieldValue.increment(1),
-              });
+            // Check if it's time to reset based on interval
+            if (currentTime - lastResetTime >= interval * 60 * 60 * 1000) {
+              if (habitData.completed === true) {
+                batch.update(habitDoc.ref, {
+                  tracked: false,
+                  completed: false,
+                  skipped: false,
+                  failed: false,
+                  lastReset: admin.firestore.Timestamp.fromDate(currentTime),
+                });
+              } else {
+                batch.update(habitDoc.ref, {
+                  tracked: false,
+                  completed: false,
+                  skipped: false,
+                  failed: false,
+                  lastReset: admin.firestore.Timestamp.fromDate(currentTime),
+                  totalFailed: admin.firestore.FieldValue.increment(1),
+                });
+              }
             }
           }
         });

@@ -67,7 +67,7 @@ const Leaderboards = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody className="font-bold text-lg ">
-                  {sortedValue.slice(3).map((doc, index) => (
+                  {sortedValue.slice(3, 11).map((doc, index) => (
                     <TableRow>
                       <TableCell className="font-medium">{index + 4}</TableCell>
                       <TableCell className="flex gap-2 items-center">
