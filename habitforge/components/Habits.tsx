@@ -99,7 +99,9 @@ const Habits: FC<HabitsProps> = ({
       totalCompleted: totalCompleted + 1,
       totalCompletedWeekly: totalCompleted + 1,
       lastCompletedDate: serverTimestamp(),
+      habitScore: firebaseUser?.habitScore + 2
     });
+
     await updateDoc(doc(db, "users", uid), {
       habitCoins: firebaseUser?.habitCoins + 1,
     });

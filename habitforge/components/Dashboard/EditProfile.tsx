@@ -14,6 +14,7 @@ import { auth, db } from "@/firebase/firebase";
 import { collection, doc, updateDoc } from "@firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
+import { toast } from "sonner";
 
 interface EditProfileProps {
   photoURL: string;
@@ -36,18 +37,20 @@ const EditProfile: FC<EditProfileProps> = ({ photoURL }) => {
     selectedPhotoPrice: number
   ) => {
     if (user) {
-      if (firebaseUser?.habitCoins >= selectedPhotoPrice) {
-        if (firebaseUser?.unlockedPhotos?.includes(selectedPhotoURL)) {
-          await updateDoc(doc(db, "users", user.uid), {
-            photoURL: selectedPhotoURL,
-          });
-        } else {
+      if (firebaseUser?.unlockedPhotos?.includes(selectedPhotoURL)) {
+        await updateDoc(doc(db, "users", user.uid), {
+          photoURL: selectedPhotoURL,
+        });
+      } else {
+        if (firebaseUser?.habitCoins >= selectedPhotoPrice) {
           const unlockedPhotos = firebaseUser?.unlockedPhotos as string[];
           await updateDoc(doc(db, "users", user.uid), {
             unlockedPhotos: [...unlockedPhotos, selectedPhotoURL],
             photoURL: selectedPhotoURL,
             habitCoins: firebaseUser?.habitCoins - selectedPhotoPrice,
           });
+        } else {
+          toast.error("You don't have enough coins to purchase this photo");
         }
       }
     }

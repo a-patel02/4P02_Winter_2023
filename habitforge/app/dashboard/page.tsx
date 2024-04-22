@@ -72,7 +72,7 @@ const Dashboard = () => {
       setLevel(3);
     } else if (habitScore >= 30 && habitScore < 40) {
       setLevel(4);
-    } else if (habitScore >= 40 && habitScore < 50) {
+    } else if (habitScore >= 40) {
       setLevel(5);
     }
   };
