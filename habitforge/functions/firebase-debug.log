@@ -1,0 +1,552 @@
+[debug] [2024-04-22T15:34:04.139Z] ----------------------------------------------------------------------
+[debug] [2024-04-22T15:34:04.140Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only hosting
+[debug] [2024-04-22T15:34:04.140Z] CLI Version:   13.7.3
+[debug] [2024-04-22T15:34:04.140Z] Platform:      darwin
+[debug] [2024-04-22T15:34:04.140Z] Node Version:  v20.12.2
+[debug] [2024-04-22T15:34:04.140Z] Time:          Mon Apr 22 2024 11:34:04 GMT-0400 (Eastern Daylight Time)
+[debug] [2024-04-22T15:34:04.140Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-22T15:34:04.174Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-22T15:34:04.174Z] > authorizing via signed-in user (ameenkhawaja219@gmail.com)
+[debug] [2024-04-22T15:34:04.174Z] [iam] checking project habitforge-1832c for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-04-22T15:34:04.175Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions [none]
+[debug] [2024-04-22T15:34:04.175Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:04.175Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-22T15:34:04.453Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions 200
+[debug] [2024-04-22T15:34:04.454Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2024-04-22T15:34:04.455Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c [none]
+[debug] [2024-04-22T15:34:04.722Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c 200
+[debug] [2024-04-22T15:34:04.722Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c {"projectId":"habitforge-1832c","projectNumber":"346207026425","displayName":"HabitForge","name":"projects/habitforge-1832c","resources":{"hostingSite":"habitforge-1832c","storageBucket":"habitforge-1832c.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_a25145d4-ae14-47b5-98e7-bd522e17a7d0"}
+[debug] [2024-04-22T15:34:05.433Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites pageToken=&pageSize=10
+[debug] [2024-04-22T15:34:05.817Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites 200
+[debug] [2024-04-22T15:34:05.818Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites {"sites":[{"name":"projects/habitforge-1832c/sites/habitforge-1832c","defaultUrl":"https://habitforge-1832c.web.app","appId":"1:346207026425:web:7a0d4efdef194a41697628","type":"DEFAULT_SITE"}]}
+[debug] [2024-04-22T15:34:05.819Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:346207026425:web:7a0d4efdef194a41697628/config [none]
+[debug] [2024-04-22T15:34:06.406Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:346207026425:web:7a0d4efdef194a41697628/config 200
+[debug] [2024-04-22T15:34:06.407Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/-/webApps/1:346207026425:web:7a0d4efdef194a41697628/config {"projectId":"habitforge-1832c","appId":"1:346207026425:web:7a0d4efdef194a41697628","storageBucket":"habitforge-1832c.appspot.com","locationId":"us-central","apiKey":"AIzaSyCKiZ8-lZE8z9eHWEW4ZnwfAfcKwQp8tPQ","authDomain":"habitforge-1832c.firebaseapp.com","messagingSenderId":"346207026425","measurementId":"G-EGPQ778PN9"}
+[info] 
+   Thank you for trying our early preview of Next.js support on Firebase Hosting.
+   During the preview, support is best-effort and breaking changes can be expected. Proceed with caution.
+   The integration is known to work with Next.js version 12 - 14.0. You may encounter errors.
+
+   Documentation: https://firebase.google.com/docs/hosting/frameworks/nextjs
+   File a bug: https://github.com/firebase/firebase-tools/issues/new?template=bug_report.md
+   Submit a feature request: https://github.com/firebase/firebase-tools/issues/new?template=feature_request.md
+
+   We'd love to learn from you. Express your interest in helping us shape the future of Firebase Hosting: https://goo.gle/41enW5X
+
+[debug] [2024-04-22T15:34:08.081Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites/habitforge-1832c [none]
+[debug] [2024-04-22T15:34:08.189Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites/habitforge-1832c 200
+[debug] [2024-04-22T15:34:08.189Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites/habitforge-1832c {"name":"projects/habitforge-1832c/sites/habitforge-1832c","defaultUrl":"https://habitforge-1832c.web.app","appId":"1:346207026425:web:7a0d4efdef194a41697628","type":"DEFAULT_SITE"}
+[info]   ▲ Next.js 14.2.1
+
+[info]   - Environments: .env.local
+
+
+[info]    Creating an optimized production build ...
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/lucide-react isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/react-icons isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/firestore isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/date-fns isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@babel/runtime isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@fastify/busboy isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/database-compat isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/database isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/auth isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/react-icons isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/lucide-react isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/firestore isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/date-fns isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@babel/runtime isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@fastify/busboy isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/database-compat isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/database isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/auth isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/lucide-react isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/react-icons isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/firestore isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/date-fns isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@babel/runtime isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/database-compat isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/database isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@firebase/auth isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info] <w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Managed item /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/node_modules/@fastify/busboy isn't a directory or doesn't contain a package.json (see snapshot.managedPaths option)
+
+[info]  ✓ Compiled successfully
+
+[info]    Linting and checking validity of types ...
+
+[info]  ⨯ ESLint: Failed to load config "next/babel" to extend from. Referenced from: /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/habitforge/.eslintrc.json
+
+[info]    Collecting page data ...
+
+[info]    Generating static pages (0/8) ...
+
+[info] Firebase Messaging is not supported by your browser
+
+[info] Firebase Messaging is not supported by your browser
+
+[info]    Generating static pages (2/8) 
+
+[info] Firebase Messaging is not supported by your browser
+
+[info] Firebase Messaging is not supported by your browser
+Firebase Messaging is not supported by your browser
+Firebase Messaging is not supported by your browser
+
+[info]    Generating static pages (4/8) 
+   Generating static pages (6/8) 
+
+[info]  ✓ Generating static pages (8/8)
+
+[info]    Finalizing page optimization ...
+
+[info]    Collecting build traces ...
+
+[info] 
+
+[info] Route (app)                              Size     First Load JS
+┌ ○ /                                    4.51 kB         223 kB
+├ ○ /_not-found                          871 B          87.8 kB
+├ ○ /audio                               603 B          87.5 kB
+├ ○ /dashboard                           72.2 kB         314 kB
+├ ○ /leaderboards                        3.66 kB         215 kB
+└ ○ /login                               5.03 kB         211 kB
++ First Load JS shared by all            86.9 kB
+  ├ chunks/23-795c7e19df20fdf0.js        31.3 kB
+  ├ chunks/fd9d1056-92ed80df59cdd210.js  53.6 kB
+  └ other shared chunks (total)          1.96 kB
+
+
+[info] 
+○  (Static)  prerendered as static content
+
+
+[info] Building a Cloud Function to run this application. This is needed due to:
+[info]  • non-static component /_not-found/page
+[info] 
+[debug] [2024-04-22T15:34:17.409Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites/habitforge-1832c [none]
+[debug] [2024-04-22T15:34:17.723Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites/habitforge-1832c 200
+[debug] [2024-04-22T15:34:17.723Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/habitforge-1832c/sites/habitforge-1832c {"name":"projects/habitforge-1832c/sites/habitforge-1832c","defaultUrl":"https://habitforge-1832c.web.app","appId":"1:346207026425:web:7a0d4efdef194a41697628","type":"DEFAULT_SITE"}
+[debug] [2024-04-22T15:34:19.082Z] [web frameworks] effective firebase.json:  {
+  "hosting": [
+    {
+      "source": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "frameworksBackend": {
+        "region": "us-east1"
+      },
+      "site": "habitforge-1832c",
+      "rewrites": [
+        {
+          "source": "**",
+          "function": {
+            "functionId": "ssrhabitforge1832c",
+            "region": "us-east1",
+            "pinTag": true
+          }
+        }
+      ],
+      "redirects": [],
+      "headers": [
+        {
+          "source": "/audio",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/audio/layout,_N_T_/audio/page,_N_T_/audio"
+            }
+          ]
+        },
+        {
+          "source": "/_not-found",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/_not-found/layout,_N_T_/_not-found/page,_N_T_/_not-found"
+            }
+          ]
+        },
+        {
+          "source": "/leaderboards",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/leaderboards/layout,_N_T_/leaderboards/page,_N_T_/leaderboards"
+            }
+          ]
+        },
+        {
+          "source": "/dashboard",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/dashboard/layout,_N_T_/dashboard/page,_N_T_/dashboard"
+            }
+          ]
+        },
+        {
+          "source": "/login",
+          "headers": [
+            {
+              "key": "x-next-cache-tags",
+              "value": "_N_T_/layout,_N_T_/login/layout,_N_T_/login/page,_N_T_/login"
+            }
+          ]
+        },
+        {
+          "source": "**/*.[jt]s",
+          "headers": [
+            {
+              "key": "Set-Cookie",
+              "value": "__FIREBASE_DEFAULTS__=eyJjb25maWciOnsicHJvamVjdElkIjoiaGFiaXRmb3JnZS0xODMyYyIsImFwcElkIjoiMTozNDYyMDcwMjY0MjU6d2ViOjdhMGQ0ZWZkZWYxOTRhNDE2OTc2MjgiLCJzdG9yYWdlQnVja2V0IjoiaGFiaXRmb3JnZS0xODMyYy5hcHBzcG90LmNvbSIsImxvY2F0aW9uSWQiOiJ1cy1jZW50cmFsIiwiYXBpS2V5IjoiQUl6YVN5Q0tpWjgtbFpFOHo5ZUhXRVc0Wm53ZkFmY0t3UXA4dFBRIiwiYXV0aERvbWFpbiI6ImhhYml0Zm9yZ2UtMTgzMmMuZmlyZWJhc2VhcHAuY29tIiwibWVzc2FnaW5nU2VuZGVySWQiOiIzNDYyMDcwMjY0MjUiLCJtZWFzdXJlbWVudElkIjoiRy1FR1BRNzc4UE45In0sIl9hdXRoVG9rZW5TeW5jVVJMIjoiL19fc2Vzc2lvbiJ9; SameSite=Strict; Expires=2026-03-18T02:14:19.082Z; Path=/;"
+            }
+          ]
+        }
+      ],
+      "cleanUrls": true,
+      "trailingSlash": false,
+      "public": ".firebase/habitforge-1832c/hosting",
+      "webFramework": "next_ssr"
+    }
+  ],
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    },
+    {
+      "source": ".firebase/habitforge-1832c/functions",
+      "codebase": "firebase-frameworks-habitforge-1832c"
+    }
+  ]
+}
+[debug] [2024-04-22T15:34:19.082Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-22T15:34:19.082Z] > authorizing via signed-in user (ameenkhawaja219@gmail.com)
+[debug] [2024-04-22T15:34:19.082Z] [iam] checking project habitforge-1832c for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-04-22T15:34:19.082Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions [none]
+[debug] [2024-04-22T15:34:19.082Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:19.082Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-04-22T15:34:19.351Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions 200
+[debug] [2024-04-22T15:34:19.352Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-04-22T15:34:19.353Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/habitforge-1832c/locations/-/functions [none]
+[debug] [2024-04-22T15:34:19.890Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/habitforge-1832c/locations/-/functions 200
+[debug] [2024-04-22T15:34:19.891Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/habitforge-1832c/locations/-/functions {"functions":[{"name":"projects/habitforge-1832c/locations/us-central1/functions/calculateRanks","eventTrigger":{"eventType":"google.pubsub.topic.publish","resource":"projects/habitforge-1832c/topics/firebase-schedule-calculateRanks-us-central1","service":"pubsub.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"calculateRanks","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"habitforge-1832c@appspot.gserviceaccount.com","updateTime":"2024-04-20T15:22:41.713Z","versionId":"49","labels":{"deployment-tool":"cli-firebase","deployment-scheduled":"true","firebase-functions-hash":"0ee3504b28c3b8b3ab9eb7bd15f1df65326b7732"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-816044542964.us-central1.cloudfunctions.appspot.com/b6ed7b81-e2f6-4768-9329-5d3fec9fd927.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"habitforge-1832c\",\"storageBucket\":\"habitforge-1832c.appspot.com\"}","GCLOUD_PROJECT":"habitforge-1832c","EVENTARC_CLOUD_EVENT_SOURCE":"projects/habitforge-1832c/locations/us-central1/functions/calculateRanks"},"runtime":"nodejs18","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"8d31cafe-2b8d-400e-94ce-9bee31c8f19c","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/346207026425/locations/us-central1/builds/8d31cafe-2b8d-400e-94ce-9bee31c8f19c","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{}},{"name":"projects/habitforge-1832c/locations/us-central1/functions/calculateStreaks","eventTrigger":{"eventType":"google.pubsub.topic.publish","resource":"projects/habitforge-1832c/topics/firebase-schedule-calculateStreaks-us-central1","service":"pubsub.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"calculateStreaks","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"habitforge-1832c@appspot.gserviceaccount.com","updateTime":"2024-04-18T23:16:45.240Z","versionId":"22","labels":{"deployment-tool":"cli-firebase","deployment-scheduled":"true","firebase-functions-hash":"8270a62b49c8bbf2bb035a409b1f9ddc5583a909"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-816044542964.us-central1.cloudfunctions.appspot.com/b2aca306-42e7-4187-83a3-edc3eab00c84.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"habitforge-1832c\",\"storageBucket\":\"habitforge-1832c.appspot.com\"}","GCLOUD_PROJECT":"habitforge-1832c","EVENTARC_CLOUD_EVENT_SOURCE":"projects/habitforge-1832c/locations/us-central1/functions/calculateStreaks"},"runtime":"nodejs18","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"fb987ee3-3c37-4ffb-8e83-72d0487fc8be","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/346207026425/locations/us-central1/builds/fb987ee3-3c37-4ffb-8e83-72d0487fc8be","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{}},{"name":"projects/habitforge-1832c/locations/us-central1/functions/createUserInFirestore","eventTrigger":{"eventType":"providers/firebase.auth/eventTypes/user.create","resource":"projects/habitforge-1832c","service":"firebaseauth.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"createUserInFirestore","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"habitforge-1832c@appspot.gserviceaccount.com","updateTime":"2024-04-21T15:19:13.723Z","versionId":"11","labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"80561e2c9b5dd07d03c1674ae3bf3c85fac3ccbd"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-816044542964.us-central1.cloudfunctions.appspot.com/216f3b56-e74b-4c95-be3e-c491d5fa8754.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"habitforge-1832c\",\"storageBucket\":\"habitforge-1832c.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"habitforge-1832c","EVENTARC_CLOUD_EVENT_SOURCE":"projects/habitforge-1832c/locations/us-central1/functions/createUserInFirestore"},"runtime":"nodejs18","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"829a77fd-a830-49f9-9787-e56ecf4add27","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/346207026425/locations/us-central1/builds/829a77fd-a830-49f9-9787-e56ecf4add27","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{}},{"name":"projects/habitforge-1832c/locations/us-central1/functions/resetHabits","eventTrigger":{"eventType":"google.pubsub.topic.publish","resource":"projects/habitforge-1832c/topics/firebase-schedule-resetHabits-us-central1","service":"pubsub.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"resetHabits","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"habitforge-1832c@appspot.gserviceaccount.com","updateTime":"2024-04-21T15:20:58.347Z","versionId":"12","labels":{"deployment-tool":"cli-firebase","deployment-scheduled":"true","firebase-functions-hash":"80561e2c9b5dd07d03c1674ae3bf3c85fac3ccbd"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-816044542964.us-central1.cloudfunctions.appspot.com/e67c0d96-9f14-45e9-bdc1-3efe1933e67d.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"habitforge-1832c\",\"storageBucket\":\"habitforge-1832c.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"habitforge-1832c","EVENTARC_CLOUD_EVENT_SOURCE":"projects/habitforge-1832c/locations/us-central1/functions/resetHabits"},"runtime":"nodejs18","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"7f3ae15f-bfc7-4609-bcb7-e84d3b3a7cce","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/346207026425/locations/us-central1/builds/7f3ae15f-bfc7-4609-bcb7-e84d3b3a7cce","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{}},{"name":"projects/habitforge-1832c/locations/us-central1/functions/resetHabitsBasedOnGoal","eventTrigger":{"eventType":"google.pubsub.topic.publish","resource":"projects/habitforge-1832c/topics/firebase-schedule-resetHabitsBasedOnGoal-us-central1","service":"pubsub.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"resetHabitsBasedOnGoal","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"habitforge-1832c@appspot.gserviceaccount.com","updateTime":"2024-04-21T15:22:47.339Z","versionId":"3","labels":{"deployment-tool":"cli-firebase","deployment-scheduled":"true","firebase-functions-hash":"4312cf126c54835c41d2e63d9d35b93d8892c842"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-816044542964.us-central1.cloudfunctions.appspot.com/1073a433-0934-469e-a590-8b477d090149.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"habitforge-1832c\",\"storageBucket\":\"habitforge-1832c.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"habitforge-1832c","EVENTARC_CLOUD_EVENT_SOURCE":"projects/habitforge-1832c/locations/us-central1/functions/resetHabitsBasedOnGoal"},"runtime":"nodejs18","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"5fc2d5dc-d0a5-486e-8f70-bdf03e11ceb6","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/346207026425/locations/us-central1/builds/5fc2d5dc-d0a5-486e-8f70-bdf03e11ceb6","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{}},{"name":"projects/habitforge-1832c/locations/us-central1/functions/updateLeaderboards","eventTrigger":{"eventType":"google.pubsub.topic.publish","resource":"projects/habitforge-1832c/topics/firebase-schedule-updateLeaderboards-us-central1","service":"pubsub.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"updateLeaderboards","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"habitforge-1832c@appspot.gserviceaccount.com","updateTime":"2024-04-01T08:17:42.221Z","versionId":"11","labels":{"deployment-tool":"cli-firebase","deployment-scheduled":"true","firebase-functions-hash":"ba27bba3262bb41e595dbf84eb957cbe2a8bd204"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-816044542964.us-central1.cloudfunctions.appspot.com/279a30ff-b0c1-4c08-84b8-b75fedb8dda6.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"habitforge-1832c\",\"storageBucket\":\"habitforge-1832c.appspot.com\"}","GCLOUD_PROJECT":"habitforge-1832c","EVENTARC_CLOUD_EVENT_SOURCE":"projects/habitforge-1832c/locations/us-central1/functions/updateLeaderboards"},"runtime":"nodejs18","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"e6cd8678-095b-4aaa-bb1e-f64d478eecb0","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/346207026425/locations/us-central1/builds/e6cd8678-095b-4aaa-bb1e-f64d478eecb0","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{}}]}
+[debug] [2024-04-22T15:34:19.893Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2024-04-22T15:34:20.414Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/-/functions 200
+[debug] [2024-04-22T15:34:20.414Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/-/functions {"functions":[{"name":"projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c","buildConfig":{"build":"projects/346207026425/locations/us-east1/builds/627bed58-81c6-4fd0-bfb8-a3068fe9063b","runtime":"nodejs20","entryPoint":"ssrhabitforge1832c","source":{"storageSource":{"bucket":"gcf-v2-sources-346207026425-us-east1","object":"ssrhabitforge1832c/function-source.zip","generation":"1713799145416553"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"dockerRepository":"projects/habitforge-1832c/locations/us-east1/repositories/gcf-artifacts","sourceProvenance":{"resolvedStorageSource":{"bucket":"gcf-v2-sources-346207026425-us-east1","object":"ssrhabitforge1832c/function-source.zip","generation":"1713799145416553"}},"dockerRegistry":"ARTIFACT_REGISTRY"},"serviceConfig":{"service":"projects/habitforge-1832c/locations/us-east1/services/ssrhabitforge1832c","timeoutSeconds":60,"environmentVariables":{"VERCEL_URL":"habitforge-1832c.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"habitforge-1832c\",\"appId\":\"1:346207026425:web:7a0d4efdef194a41697628\",\"storageBucket\":\"habitforge-1832c.appspot.com\",\"locationId\":\"us-central\",\"apiKey\":\"AIzaSyCKiZ8-lZE8z9eHWEW4ZnwfAfcKwQp8tPQ\",\"authDomain\":\"habitforge-1832c.firebaseapp.com\",\"messagingSenderId\":\"346207026425\",\"measurementId\":\"G-EGPQ778PN9\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"habitforge-1832c\",\"storageBucket\":\"habitforge-1832c.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"habitforge-1832c","EVENTARC_CLOUD_EVENT_SOURCE":"projects/habitforge-1832c/locations/us-east1/services/ssrhabitforge1832c","FUNCTION_TARGET":"ssrhabitforge1832c"},"maxInstanceCount":100,"ingressSettings":"ALLOW_ALL","uri":"https://ssrhabitforge1832c-2mhdgzblyq-ue.a.run.app","serviceAccountEmail":"346207026425-compute@developer.gserviceaccount.com","availableMemory":"256Mi","allTrafficOnLatestRevision":true,"revision":"ssrhabitforge1832c-00001-xaz","maxInstanceRequestConcurrency":80,"availableCpu":"1"},"state":"ACTIVE","updateTime":"2024-04-22T15:23:23.414758391Z","labels":{"deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-habitforge-1832c","firebase-functions-hash":"dacfc70d77d85ccfa5a59839c793a46af1e5a219"},"environment":"GEN_2","url":"https://us-east1-habitforge-1832c.cloudfunctions.net/ssrhabitforge1832c","createTime":"2024-04-22T15:19:05.716076206Z"}]}
+[info] i  hosting: The following function(s) are pinned to site habitforge-1832c and will be deployed as well: ssrhabitforge1832c 
+[info] 
+[info] === Deploying to 'habitforge-1832c'...
+[info] 
+[info] i  deploying functions, hosting 
+[debug] [2024-04-22T15:34:20.419Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c [none]
+[debug] [2024-04-22T15:34:20.670Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c 200
+[debug] [2024-04-22T15:34:20.670Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c {"projectId":"habitforge-1832c","projectNumber":"346207026425","displayName":"HabitForge","name":"projects/habitforge-1832c","resources":{"hostingSite":"habitforge-1832c","storageBucket":"habitforge-1832c.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_a25145d4-ae14-47b5-98e7-bd522e17a7d0"}
+[info] i  functions: preparing codebase firebase-frameworks-habitforge-1832c for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-04-22T15:34:20.674Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-04-22T15:34:20.674Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:20.676Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-04-22T15:34:20.677Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:20.678Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudbuild.googleapis.com [none]
+[debug] [2024-04-22T15:34:20.678Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudbuild.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:20.680Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/artifactregistry.googleapis.com [none]
+[debug] [2024-04-22T15:34:20.680Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/artifactregistry.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:21.069Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/runtimeconfig.googleapis.com 200
+[debug] [2024-04-22T15:34:21.070Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-04-22T15:34:21.073Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudbuild.googleapis.com 200
+[debug] [2024-04-22T15:34:21.073Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-04-22T15:34:21.074Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudfunctions.googleapis.com 200
+[debug] [2024-04-22T15:34:21.075Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-04-22T15:34:21.085Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/artifactregistry.googleapis.com 200
+[debug] [2024-04-22T15:34:21.085Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-04-22T15:34:21.085Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c/adminSdkConfig [none]
+[debug] [2024-04-22T15:34:21.320Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c/adminSdkConfig 200
+[debug] [2024-04-22T15:34:21.321Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c/adminSdkConfig {"projectId":"habitforge-1832c","storageBucket":"habitforge-1832c.appspot.com","locationId":"us-central"}
+[debug] [2024-04-22T15:34:21.322Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/habitforge-1832c/configs [none]
+[debug] [2024-04-22T15:34:21.491Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/habitforge-1832c/configs 200
+[debug] [2024-04-22T15:34:21.492Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/habitforge-1832c/configs {}
+[debug] [2024-04-22T15:34:21.498Z] Validating nodejs source
+[debug] [2024-04-22T15:34:21.856Z] > [functions] package.json contents: {
+  "name": "habitforge",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
+    "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-navigation-menu": "^1.1.4",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "date-fns": "^3.3.1",
+    "dotenv": "^16.4.5",
+    "firebase": "^10.7.1",
+    "lucide-react": "^0.309.0",
+    "next": "^14.2.1",
+    "next-themes": "^0.2.1",
+    "react": "^18",
+    "react-day-picker": "^8.10.0",
+    "react-dom": "^18",
+    "react-firebase-hooks": "^5.1.1",
+    "react-hook-form": "^7.50.1",
+    "react-icons": "^5.0.1",
+    "react-speech-recognition": "^3.10.0",
+    "sonner": "^1.4.2",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss-animate": "^1.0.7",
+    "vaul": "^0.9.0",
+    "zod": "^3.22.4",
+    "firebase-frameworks": "^0.11.0",
+    "firebase-functions": "^4.5.0",
+    "firebase-admin": "^11.11.1"
+  },
+  "main": "server.js",
+  "engines": {
+    "node": "20"
+  }
+}
+[debug] [2024-04-22T15:34:21.856Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase firebase-frameworks-habitforge-1832c to determine what to deploy 
+[debug] [2024-04-22T15:34:21.857Z] Could not find functions.yaml. Must use http discovery
+[debug] [2024-04-22T15:34:21.861Z] Found firebase-functions binary at '/Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/habitforge/.firebase/habitforge-1832c/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8167
+
+[debug] [2024-04-22T15:34:22.043Z] Got response from /__/functions.yaml {"endpoints":{"ssrhabitforge1832c":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","region":["us-east1"],"labels":{},"httpsTrigger":{},"entryPoint":"ssrhabitforge1832c"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[info] i  functions: Loaded environment variables from .env. 
+[info] i  functions: preparing .firebase/habitforge-1832c/functions directory for uploading... 
+[info] i  functions: packaged /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/habitforge/.firebase/habitforge-1832c/functions (60.86 MB) for uploading 
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[debug] [2024-04-22T15:34:28.866Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/run.googleapis.com [none]
+[debug] [2024-04-22T15:34:28.866Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/run.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:28.868Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/eventarc.googleapis.com [none]
+[debug] [2024-04-22T15:34:28.868Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/eventarc.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:28.868Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/pubsub.googleapis.com [none]
+[debug] [2024-04-22T15:34:28.868Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/pubsub.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:28.869Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/storage.googleapis.com [none]
+[debug] [2024-04-22T15:34:28.869Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/storage.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:34:29.113Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/pubsub.googleapis.com 200
+[debug] [2024-04-22T15:34:29.113Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/pubsub.googleapis.com [omitted]
+[info] ✔  functions: required API pubsub.googleapis.com is enabled 
+[debug] [2024-04-22T15:34:29.216Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/run.googleapis.com 200
+[debug] [2024-04-22T15:34:29.217Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/run.googleapis.com [omitted]
+[info] ✔  functions: required API run.googleapis.com is enabled 
+[debug] [2024-04-22T15:34:29.218Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/storage.googleapis.com 200
+[debug] [2024-04-22T15:34:29.218Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/storage.googleapis.com [omitted]
+[info] ✔  functions: required API storage.googleapis.com is enabled 
+[debug] [2024-04-22T15:34:29.223Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/eventarc.googleapis.com 200
+[debug] [2024-04-22T15:34:29.223Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/eventarc.googleapis.com [omitted]
+[info] ✔  functions: required API eventarc.googleapis.com is enabled 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2024-04-22T15:34:29.224Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/346207026425/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-04-22T15:34:29.225Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/346207026425/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2024-04-22T15:34:29.752Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/346207026425/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2024-04-22T15:34:29.753Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/346207026425/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-346207026425@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"112732144530916849047"}}
+[debug] [2024-04-22T15:34:29.761Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/346207026425/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2024-04-22T15:34:29.761Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/346207026425/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-346207026425@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"113896055187173983556"}}
+[debug] [2024-04-22T15:34:29.764Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c [none]
+[debug] [2024-04-22T15:34:30.029Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c 200
+[debug] [2024-04-22T15:34:30.029Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c {"projectId":"habitforge-1832c","projectNumber":"346207026425","displayName":"HabitForge","name":"projects/habitforge-1832c","resources":{"hostingSite":"habitforge-1832c","storageBucket":"habitforge-1832c.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_a25145d4-ae14-47b5-98e7-bd522e17a7d0"}
+[debug] [2024-04-22T15:34:30.036Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/habitforge-1832c/versions [none]
+[debug] [2024-04-22T15:34:30.036Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/habitforge-1832c/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2024-04-22T15:34:30.718Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/habitforge-1832c/versions 200
+[debug] [2024-04-22T15:34:30.719Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/habitforge-1832c/versions {"name":"projects/346207026425/sites/habitforge-1832c/versions/ca07b7fe6697f7f6","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase","firebase-web-framework":"next_ssr"}}
+[debug] [2024-04-22T15:34:30.720Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/us-east1/functions:generateUploadUrl [none]
+[debug] [2024-04-22T15:34:31.030Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/us-east1/functions:generateUploadUrl 200
+[debug] [2024-04-22T15:34:31.031Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/us-east1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-346207026425-us-east1/8fe5a343-a900-4a6e-a66e-7065971468c4.zip?GoogleAccessId=service-346207026425@gcf-admin-robot.iam.gserviceaccount.com&Expires=1713801871&Signature=heRzYQoTJfYP98RQGZzuS3YVrPNPgqiwKiFRxfy%2BhTR3qNbenuzwJm1D2FWawe3VE1ci3Iol1U0zjcqrP9qNGKJSvbBI5ybsT00kdxkA20fawNsNPmaGJ1i9wAJCmrFiqDnZggo62gr85G17MzowdOW6M4JNtqo8FkskpKVpWFnjzYKdc5XOblq5QFCql5i9UshpWew3P1AHBFK5%2Fj38H23PML%2Fmyfq5F5ibP%2F%2B9hVNee37zsPdQp1NCIfsXQ1mVVeRv8yiWv%2BEXTUv2Ielwg4xr2LhToTRMF2vcb7UskwVzVBNqVnIRlH18t1bRYEuDQz%2BXbuX8k%2BGvq13b7IvNcg%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-346207026425-us-east1","object":"8fe5a343-a900-4a6e-a66e-7065971468c4.zip"}}
+[debug] [2024-04-22T15:34:31.033Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-346207026425-us-east1/8fe5a343-a900-4a6e-a66e-7065971468c4.zip GoogleAccessId=service-346207026425%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1713801871&Signature=heRzYQoTJfYP98RQGZzuS3YVrPNPgqiwKiFRxfy%2BhTR3qNbenuzwJm1D2FWawe3VE1ci3Iol1U0zjcqrP9qNGKJSvbBI5ybsT00kdxkA20fawNsNPmaGJ1i9wAJCmrFiqDnZggo62gr85G17MzowdOW6M4JNtqo8FkskpKVpWFnjzYKdc5XOblq5QFCql5i9UshpWew3P1AHBFK5%2Fj38H23PML%2Fmyfq5F5ibP%2F%2B9hVNee37zsPdQp1NCIfsXQ1mVVeRv8yiWv%2BEXTUv2Ielwg4xr2LhToTRMF2vcb7UskwVzVBNqVnIRlH18t1bRYEuDQz%2BXbuX8k%2BGvq13b7IvNcg%3D%3D
+[debug] [2024-04-22T15:34:31.034Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-346207026425-us-east1/8fe5a343-a900-4a6e-a66e-7065971468c4.zip [stream]
+[debug] [2024-04-22T15:34:39.348Z] <<< [apiv2][status] PUT https://storage.googleapis.com/gcf-v2-uploads-346207026425-us-east1/8fe5a343-a900-4a6e-a66e-7065971468c4.zip 200
+[debug] [2024-04-22T15:34:39.348Z] <<< [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-346207026425-us-east1/8fe5a343-a900-4a6e-a66e-7065971468c4.zip [omitted]
+[info] ✔  functions: .firebase/habitforge-1832c/functions folder uploaded successfully 
+[info] i  hosting[habitforge-1832c]: beginning deploy... 
+[info] i  hosting[habitforge-1832c]: found 66 files in .firebase/habitforge-1832c/hosting 
+[debug] [2024-04-22T15:34:39.371Z] [hosting] uploading with 200 concurrency
+[debug] [2024-04-22T15:34:39.511Z] [hosting] hash cache [LmZpcmViYXNlL2hhYml0Zm9yZ2UtMTgzMmMvaG9zdGluZw] stored for 66 files
+[debug] [2024-04-22T15:34:39.511Z] [hosting][hash queue][FINAL] {"max":135,"min":6,"avg":18.848484848484848,"active":0,"complete":66,"success":66,"errored":0,"retried":0,"total":66,"elapsed":137}
+[debug] [2024-04-22T15:34:39.511Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/346207026425/sites/habitforge-1832c/versions/ca07b7fe6697f7f6:populateFiles [none]
+[debug] [2024-04-22T15:34:39.511Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/346207026425/sites/habitforge-1832c/versions/ca07b7fe6697f7f6:populateFiles {"files":{"/FirstHabit.svg":"c8d4510ff859482a05dab3178251d980a3ed27c5b3c9ff4c487913cd4efb124c","/Bronze.svg":"c2950fd3c6a6178a4e951c5cd34380e32d79b9dd411b14afdb4a303444095b43","/AnalyticsEmpty.svg":"c0f5b0c00d6febd6514278b5484fd5c617ccb8ed130cc26073b8695b430ff9e7","/Gold.svg":"0a97c8e59416f719cd39fb1d4aae3bb45516f44a8493bd8965366d7231f72709","/404.html":"c9a750d11872822e48035f4aa9880fa4a2022e26eb065fca83b143ca43b8c279","/GroupChallenges.svg":"f7fad7776f97ee3e49e34f74f79b54508718ab16f3693b125331e2595651b0fe","/GroupHabitsBlue.svg":"9220e97e547468cc957dee2fffb583eecfc8bdf0c0af5cb36d6940211f9c146f","/Silver.svg":"6a812384069603329cc6641bd3a2040558c0157a39b1aff99c108a69be52fc9d","/Icon.png":"706c7ec6d432d6db0496d06621a403230fe86a53c9751c3d5be01ef0443df498","/dashboard.html":"abe02956035a6e48d9161420b3c7da9c4dd4e937c63bc7280863085cd3009d6f","/blocs.svg":"9d90da6e389287a1f48f5e2983edfae911fc03838b0f2ab5410a5ed2453a92f7","/firebase-messaging-sw.js":"aa37b7f006fb9bf75cf5e1065405fafa76303e1577aa556de5817bb9da2e8f1f","/audio.html":"dbc1c35fec63671cf0c4ffdab187a25291123e70b89cf0ef481350d8cb04240c","/Leaderboard.svg":"64eba05f3d7e89b3ec364ab666484a4e0ddb1a225e7ee4cb025ced74c6febdcb","/logoDark.svg":"bf20288a687b3c33fc5ed1bfbf918e393aecd7537da88382c096abdd793faaef","/index.html":"ad0f0f6276939b903b9e6c47ba9dd39a0cecc4ba2da240e116f7556b966591e9","/leaderboards.html":"e20da59a4a727ba0218b8c37dd44ba474cf4eb9c6a2ef398e71331f016316f0a","/logoLight.svg":"9f64d1097fbad82f5c36f1c52a8e894b770412627ff9fdfecf891e9068506adf","/next.svg":"7b16665552cb47db34db342505d6d340caaf5813ca2cba1df3536ed67ea33f64","/_next/static/7e9tI2kg86YEL-CO35IFb/_buildManifest.js":"d69e5a007397f17b35522afa5231f150a71e70144a0b25094b29b45bb5e6de96","/login.html":"95c7abf2bf5ecba9acd1dd9751d0764076c3e1056089a0f4258f7e06999db8f2","/_next/static/7e9tI2kg86YEL-CO35IFb/_ssgManifest.js":"02dbc1aeab6ef0a6ff2ff9a1643158cf9bb38929945eaa343a3627dee9ba6778","/vercel.svg":"ddb9254655f2b7733e1193fb66cb4beb95c29ad752d7adbc1765026e124c88c5","/_next/static/chunks/0e5ce63c-106a0bba8180cfdf.js":"fbad75ca7fb7889702a55d4dd13a13ff3393600011dbfdaf6b2b7eb4d45d4a83","/_next/static/chunks/479ba886-3b295bac8895584c.js":"6a418c3624d7e8cf27e133daf3a7298022a805cd46a3ad3090279b34c8bbcf2d","/_next/static/chunks/138-c4face77de6d94df.js":"78b57a9bdd8d423ea292da00a77695c01bea938bcd6bc6bb8889c1dc8ad6b6fc","/_next/static/chunks/648-7c7ce4ce20022c94.js":"b907ee2c586a48eaaf8ea3fffabd9d26847c85147a341223a6fd07da13705b45","/_next/static/chunks/fc2f6fa8-c4c3fa46e63befc6.js":"a51ab8ce35206245396b467d8303d996ed10e44a0c2247a509a6f9f0059c6aab","/_next/static/chunks/536-6d6ac293d6827fd9.js":"7b9b14f142e9069eae93af7867b6222e3bc18c4663027249251f9ad0cd4dcc18","/_next/static/chunks/main-app-593a315cb9534795.js":"1dd74bff9370daf5475bc8efafa9465f071f9d326144d81bec81df4586fec529","/_next/static/chunks/webpack-cf0a3d0edcfcbb3f.js":"a248bd125444da8c2049fd7a533fba6b90ff35fc73394ac09d26739d94061103","/_next/static/chunks/app/layout-67a9958f3f5f3015.js":"46d88deb2269047ef461ba744ddde375bc5009aa949c4228d49a3e244230615f","/Complete.mp3":"feec8eb70a1dc2171a91aba1a0248e3297336dd025eee7c5751ea4eed3dca2ca","/_next/static/chunks/708-92472593af3c974f.js":"46d6db0e572dca760d1d820f39cdca7bb4dc68de0dd44de1daf15b3605170142","/_next/static/chunks/23-795c7e19df20fdf0.js":"66835c9175522a69fd365d8e67701413f6151ae795e45fb5c036087e949e9f58","/_next/static/chunks/main-2f33bf2446fb243d.js":"49e52efa4a25b013464b54814c36725eb0f0da3c8bc31e51a8006e9c7d89b058","/_next/static/chunks/7aa4777d-e8a3adae42f40cbc.js":"25d2790fbdbacc880ea1e39339a680f5c304100fb4333a8a1f4b3706739109c7","/error.mp3":"940c6d2fe3c1109c24df66033a3fa3c37bab318874e84ee2ee6358c1914834c5","/level-up.mp3":"0c65eec8099fabe3d4d14a073a90fbaa36c6b963373c343c62392af6dd4d2418","/skipped.mp3":"f3d0f0d303688ab313bf67adbe39236029c520e4c0974c8636cfd588b5f75ea9","/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js":"a5b39edcc77b6069d442b5dbeb8091cf27ac47ac7a1a99cfc325213bdaae2fb5","/_next/static/chunks/app/_not-found/page-2c4a17a4e2bf4a07.js":"73bfefb0e831b4bce23ce0791be33b7f0cf0dcd0f1424068ac4b3f6d3c5bbade","/_next/static/chunks/app/page-c7130e1a34081911.js":"1a16419691e501bdae8d4c3ed105ef178690bdc1d78b26ca091be283c8746107","/_next/static/chunks/app/audio/page-52760fbd7014a613.js":"f272faffe8cf248f7aa74624109b42d919239d2a9a08953169671019007d3647","/_next/static/chunks/app/leaderboards/page-f66500030ff14bd6.js":"420c6dba2d5cc6d2c58d9c5717e29ce7de8e86ed152a1a5a270e73897c8227db","/_next/static/chunks/pages/_app-6a626577ffa902a4.js":"033ba1808728c513ad0a88d7ddf19b808f355e4bccb8e18dd6b1928961cf7a45","/_next/static/chunks/pages/_error-1be831200e60c5c0.js":"7ba7b69d070dbc710e451691d369b4ce050c7aff928d7ff030baa21135383430","/_next/static/chunks/app/login/page-efc2f258c7b595dd.js":"b7fa8e208b867bd1c1b67f5e07ee9cff4f1718edceb7c24c2f216e2f87542c64","/_next/static/media/05a31a2ca4975f99-s.woff2":"6efe3c10c8cf8d8db389af700f8e6dd56ef3734c59159ae26bea5e9f3b05d919","/_next/static/css/6e46528ade8a1a41.css":"bc38e05abb9bd30f85cd416b54620244f546378f270d4e99da25b46719df68cd","/_next/static/media/fd4db3eb5472fc27-s.woff2":"b62a5c48aa2a5c1f795d9f0e040eb59387eb7527523ebf1a2a37a0b80ed8afda","/_next/static/chunks/311-8c6d6e34f11f14e7.js":"97383f8a4aa49b10c223e833aca796aac9f3af4b950b835a7f4600f28b2a41cf","/_next/static/chunks/app/dashboard/page-f63e171cc421bbcd.js":"b81098571669b2aaa4b0ebea396230ecff0bdc7b696ed18ff30ed4fc93884815","/_next/static/media/513657b02c5c193f-s.woff2":"12fead7b73c8d1e6d927c1558658f895e2bc585abb9fa0787fd3a18ab6de0229","/_next/static/media/51ed15f9841b9f9d-s.woff2":"1858da22f630427753e92d04720084a47e27d78af30e9bcfe21f1514a014b67f","/_next/static/media/ec159349637c90ad-s.woff2":"72adc3dde09d31fedb2a4472cd9ac9ae14108ee045cbe7de2afc351c6761e047","/_next/static/chunks/framework-aec844d2ccbe7592.js":"7885994d6203224805fffa95f6a6551af6903a76bbec7b9292d3ea205e7d447f","/success.mp3":"479e4f6d21644dad700af713a67b2db4ffcba0ef5ed22029775dac87bb06225e","/_next/static/media/c9a5bc6a7c948fb0-s.p.woff2":"37d0358a532a69cb27ae70525b099439dc7139875db00f29a2a103bf24e7f54f","/_next/static/chunks/fd9d1056-92ed80df59cdd210.js":"1ad5b60900951695550bcfb3b5d43784825075257435b5badf3d5a7ed4b9e1f9","/_next/static/chunks/986-e5c9c5574df7d30d.js":"bf5cb4b211c00e1575b6853e7b36fbf5bac5c0e7ad510744f1e00a9d9fd973b6","/_next/static/chunks/bc9e92e6-1382b3543bb3a9ce.js":"a1dd0b856b365938a8c8c5f10d7ca4d0ac00d98b8a46979d2b77c77044c5bf10","/_next/static/media/d6b16ce4a6175f26-s.woff2":"b4d117b2e85e547b1698898d382cc41f3f9b9f2549a7590657b4b4ad8071987b","/level-up.wav":"63ed683c02ad222c79cd3d5b6aaa49f3b0444da141407e8502de134f7f74dc18","/HeroImageMobile.svg":"f75b24df6efd4c0a3336fee2f0666310b477278963d6d53c552efc2731218cd8","/HeroImage.svg":"a3892d8a4ff36bfd6360be84e95c9d3e154a9bffc9035d11b3175923a3da9f78"}}
+[debug] [2024-04-22T15:34:39.898Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/346207026425/sites/habitforge-1832c/versions/ca07b7fe6697f7f6:populateFiles 200
+[debug] [2024-04-22T15:34:39.899Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/346207026425/sites/habitforge-1832c/versions/ca07b7fe6697f7f6:populateFiles {"uploadRequiredHashes":["abe02956035a6e48d9161420b3c7da9c4dd4e937c63bc7280863085cd3009d6f","dbc1c35fec63671cf0c4ffdab187a25291123e70b89cf0ef481350d8cb04240c","ad0f0f6276939b903b9e6c47ba9dd39a0cecc4ba2da240e116f7556b966591e9","c9a750d11872822e48035f4aa9880fa4a2022e26eb065fca83b143ca43b8c279","e20da59a4a727ba0218b8c37dd44ba474cf4eb9c6a2ef398e71331f016316f0a","95c7abf2bf5ecba9acd1dd9751d0764076c3e1056089a0f4258f7e06999db8f2"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files"}
+[debug] [2024-04-22T15:34:39.900Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/abe02956035a6e48d9161420b3c7da9c4dd4e937c63bc7280863085cd3009d6f [none]
+[debug] [2024-04-22T15:34:39.900Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/abe02956035a6e48d9161420b3c7da9c4dd4e937c63bc7280863085cd3009d6f [stream]
+[debug] [2024-04-22T15:34:39.901Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/dbc1c35fec63671cf0c4ffdab187a25291123e70b89cf0ef481350d8cb04240c [none]
+[debug] [2024-04-22T15:34:39.901Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/dbc1c35fec63671cf0c4ffdab187a25291123e70b89cf0ef481350d8cb04240c [stream]
+[debug] [2024-04-22T15:34:39.901Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/ad0f0f6276939b903b9e6c47ba9dd39a0cecc4ba2da240e116f7556b966591e9 [none]
+[debug] [2024-04-22T15:34:39.901Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/ad0f0f6276939b903b9e6c47ba9dd39a0cecc4ba2da240e116f7556b966591e9 [stream]
+[debug] [2024-04-22T15:34:39.902Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/c9a750d11872822e48035f4aa9880fa4a2022e26eb065fca83b143ca43b8c279 [none]
+[debug] [2024-04-22T15:34:39.902Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/c9a750d11872822e48035f4aa9880fa4a2022e26eb065fca83b143ca43b8c279 [stream]
+[debug] [2024-04-22T15:34:39.902Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/e20da59a4a727ba0218b8c37dd44ba474cf4eb9c6a2ef398e71331f016316f0a [none]
+[debug] [2024-04-22T15:34:39.902Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/e20da59a4a727ba0218b8c37dd44ba474cf4eb9c6a2ef398e71331f016316f0a [stream]
+[debug] [2024-04-22T15:34:39.903Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/95c7abf2bf5ecba9acd1dd9751d0764076c3e1056089a0f4258f7e06999db8f2 [none]
+[debug] [2024-04-22T15:34:39.903Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/95c7abf2bf5ecba9acd1dd9751d0764076c3e1056089a0f4258f7e06999db8f2 [stream]
+[debug] [2024-04-22T15:34:39.903Z] [hosting][populate queue][FINAL] {"max":390,"min":390,"avg":390,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":393}
+[debug] [2024-04-22T15:34:39.903Z] [hosting] uploads queued: 6
+[debug] [2024-04-22T15:34:40.426Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/abe02956035a6e48d9161420b3c7da9c4dd4e937c63bc7280863085cd3009d6f 200
+[debug] [2024-04-22T15:34:40.427Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/abe02956035a6e48d9161420b3c7da9c4dd4e937c63bc7280863085cd3009d6f [stream]
+[debug] [2024-04-22T15:34:40.462Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/c9a750d11872822e48035f4aa9880fa4a2022e26eb065fca83b143ca43b8c279 200
+[debug] [2024-04-22T15:34:40.462Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/c9a750d11872822e48035f4aa9880fa4a2022e26eb065fca83b143ca43b8c279 [stream]
+[debug] [2024-04-22T15:34:40.484Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/dbc1c35fec63671cf0c4ffdab187a25291123e70b89cf0ef481350d8cb04240c 200
+[debug] [2024-04-22T15:34:40.484Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/dbc1c35fec63671cf0c4ffdab187a25291123e70b89cf0ef481350d8cb04240c [stream]
+[debug] [2024-04-22T15:34:40.511Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/e20da59a4a727ba0218b8c37dd44ba474cf4eb9c6a2ef398e71331f016316f0a 200
+[debug] [2024-04-22T15:34:40.511Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/e20da59a4a727ba0218b8c37dd44ba474cf4eb9c6a2ef398e71331f016316f0a [stream]
+[debug] [2024-04-22T15:34:40.554Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/ad0f0f6276939b903b9e6c47ba9dd39a0cecc4ba2da240e116f7556b966591e9 200
+[debug] [2024-04-22T15:34:40.554Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/ad0f0f6276939b903b9e6c47ba9dd39a0cecc4ba2da240e116f7556b966591e9 [stream]
+[debug] [2024-04-22T15:34:40.870Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/95c7abf2bf5ecba9acd1dd9751d0764076c3e1056089a0f4258f7e06999db8f2 200
+[debug] [2024-04-22T15:34:40.870Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/habitforge-1832c/versions/ca07b7fe6697f7f6/files/95c7abf2bf5ecba9acd1dd9751d0764076c3e1056089a0f4258f7e06999db8f2 [stream]
+[debug] [2024-04-22T15:34:40.871Z] [hosting][upload queue][FINAL] {"max":970,"min":528,"avg":652.1666666666666,"active":0,"complete":6,"success":6,"errored":0,"retried":0,"total":6,"elapsed":972}
+[info] ✔  hosting[habitforge-1832c]: file upload complete 
+[debug] [2024-04-22T15:34:40.871Z] [hosting] deploy completed after 1517ms
+[info] i  functions: updating Node.js 20 (2nd Gen) function firebase-frameworks-habitforge-1832c:ssrhabitforge1832c(us-east1)... 
+[debug] [2024-04-22T15:34:40.875Z] >>> [apiv2][query] PATCH https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c updateMask=name%2CbuildConfig.runtime%2CbuildConfig.entryPoint%2CbuildConfig.source.storageSource.bucket%2CbuildConfig.source.storageSource.object%2CbuildConfig.environmentVariables%2CbuildConfig.sourceToken%2CserviceConfig.environmentVariables%2CserviceConfig.ingressSettings%2CserviceConfig.timeoutSeconds%2CserviceConfig.serviceAccountEmail%2CserviceConfig.availableMemory%2CserviceConfig.minInstanceCount%2CserviceConfig.maxInstanceCount%2CserviceConfig.maxInstanceRequestConcurrency%2CserviceConfig.availableCpu%2CserviceConfig.vpcConnector%2CserviceConfig.vpcConnectorEgressSettings%2Clabels%2CbuildConfig.buildEnvironmentVariables
+[debug] [2024-04-22T15:34:40.875Z] >>> [apiv2][body] PATCH https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c {"name":"projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c","buildConfig":{"runtime":"nodejs20","entryPoint":"ssrhabitforge1832c","source":{"storageSource":{"bucket":"gcf-v2-uploads-346207026425-us-east1","object":"8fe5a343-a900-4a6e-a66e-7065971468c4.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"VERCEL_URL":"habitforge-1832c.web.app","__FIREBASE_FRAMEWORKS_ENTRY__":"next.js","__FIREBASE_DEFAULTS__":"{\"config\":{\"projectId\":\"habitforge-1832c\",\"appId\":\"1:346207026425:web:7a0d4efdef194a41697628\",\"storageBucket\":\"habitforge-1832c.appspot.com\",\"locationId\":\"us-central\",\"apiKey\":\"AIzaSyCKiZ8-lZE8z9eHWEW4ZnwfAfcKwQp8tPQ\",\"authDomain\":\"habitforge-1832c.firebaseapp.com\",\"messagingSenderId\":\"346207026425\",\"measurementId\":\"G-EGPQ778PN9\"},\"_authTokenSyncURL\":\"/__session\"}","FIREBASE_CONFIG":"{\"projectId\":\"habitforge-1832c\",\"storageBucket\":\"habitforge-1832c.appspot.com\",\"locationId\":\"us-central\"}","GCLOUD_PROJECT":"habitforge-1832c","EVENTARC_CLOUD_EVENT_SOURCE":"projects/habitforge-1832c/locations/us-east1/services/ssrhabitforge1832c","FUNCTION_TARGET":"ssrhabitforge1832c"},"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":null,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null},"labels":{"deployment-tool":"cli-firebase","firebase-functions-codebase":"firebase-frameworks-habitforge-1832c","firebase-functions-hash":"fc8589f00dde148df4540bece5243d5984cf7949"}}
+[debug] [2024-04-22T15:34:41.489Z] <<< [apiv2][status] PATCH https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c 403
+[debug] [2024-04-22T15:34:41.490Z] <<< [apiv2][body] PATCH https://cloudfunctions.googleapis.com/v2/projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c {"error":{"code":403,"message":"Caller is missing permission 'iam.serviceaccounts.actAs' on service account projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com.Grant the role 'roles/iam.serviceAccountUser' to the caller on the service account projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com.You can do that by running 'gcloud iam service-accounts add-iam-policy-binding projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com --member MEMBER --role roles/iam.serviceAccountUser'where MEMBER has a prefix like 'user:' or 'serviceAccount:'.Details and instructions for the Cloud Console can be found at https://cloud.google.com/functions/docs/reference/iam/roles#additional-configuration.","status":"PERMISSION_DENIED"}}
+[warn] ⚠  functions: HTTP Error: 403, Caller is missing permission 'iam.serviceaccounts.actAs' on service account projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com.Grant the role 'roles/iam.serviceAccountUser' to the caller on the service account projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com.You can do that by running 'gcloud iam service-accounts add-iam-policy-binding projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com --member MEMBER --role roles/iam.serviceAccountUser'where MEMBER has a prefix like 'user:' or 'serviceAccount:'.Details and instructions for the Cloud Console can be found at https://cloud.google.com/functions/docs/reference/iam/roles#additional-configuration. 
+[warn] ⚠  functions:  failed to update function projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c 
+[error] Failed to update function projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c
+[debug] [2024-04-22T15:34:41.499Z] Total Function Deployment time: 619
+[debug] [2024-04-22T15:34:41.499Z] 1 Functions Deployed
+[debug] [2024-04-22T15:34:41.499Z] 1 Functions Errored
+[debug] [2024-04-22T15:34:41.499Z] 0 Function Deployments Aborted
+[debug] [2024-04-22T15:34:41.499Z] Average Function Deployment time: 619
+[info] 
+[info] Functions deploy had errors with the following functions:
+	firebase-frameworks-habitforge-1832c:ssrhabitforge1832c(us-east1)
+[debug] [2024-04-22T15:34:41.616Z] Not printing URL for HTTPS function. Typically this means it didn't match a filter or we failed deployment
+[info] i  functions: cleaning up build files... 
+[debug] [2024-04-22T15:34:41.619Z] >>> [apiv2][query] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/habitforge-1832c/locations/us-east1/repositories/gcf-artifacts/packages/ssrhabitforge1832c [none]
+[debug] [2024-04-22T15:34:41.620Z] >>> [apiv2][query] GET https://us.gcr.io/v2/habitforge-1832c/gcf/us-east1/tags/list [none]
+[debug] [2024-04-22T15:34:41.782Z] <<< [apiv2][status] GET https://us.gcr.io/v2/habitforge-1832c/gcf/us-east1/tags/list 200
+[debug] [2024-04-22T15:34:41.782Z] <<< [apiv2][body] GET https://us.gcr.io/v2/habitforge-1832c/gcf/us-east1/tags/list {"child":[],"manifest":{},"name":"habitforge-1832c/gcf/us-east1","tags":[]}
+[debug] [2024-04-22T15:34:41.783Z] Could not find image for function projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c
+[debug] [2024-04-22T15:34:41.835Z] <<< [apiv2][status] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/habitforge-1832c/locations/us-east1/repositories/gcf-artifacts/packages/ssrhabitforge1832c 403
+[debug] [2024-04-22T15:34:41.835Z] <<< [apiv2][body] DELETE https://artifactregistry.googleapis.com/v1beta2/projects/habitforge-1832c/locations/us-east1/repositories/gcf-artifacts/packages/ssrhabitforge1832c {"error":{"code":403,"message":"Permission 'artifactregistry.packages.delete' denied on resource '//artifactregistry.googleapis.com/projects/habitforge-1832c/locations/us-east1/repositories/gcf-artifacts/packages/ssrhabitforge1832c' (or it may not exist).","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"IAM_PERMISSION_DENIED","domain":"artifactregistry.googleapis.com","metadata":{"resource":"projects/habitforge-1832c/locations/us-east1/repositories/gcf-artifacts/packages/ssrhabitforge1832c","permission":"artifactregistry.packages.delete"}}]}}
+[warn] ⚠  functions: Unhandled error cleaning up build images. This could result in a small monthly bill if not corrected. You can attempt to delete these images by redeploying or you can delete them manually at https://console.cloud.google.com/artifacts/docker/habitforge-1832c/us-east1/gcf-artifacts 
+[debug] [2024-04-22T15:34:41.836Z] Functions deploy failed.
+[debug] [2024-04-22T15:34:41.836Z] {
+  "endpoint": {
+    "id": "ssrhabitforge1832c",
+    "project": "habitforge-1832c",
+    "region": "us-east1",
+    "entryPoint": "ssrhabitforge1832c",
+    "platform": "gcfv2",
+    "runtime": "nodejs20",
+    "httpsTrigger": {},
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "serviceAccount": null,
+    "timeoutSeconds": null,
+    "maxInstances": null,
+    "minInstances": null,
+    "concurrency": 80,
+    "vpc": null,
+    "environmentVariables": {
+      "VERCEL_URL": "habitforge-1832c.web.app",
+      "__FIREBASE_FRAMEWORKS_ENTRY__": "next.js",
+      "__FIREBASE_DEFAULTS__": "{\"config\":{\"projectId\":\"habitforge-1832c\",\"appId\":\"1:346207026425:web:7a0d4efdef194a41697628\",\"storageBucket\":\"habitforge-1832c.appspot.com\",\"locationId\":\"us-central\",\"apiKey\":\"AIzaSyCKiZ8-lZE8z9eHWEW4ZnwfAfcKwQp8tPQ\",\"authDomain\":\"habitforge-1832c.firebaseapp.com\",\"messagingSenderId\":\"346207026425\",\"measurementId\":\"G-EGPQ778PN9\"},\"_authTokenSyncURL\":\"/__session\"}",
+      "FIREBASE_CONFIG": "{\"projectId\":\"habitforge-1832c\",\"storageBucket\":\"habitforge-1832c.appspot.com\",\"locationId\":\"us-central\"}",
+      "GCLOUD_PROJECT": "habitforge-1832c",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/habitforge-1832c/locations/us-east1/services/ssrhabitforge1832c"
+    },
+    "codebase": "firebase-frameworks-habitforge-1832c",
+    "runServiceId": "ssrhabitforge1832c",
+    "cpu": 1,
+    "securityLevel": "SECURE_ALWAYS",
+    "targetedByOnly": true,
+    "hash": "fc8589f00dde148df4540bece5243d5984cf7949"
+  },
+  "op": "update",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "context": {
+      "function": "projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c"
+    },
+    "exit": 1,
+    "message": "Failed to update function projects/habitforge-1832c/locations/us-east1/functions/ssrhabitforge1832c",
+    "original": {
+      "name": "FirebaseError",
+      "children": [],
+      "context": {
+        "body": {
+          "error": {
+            "code": 403,
+            "message": "Caller is missing permission 'iam.serviceaccounts.actAs' on service account projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com.Grant the role 'roles/iam.serviceAccountUser' to the caller on the service account projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com.You can do that by running 'gcloud iam service-accounts add-iam-policy-binding projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com --member MEMBER --role roles/iam.serviceAccountUser'where MEMBER has a prefix like 'user:' or 'serviceAccount:'.Details and instructions for the Cloud Console can be found at https://cloud.google.com/functions/docs/reference/iam/roles#additional-configuration.",
+            "status": "PERMISSION_DENIED"
+          }
+        },
+        "response": {
+          "statusCode": 403
+        }
+      },
+      "exit": 1,
+      "message": "HTTP Error: 403, Caller is missing permission 'iam.serviceaccounts.actAs' on service account projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com.Grant the role 'roles/iam.serviceAccountUser' to the caller on the service account projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com.You can do that by running 'gcloud iam service-accounts add-iam-policy-binding projects/-/serviceAccounts/346207026425-compute@developer.gserviceaccount.com --member MEMBER --role roles/iam.serviceAccountUser'where MEMBER has a prefix like 'user:' or 'serviceAccount:'.Details and instructions for the Cloud Console can be found at https://cloud.google.com/functions/docs/reference/iam/roles#additional-configuration.",
+      "status": 403
+    },
+    "status": 403,
+    "code": 403
+  }
+}
+[debug] [2024-04-22T15:34:41.886Z] Error: Failed to update function ssrhabitforge1832c in region us-east1
+    at /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/release/fabricator.js:394:19
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Fabricator.updateV2Function (/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/release/fabricator.js:385:32)
+    at async Fabricator.updateEndpoint (/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/release/fabricator.js:154:13)
+    at async handle (/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/release/fabricator.js:88:17)
+[error] 
+[error] Error: There was an error deploying functions

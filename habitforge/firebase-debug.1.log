@@ -1,0 +1,132 @@
+[debug] [2024-04-22T15:40:51.707Z] ----------------------------------------------------------------------
+[debug] [2024-04-22T15:40:51.709Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only functions --debug
+[debug] [2024-04-22T15:40:51.709Z] CLI Version:   13.7.3
+[debug] [2024-04-22T15:40:51.709Z] Platform:      darwin
+[debug] [2024-04-22T15:40:51.709Z] Node Version:  v20.12.2
+[debug] [2024-04-22T15:40:51.709Z] Time:          Mon Apr 22 2024 11:40:51 GMT-0400 (Eastern Daylight Time)
+[debug] [2024-04-22T15:40:51.709Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-22T15:40:51.747Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-22T15:40:51.748Z] > authorizing via signed-in user (ameenkhawaja219@gmail.com)
+[debug] [2024-04-22T15:40:51.748Z] [iam] checking project habitforge-1832c for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-04-22T15:40:51.749Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions [none]
+[debug] [2024-04-22T15:40:51.749Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:40:51.749Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-04-22T15:40:52.127Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions 200
+[debug] [2024-04-22T15:40:52.128Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-04-22T15:40:52.128Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-04-22T15:40:52.128Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-04-22T15:40:52.382Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-04-22T15:40:52.383Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions {}
+[error] 
+[error] Error: Missing permissions required for functions deploy. You must have permission iam.serviceAccounts.ActAs on service account habitforge-1832c@appspot.gserviceaccount.com.
+
+To address this error, ask a project Owner to assign your account the "Service Account User" role from this URL:
+
+https://console.cloud.google.com/iam-admin/iam?project=habitforge-1832c
+[debug] [2024-04-22T15:47:31.938Z] ----------------------------------------------------------------------
+[debug] [2024-04-22T15:47:31.939Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only functions --debug
+[debug] [2024-04-22T15:47:31.939Z] CLI Version:   13.7.3
+[debug] [2024-04-22T15:47:31.939Z] Platform:      darwin
+[debug] [2024-04-22T15:47:31.940Z] Node Version:  v20.12.2
+[debug] [2024-04-22T15:47:31.940Z] Time:          Mon Apr 22 2024 11:47:31 GMT-0400 (Eastern Daylight Time)
+[debug] [2024-04-22T15:47:31.940Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-04-22T15:47:31.974Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-04-22T15:47:31.975Z] > authorizing via signed-in user (ameenkhawaja219@gmail.com)
+[debug] [2024-04-22T15:47:31.975Z] [iam] checking project habitforge-1832c for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2024-04-22T15:47:31.976Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions [none]
+[debug] [2024-04-22T15:47:31.976Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:47:31.976Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-04-22T15:47:32.313Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions 200
+[debug] [2024-04-22T15:47:32.314Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/habitforge-1832c:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2024-04-22T15:47:32.315Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2024-04-22T15:47:32.315Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2024-04-22T15:47:32.654Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2024-04-22T15:47:32.654Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/habitforge-1832c/serviceAccounts/habitforge-1832c@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'habitforge-1832c'...
+[info] 
+[info] i  deploying functions 
+[debug] [2024-04-22T15:47:32.659Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c [none]
+[debug] [2024-04-22T15:47:33.047Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c 200
+[debug] [2024-04-22T15:47:33.048Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c {"projectId":"habitforge-1832c","projectNumber":"346207026425","displayName":"HabitForge","name":"projects/habitforge-1832c","resources":{"hostingSite":"habitforge-1832c","storageBucket":"habitforge-1832c.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_a25145d4-ae14-47b5-98e7-bd522e17a7d0"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2024-04-22T15:47:33.051Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudfunctions.googleapis.com [none]
+[debug] [2024-04-22T15:47:33.051Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:47:33.053Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/runtimeconfig.googleapis.com [none]
+[debug] [2024-04-22T15:47:33.053Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:47:33.054Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudbuild.googleapis.com [none]
+[debug] [2024-04-22T15:47:33.054Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudbuild.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:47:33.055Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/artifactregistry.googleapis.com [none]
+[debug] [2024-04-22T15:47:33.055Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/artifactregistry.googleapis.com x-goog-quota-user=projects/habitforge-1832c
+[debug] [2024-04-22T15:47:33.436Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudfunctions.googleapis.com 200
+[debug] [2024-04-22T15:47:33.437Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudfunctions.googleapis.com [omitted]
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2024-04-22T15:47:33.454Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudbuild.googleapis.com 200
+[debug] [2024-04-22T15:47:33.454Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/cloudbuild.googleapis.com [omitted]
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2024-04-22T15:47:33.474Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/runtimeconfig.googleapis.com 200
+[debug] [2024-04-22T15:47:33.474Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2024-04-22T15:47:33.489Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/artifactregistry.googleapis.com 200
+[debug] [2024-04-22T15:47:33.489Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/habitforge-1832c/services/artifactregistry.googleapis.com [omitted]
+[info] ✔  artifactregistry: required API artifactregistry.googleapis.com is enabled 
+[debug] [2024-04-22T15:47:33.490Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c/adminSdkConfig [none]
+[debug] [2024-04-22T15:47:33.819Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c/adminSdkConfig 200
+[debug] [2024-04-22T15:47:33.820Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/habitforge-1832c/adminSdkConfig {"projectId":"habitforge-1832c","storageBucket":"habitforge-1832c.appspot.com","locationId":"us-central"}
+[debug] [2024-04-22T15:47:33.821Z] >>> [apiv2][query] GET https://runtimeconfig.googleapis.com/v1beta1/projects/habitforge-1832c/configs [none]
+[debug] [2024-04-22T15:47:34.030Z] <<< [apiv2][status] GET https://runtimeconfig.googleapis.com/v1beta1/projects/habitforge-1832c/configs 200
+[debug] [2024-04-22T15:47:34.031Z] <<< [apiv2][body] GET https://runtimeconfig.googleapis.com/v1beta1/projects/habitforge-1832c/configs {}
+[debug] [2024-04-22T15:47:34.034Z] Validating nodejs source
+[warn] ⚠  functions: Couldn't find firebase-functions package in your source code. Have you run 'npm install'? 
+[debug] [2024-04-22T15:47:34.039Z] getFunctionsSDKVersion encountered error: Cannot find module 'firebase-functions'
+Require stack:
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/versioning.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/prepare.js
+- /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorShared.js
+- /usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulator.js
+- /usr/local/lib/node_modules/firebase-tools/lib/emulator/controller.js
+- /usr/local/lib/node_modules/firebase-tools/lib/emulator/commandUtils.js
+- /usr/local/lib/node_modules/firebase-tools/lib/commands/database-get.js
+- /usr/local/lib/node_modules/firebase-tools/lib/commands/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/bin/firebase.js {"code":"MODULE_NOT_FOUND","requireStack":["/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/versioning.js","/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/index.js","/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/index.js","/usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/prepare.js","/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulatorShared.js","/usr/local/lib/node_modules/firebase-tools/lib/emulator/functionsEmulator.js","/usr/local/lib/node_modules/firebase-tools/lib/emulator/controller.js","/usr/local/lib/node_modules/firebase-tools/lib/emulator/commandUtils.js","/usr/local/lib/node_modules/firebase-tools/lib/commands/database-get.js","/usr/local/lib/node_modules/firebase-tools/lib/commands/index.js","/usr/local/lib/node_modules/firebase-tools/lib/index.js","/usr/local/lib/node_modules/firebase-tools/lib/bin/firebase.js"]}
+[debug] [2024-04-22T15:47:34.040Z] checkFunctionsSDKVersion encountered error: Invalid Version:  {}
+[debug] [2024-04-22T15:47:34.040Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "18"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^11.8.0",
+    "firebase-functions": "^4.3.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2024-04-22T15:47:34.041Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2024-04-22T15:47:34.041Z] Could not parse firebase-functions version '' into semver. Falling back to parseTriggers.
+[error] 
+[error] Error: Error parsing triggers: Cannot find module 'firebase-functions'
+Require stack:
+- /Users/ameenkhawaja/Desktop/4P/4P02_Winter_2024/habitforge/functions/index.js
+- /usr/local/lib/node_modules/firebase-tools/lib/deploy/functions/runtimes/node/triggerParser.js
+
+Try running "npm install" in your functions directory before deploying.
