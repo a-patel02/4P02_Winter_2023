@@ -33,7 +33,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import GroupHabitsDialog from "./Dashboard/GroupHabitsDialog";
 
 import { useMute } from "./Dashboard/MuteProvider";
-import HabitsDialog from "./HabitsDialog";
+import HabitsDialog from "./Dashboard/HabitsDialog";
 
 interface HabitsProps {
   habitName: string;

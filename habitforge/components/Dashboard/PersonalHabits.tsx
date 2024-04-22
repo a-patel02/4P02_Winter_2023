@@ -9,7 +9,8 @@ import Habits from "@/components/Habits";
 
 import FirstHabit from "@/components/Dashboard/FirstHabit";
 import { Button } from "@/components/ui/button";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 interface PersonalHabitsProps {
   sortedHabits: any;
@@ -18,11 +19,18 @@ interface PersonalHabitsProps {
 const PersonalHabits: FC<PersonalHabitsProps> = ({ sortedHabits, user }) => {
   const [manageHabits, setManageHabits] = useState(false);
 
+  const maxHabitsAllowed = 2 * user.level;
+
+  const isMaxHabits = sortedHabits?.length >= maxHabitsAllowed;
+
   return (
     <div className="flex flex-col gap-6 w-full">
       <div className="flex flex-col w-full">
         <div className="flex w-full flex-col gap-2 md:flex-row md:justify-between py-2 md:items-center">
-          <Typography variant={"h4"}>All Habits</Typography>
+          <div className="flex gap-2 items-center">
+            <Typography variant={"h4"}>All Habits</Typography>
+          </div>
+
           <div className="flex gap-2">
             <Button
               variant={"outline"}
@@ -30,7 +38,7 @@ const PersonalHabits: FC<PersonalHabitsProps> = ({ sortedHabits, user }) => {
             >
               {manageHabits ? <ArrowLeft /> : <Settings2 />}
             </Button>
-            <HabitsDialog></HabitsDialog>
+            <HabitsDialog isMaxHabits={isMaxHabits} />
           </div>
         </div>
         <hr />
