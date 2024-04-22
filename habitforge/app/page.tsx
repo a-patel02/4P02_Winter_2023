@@ -3,7 +3,6 @@ import Image from "next/image";
 import Typography from "@/components/ui/typography-variants";
 import { Button } from "@/components/ui/button";
 
-
 import {
   Zap,
   Sparkles,
@@ -25,7 +24,7 @@ export default function Home() {
   const [user, loading, error] = useAuthState(auth);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8 md:p-24">
-      <div className="flex flex-col items-center gap-72 w-full">
+      <div className="flex flex-col items-center gap-72   max-w-7xl">
         {/* Hero Section */}
         <div className="flex flex-col gap-12 md:gap-24">
           <div className="flex flex-col items-center gap-8">
