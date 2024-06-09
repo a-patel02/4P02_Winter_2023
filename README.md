@@ -50,7 +50,6 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -73,16 +72,15 @@
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+To get started, download the project or clone the repository. An IDE or text editor such as Visual Studio Code will be required.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Inorder to use HabitForge, their are a few prerequisites that can be found in the project directory, called "local instructions updated.pdf".
 
 ### Installation
 
-This is where you write installation instructions
+To get a local copy up of HabitForge up and running follow the steps located in the project directory, called "local instructions updated.pdf" 
 
 <!-- USAGE EXAMPLES -->
 
@@ -114,13 +112,7 @@ Zakir Raza - zr19zt@brocku.ca
 
 Project Link: [https://github.com/a-patel02/4P02_Winter_2024](https://github.com/a-patel02/4P02_Winter_2024)
 
-<!-- ACKNOWLEDGMENTS -->
 
-## Acknowledgments
-
-- []()
-- []()
-- []()
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
